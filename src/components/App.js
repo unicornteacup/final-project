@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
+import Parkslist from "./ParksList";
+// import EntryForm from "components/EntryForm/Index"; 
 
 class App extends Component {
   constructor(props) {
@@ -25,12 +27,28 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <h1>{ this.state.message }</h1>
-        <button onClick={this.fetchData} >
-          Fetch Data
-        </button>        
-      </div>
+      <main className="App">
+        <nav>
+          {/* placegolder for nav bar */}
+        </nav>
+          <div class='main-body'>
+            <Parkslist>
+              {/* parks={state.parks} 
+              park={state.park} 
+              setPark={setPark} /> */}
+            </Parkslist>
+          </div>
+
+
+
+
+
+
+        // <h1>{ this.state.message }</h1>
+        // <button onClick={this.fetchData} >
+        //   Fetch Data
+        // </button>        
+      </main>
     );
   }
 }
