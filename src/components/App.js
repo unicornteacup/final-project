@@ -2,9 +2,10 @@ import React from 'react';
 // import axios from 'axios';
 import './App.css';
 import ParksList from "./ParksList";
-// import DateSelector from "./DateSelector";
+import DateSelector from "./DateSelector";
 // import useApplicationData from "../hooks/useApplicationData";
 import ParkContext from "../hooks/ParkContext";
+import DateContext from "../hooks/DateContext";
 // import EntryForm from "components/EntryForm/Index"; 
 
 export default function App(props) {
@@ -31,6 +32,8 @@ export default function App(props) {
   // }
   
   const [park, setPark] = React.useState({});
+
+  const [selectedDate, setSelectedDate] = React.useState({});
   
   return (
     <main className="App">
@@ -38,8 +41,9 @@ export default function App(props) {
         {/* placegolder for nav bar */}
       </nav>
         <div className='main-body'>
-          {/* <DateSelector></DateSelector> */}
+        <DateContext.Provider value={{selectedDate, setSelectedDate}}>
           <ParkContext.Provider value={{park, setPark}}>
+             <DateSelector></DateSelector>
             <ParksList
               // park={state.park} 
               // setPark={setPark}
@@ -48,7 +52,7 @@ export default function App(props) {
               
             </ParksList>
           </ParkContext.Provider>
-
+          </DateContext.Provider>
         </div>
 
 

@@ -6,14 +6,20 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import DateContext from "../hooks/DateContext";
 
 export default function MaterialUIPickers() {
   // The first commit of Material-UI
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  // const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const {selectedDate, setSelectedDate} = React.useContext(DateContext);
+  console.log('context datepicker:', selectedDate)
+
+  const handleDateChange = (selectedDate) => {
+    console.log('context datepicker2:', selectedDate)
+    setSelectedDate(selectedDate);
   };
+
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -24,10 +30,11 @@ export default function MaterialUIPickers() {
           format="MM/dd/yyyy"
           margin="normal"
           id="date-picker-inline"
-          label="Date picker inline"
+          label="Select a date:"
           value={selectedDate}
+          // onChange={() => setSelectedDate(selectedDate)}
           onChange={handleDateChange}
-          KeyboardButtonProps={{
+           KeyboardButtonProps={{
             'aria-label': 'change date',
           }}
         />
