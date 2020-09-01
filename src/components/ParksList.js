@@ -2,9 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
+import Classnames from "classnames";
+import ParkContext from "../hooks/ParkContext";
 // import ParksListItem from "components/ParksListItem";
 
-const images = [
+const parks = [
   {
     url: 'https://i.pinimg.com/474x/c4/83/96/c483960b380e5546d5a1698799458807.jpg',
     title: 'Cypress',
@@ -110,25 +112,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonBases() {
-  const classes = useStyles();
 
+
+export default function ParksList(props) {
+
+  const classes = useStyles("park-list", {
+    "park-list--selected": props.selected});
+
+    const {park: currentPark, setPark} = React.useContext(ParkContext);
+    console.log('context parklist:', currentPark)
   return (
     <div className={classes.root}>
-      {images.map((image) => (
+      {parks.map((park) => (
         <ButtonBase
           focusRipple
-          key={image.title}
+          key={park.title}
           className={classes.image}
           focusVisibleClassName={classes.focusVisible}
           style={{
-            width: image.width,
+            width: park.width,
+            color: currentPark.title === park.title && "red"
           }}
+          onClick={() => setPark(park)}
         >
           <span
             className={classes.imageSrc}
             style={{
-              backgroundImage: `url(${image.url})`,
+              backgroundImage: `url(${park.url})`,
             }}
           />
           <span className={classes.imageBackdrop} />
@@ -139,7 +149,7 @@ export default function ButtonBases() {
               color="inherit"
               className={classes.imageTitle}
             >
-              {image.title}
+              {park.title}
               <span className={classes.imageMarked} />
             </Typography>
           </span>
