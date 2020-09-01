@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 // importing components
+import NavBar from './components/NavBar';
 import TrailList from './components/TrailList';
 import ParksList from './components/ParksList'
 import DateSelector from "./components/DateSelector";
@@ -51,7 +52,7 @@ export default function App(props) {
   return (
     <main className="App">
       <nav>
-        {/* placegolder for nav bar */}
+        <NavBar />
       </nav>
         <div className='main-body'>
         <DateContext.Provider value={{selectedDate, setSelectedDate}}>
