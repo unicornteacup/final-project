@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   column: {
-    flexBasis: '33.33%',
+    flexBasis: '50%',
   },
   helper: {
     borderLeft: `2px solid ${theme.palette.divider}`,
@@ -63,10 +63,24 @@ export default function TrailList(props) {
           id="panel1c-header"
         >
           <div className={classes.column}>
-            <Typography className={classes.heading}>{props.name}</Typography>
+            <Typography className={classes.heading}>
+              <strong>{props.name}</strong>
+            </Typography>
           </div>
           <div className={classes.column}>
-            <Typography className={classes.secondaryHeading}>{props.date.selectedDate.toString()}</Typography>
+            <Typography className={classes.secondaryHeading}>
+              {props.date.selectedDate.toDateString()}
+            </Typography>
+          </div>
+          <div>
+            { props.status === 'Open'
+                ? <Alert severity="success">
+                      The trail is — <strong>open!</strong>
+                  </Alert>
+                : <Alert severity="warning">
+                      The trails is — <strong>closed!</strong>
+                  </Alert>
+              }
           </div>
         </AccordionSummary>
         <Divider />
@@ -79,9 +93,14 @@ export default function TrailList(props) {
           </Map>
           <div className={clsx(classes.column, classes.helper)}>
             <Typography variant="caption">{props.description}</Typography>
-          </div>
-          <div className={clsx(classes.column, classes.helper)}>
-            <Alert severity="success">{props.warning}</Alert>
+            { props.warning === 'Warning'
+              ? <Typography variant="subtitle1" color="error">
+                  <strong>{props.warning}</strong>
+                </Typography>
+              : <Typography variant="subtitle1" color="primary">
+                  <strong>{props.warning}</strong>
+                </Typography>
+            }
           </div>
         </AccordionDetails>
         <Divider />
