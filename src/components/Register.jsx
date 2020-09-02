@@ -9,23 +9,52 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import LandscapeRoundedIcon from '@material-ui/icons/LandscapeRounded';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+const visitors = [
+  {
+    id: 1,
+    first_name: 'Daimhin',
+    last_name: 'Dalong',
+    phone: 4382165851,
+    email: 'fupke@dugah.seven',
+    password: 'password'
+  },
+  {
+    id: 2,
+    first_name: 'Andy',
+    last_name: 'Dalong',
+    phone: 4382165851,
+    email: 'andy@email.com',
+    password: 'password'
+  },
+  {
+    id: 3,
+    first_name: 'Travis',
+    last_name: 'Borsa',
+    phone: 4382165851,
+    email: 'travis@email.com',
+    password: 'password'
+  },
+  {
+    id: 4,
+    first_name: 'Hafiz',
+    last_name: 'Dalong',
+    phone: 4382165851,
+    email: 'hafiz@email.com',
+    password: 'password'
+  },
+  {
+    id: 6,
+    first_name: 'Ali',
+    last_name: 'Dalong',
+    phone: 4382165851,
+    email: 'ali@email.com',
+    password: 'password'
+  }
+]
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -54,11 +83,11 @@ export default function Register() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+      <Avatar className={classes.avatar}>
+          <LandscapeRoundedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Become a hiker
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -109,9 +138,21 @@ export default function Register() {
               />
             </Grid>
             <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="phone"
+                label="Phone Number"
+                type="phone"
+                id="phone"
+                autoComplete="phone"
+              />
+            </Grid>
+            <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                label="I love BC"
               />
             </Grid>
           </Grid>
@@ -122,7 +163,7 @@ export default function Register() {
             color="primary"
             className={classes.submit}
           >
-            Sign Up
+            Let's go for a hike!
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
@@ -134,7 +175,6 @@ export default function Register() {
         </form>
       </div>
       <Box mt={5}>
-        <Copyright />
       </Box>
     </Container>
   );
