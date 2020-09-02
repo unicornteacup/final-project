@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TrailList() {
+export default function TrailList(props) {
   const classes = useStyles();
 
   return (
@@ -63,27 +63,25 @@ export default function TrailList() {
           id="panel1c-header"
         >
           <div className={classes.column}>
-            <Typography className={classes.heading}>Hollyburn Trail</Typography>
+            <Typography className={classes.heading}>{props.name}</Typography>
           </div>
           <div className={classes.column}>
-            <Typography className={classes.secondaryHeading}>Selected date</Typography>
+            <Typography className={classes.secondaryHeading}>{props.date.selectedDate.toString()}</Typography>
           </div>
         </AccordionSummary>
         <Divider />
         <AccordionDetails className={classes.details}>
-          <Map center={[49.38285, -123.23430]} zoom={13}> 
+          <Map center={[props.latitude, props.longitude]} zoom={13}> 
             <TileLayer
               url="https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png"
             />
-            <Marker position={[49.38285, -123.23430]} />
+            <Marker position={[props.latitude, props.longitude]} />
           </Map>
           <div className={clsx(classes.column, classes.helper)}>
-            <Typography variant="caption">
-              Hollyburn Peak Trail: Length: 1.3 kilometres. Length from Nordic Ski Area: 8 kilometres (return) Suggested time: 4 hours. Elevation change: 400 metres. From the Nordic Ski Area Parking lot, hike up the powerline road to the Baden-Powell trail. Follow the signs up the mountain to the Hollyburn Peak Trail. This trail leads to the top of Hollyburn Mountain and offers spectacular views of the surrounding area.
-            </Typography>
+            <Typography variant="caption">{props.description}</Typography>
           </div>
           <div className={clsx(classes.column, classes.helper)}>
-            <Alert severity="success">The trail is open! :)</Alert>
+            <Alert severity="success">{props.warning}</Alert>
           </div>
         </AccordionDetails>
         <Divider />
