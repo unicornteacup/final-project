@@ -65,16 +65,10 @@ export default function App(props) {
               {/* parks={state.parks}  */}
               
             </ParksList>
+            { park.title && <TrailList />}
           </ParkContext.Provider>
           </DateContext.Provider>
         </div>
-
-
-
-<div className="App">
-     { park.title && <TrailList />}
-   </div>
-
 
 
       {/* // <h1>{ this.state.message }</h1> */}
