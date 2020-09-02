@@ -1,5 +1,7 @@
 import React from 'react';
 import useVisualMode from '../hooks/UseVisualMode';
+import VisitorContext from '../hooks/VisitorContext';
+
 
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -28,6 +30,7 @@ const LOGIN = "LOGIN";
 
 export default function NavBar() {
   const classes = useStyles();
+  const selectedVisitorObj = React.useContext(VisitorContext);
   //transition hook
   const { mode, transition, back } = useVisualMode(INITIAL);
 
