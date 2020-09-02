@@ -15,6 +15,7 @@ import Alert from '@material-ui/lab/Alert';
 import LinearWithValueLabel from './ProgressBar';
 
 import { Map, TileLayer, Marker } from 'react-leaflet';
+import DateContext from "../hooks/DateContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TrailList() {
   const classes = useStyles();
+  const {selectedDate} = React.useContext(DateContext);
 
   return (
     <div className={classes.root}>
@@ -66,7 +68,7 @@ export default function TrailList() {
             <Typography className={classes.heading}>Hollyburn Trail</Typography>
           </div>
           <div className={classes.column}>
-            <Typography className={classes.secondaryHeading}>Selected date</Typography>
+            <Typography className={classes.secondaryHeading}>{selectedDate}</Typography>
           </div>
         </AccordionSummary>
         <Divider />
