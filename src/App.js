@@ -2,11 +2,15 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import useVisualMode from './hooks/UseVisualMode';
+
+
 // importing components
 import NavBar from './components/NavBar';
 import TrailList from './components/TrailList';
 import ParksList from './components/ParksList'
 import DateSelector from "./components/DateSelector";
+import Register from "./components/Register";
 // import useApplicationData from "../hooks/useApplicationData";
 import ParkContext from "./hooks/ParkContext";
 import DateContext from "./hooks/DateContext";
@@ -22,6 +26,9 @@ import VisitorContext from "./hooks/VisitorContext";
 //   );
 // }
 
+
+const INITIAL = "INITIAL";
+const REGISTER = "REGISTER";
 // export default App;
 export default function App(props) {
 
@@ -31,7 +38,7 @@ export default function App(props) {
   //   // setPark,
   //   ParkContext
   // } = useApplicationData();
-  console.log('context:', ParkContext)
+  console.log('props', props)
 
   // fetchData = () => {
   //   axios.get('/api/data') // You can simply make your requests to "/api/whatever you want"
@@ -45,6 +52,10 @@ export default function App(props) {
   //     });
   //   }) 
   // }
+
+  const { mode, transition, back } = useVisualMode(INITIAL
+    // onRegister ? REGISTER : INITIAL
+  );
   
   const [park, setPark] = React.useState({});
 
@@ -57,8 +68,11 @@ export default function App(props) {
               <VisitorContext.Provider value={{selectedVisitor, setSelectedVisitor}}>
                 <main className="App">
                   <nav>
-                    <NavBar />
+                    <NavBar 
+                      onRegister={()=> transition(REGISTER)}
+                    />
                   </nav>
+                  { mode === INITIAL && (
                     <div className='main-body'>
                         <DateSelector></DateSelector>
                         <ParksList
@@ -70,6 +84,10 @@ export default function App(props) {
                         </ParksList>
                         { park.title && <TrailList />}
                     </div>
+                  )}
+                  { mode === REGISTER && (
+                    <Register />
+                  )}
 
 
                   {/* // <h1>{ this.state.message }</h1> */}
