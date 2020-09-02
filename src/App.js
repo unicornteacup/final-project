@@ -10,6 +10,7 @@ import DateSelector from "./components/DateSelector";
 // import useApplicationData from "../hooks/useApplicationData";
 import ParkContext from "./hooks/ParkContext";
 import DateContext from "./hooks/DateContext";
+import VisitorContext from "./hooks/VisitorContext";
 // import EntryForm from "components/EntryForm/Index"; 
 
 
@@ -48,33 +49,36 @@ export default function App(props) {
   const [park, setPark] = React.useState({});
 
   const [selectedDate, setSelectedDate] = React.useState({});
+  const [selectedVisitor, setSelectedVisitor] = React.useState({});
   
   return (
-    <main className="App">
-      <nav>
-        <NavBar />
-      </nav>
-        <div className='main-body'>
-        <DateContext.Provider value={{selectedDate, setSelectedDate}}>
-          <ParkContext.Provider value={{park, setPark}}>
-             <DateSelector></DateSelector>
-            <ParksList
-              // park={park} 
-              // setPark={setPark}
-              >
-              {/* parks={state.parks}  */}
-              
-            </ParksList>
-            { park.title && <TrailList />}
-          </ParkContext.Provider>
+          <DateContext.Provider value={{selectedDate, setSelectedDate}}>
+            <ParkContext.Provider value={{park, setPark}}>
+              <VisitorContext.Provider value={{selectedVisitor, setSelectedVisitor}}>
+                <main className="App">
+                  <nav>
+                    <NavBar />
+                  </nav>
+                    <div className='main-body'>
+                        <DateSelector></DateSelector>
+                        <ParksList
+                          // park={park} 
+                          // setPark={setPark}
+                          >
+                          {/* parks={state.parks}  */}
+                          
+                        </ParksList>
+                        { park.title && <TrailList />}
+                    </div>
+
+
+                  {/* // <h1>{ this.state.message }</h1> */}
+                  {/* // <button onClick={this.fetchData} > */}
+                  {/* //   Fetch Data */}
+                  {/* // </button>         */}
+                </main>
+              </VisitorContext.Provider>
+            </ParkContext.Provider>
           </DateContext.Provider>
-        </div>
-
-
-      {/* // <h1>{ this.state.message }</h1> */}
-      {/* // <button onClick={this.fetchData} > */}
-      {/* //   Fetch Data */}
-      {/* // </button>         */}
-    </main>
   )
 };

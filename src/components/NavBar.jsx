@@ -45,7 +45,13 @@ const LOGIN = "LOGIN";
 export default function NavBar() {
   const classes = useStyles();
   //set the visitor upon login
-  //const {selectedVisitor, setSelectedVisitor} = React.useContext(VisitorContext);
+  const { selectedVisitor, setSelectedVisitor } = React.useContext(VisitorContext);
+
+  const handleVisitorChange = (selectedVisitor) => {
+  //  setSelectedVisitor(selectedVisitor);
+  console.log('selected_visitor', selectedVisitor)
+  };
+
   //transition hook
   const { mode, transition, back } = useVisualMode(INITIAL);
 
@@ -71,17 +77,20 @@ export default function NavBar() {
                 type="email"
                 autoComplete="current-email"
                 variant="outlined"
+                value={selectedVisitor.email}
+                onChange={(event) => setSelectedVisitor({...selectedVisitor, email: event.target.value})}
               />
               <TextField
                 size="small"
                 id="outlined-password-input"
                 label="Password"
-                type="password"
                 autoComplete="current-password"
                 variant="outlined"
+                value={selectedVisitor.password}
+                onChange={(event) => setSelectedVisitor({...selectedVisitor, password: event.target.value})}
               />
-              <Button color="inherit" onClick={() => transition(LOGIN)}>Login</Button>
-
+              <Button color="inherit" 
+                onClick={handleVisitorChange(selectedVisitor)}>Submit</Button>
             </div>
           }
         </Toolbar>
