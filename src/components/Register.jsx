@@ -1,5 +1,9 @@
  
-import React from 'react';
+import React, { useState } from 'react';
+
+import VisitorContext from '../hooks/VisitorContext';
+
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +17,8 @@ import LandscapeRoundedIcon from '@material-ui/icons/LandscapeRounded';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { timePickerDefaultProps } from '@material-ui/pickers/constants/prop-types';
+
 const visitors = [
   {
     id: 1,
@@ -76,8 +82,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Register() {
+export default function Register(props) {
   const classes = useStyles();
+
+  const { selectedVisitor, setSelectedVisitor } = React.useContext(VisitorContext);
+
+  const [newVisitor, setNewVisitor] = useState({});
+  console.log('.....', newVisitor)
+
+  const save = () => {
+    setSelectedVisitor(newVisitor)
+    props.onSubmit()
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -101,6 +117,8 @@ export default function Register() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                value={newVisitor.first_name}
+                onChange={(event) => setNewVisitor({...newVisitor, first_name: event.target.value})}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -112,6 +130,8 @@ export default function Register() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                value={newVisitor.last_name}
+                onChange={(event) => setNewVisitor({...newVisitor, last_name: event.target.value})}
               />
             </Grid>
             <Grid item xs={12}>
@@ -123,6 +143,8 @@ export default function Register() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={newVisitor.email}
+                onChange={(event) => setNewVisitor({...newVisitor, email: event.target.value})}
               />
             </Grid>
             <Grid item xs={12}>
@@ -135,6 +157,8 @@ export default function Register() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={newVisitor.password}
+                onChange={(event) => setNewVisitor({...newVisitor, password: event.target.value})}
               />
             </Grid>
             <Grid item xs={12}>
@@ -147,6 +171,8 @@ export default function Register() {
                 type="phone"
                 id="phone"
                 autoComplete="phone"
+                value={newVisitor.phone}
+                onChange={(event) => setNewVisitor({...newVisitor, phone: event.target.value})}
               />
             </Grid>
             <Grid item xs={12}>
@@ -162,6 +188,7 @@ export default function Register() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={() => save()}
           >
             Let's go for a hike!
           </Button>

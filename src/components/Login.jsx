@@ -57,9 +57,11 @@ const INITIAL = "INITIAL";
 const VERIFIED = "VERIFIED";
 const ERROR = "ERROR";
 
-export default function Login() {
+export default function Login(props) {
 
-  const { mode, transition, back } = useVisualMode(INITIAL);
+  const { mode, transition, back } = useVisualMode(
+    props.verified ? VERIFIED : INITIAL
+    );
 
   const { selectedVisitor, setSelectedVisitor } = React.useContext(VisitorContext);
 

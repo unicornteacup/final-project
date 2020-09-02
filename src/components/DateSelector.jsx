@@ -13,10 +13,8 @@ export default function MaterialUIPickers() {
   // const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
   const {selectedDate, setSelectedDate} = React.useContext(DateContext);
-  console.log('context datepicker:', selectedDate)
 
   const handleDateChange = (selectedDate) => {
-    console.log('context datepicker2:', selectedDate)
     setSelectedDate(selectedDate);
   };
 

@@ -86,7 +86,8 @@ export default function App(props) {
                     </div>
                   )}
                   { mode === REGISTER && (
-                    <Register />
+                    <Register 
+                    />
                   )}
 
 
