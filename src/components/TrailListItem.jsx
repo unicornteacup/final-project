@@ -15,6 +15,7 @@ import Alert from '@material-ui/lab/Alert';
 import LinearWithValueLabel from './ProgressBar';
 
 import { Map, TileLayer, Marker } from 'react-leaflet';
+import DateContext from "../hooks/DateContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   column: {
-    flexBasis: '33.33%',
+    flexBasis: '50%',
   },
   helper: {
     borderLeft: `2px solid ${theme.palette.divider}`,
@@ -51,8 +52,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TrailList() {
+export default function TrailList(props) {
   const classes = useStyles();
+  const {selectedDate} = React.useContext(DateContext);
 
   return (
     <div className={classes.root}>
@@ -63,27 +65,44 @@ export default function TrailList() {
           id="panel1c-header"
         >
           <div className={classes.column}>
-            <Typography className={classes.heading}>Hollyburn Trail</Typography>
+            <Typography className={classes.heading}>
+              <strong>{props.name}</strong>
+            </Typography>
           </div>
           <div className={classes.column}>
-            <Typography className={classes.secondaryHeading}>Selected date</Typography>
+            <Typography className={classes.secondaryHeading}>
+              {props.date.selectedDate.toDateString()}
+            </Typography>
+          </div>
+          <div>
+            { props.status === 'Open'
+                ? <Alert severity="success">
+                      The trail is — <strong>open!</strong>
+                  </Alert>
+                : <Alert severity="warning">
+                      The trails is — <strong>closed!</strong>
+                  </Alert>
+              }
           </div>
         </AccordionSummary>
         <Divider />
         <AccordionDetails className={classes.details}>
-          <Map center={[49.38285, -123.23430]} zoom={13}> 
+          <Map center={[props.latitude, props.longitude]} zoom={13}> 
             <TileLayer
               url="https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png"
             />
-            <Marker position={[49.38285, -123.23430]} />
+            <Marker position={[props.latitude, props.longitude]} />
           </Map>
           <div className={clsx(classes.column, classes.helper)}>
-            <Typography variant="caption">
-              Hollyburn Peak Trail: Length: 1.3 kilometres. Length from Nordic Ski Area: 8 kilometres (return) Suggested time: 4 hours. Elevation change: 400 metres. From the Nordic Ski Area Parking lot, hike up the powerline road to the Baden-Powell trail. Follow the signs up the mountain to the Hollyburn Peak Trail. This trail leads to the top of Hollyburn Mountain and offers spectacular views of the surrounding area.
-            </Typography>
-          </div>
-          <div className={clsx(classes.column, classes.helper)}>
-            <Alert severity="success">The trail is open! :)</Alert>
+            <Typography variant="caption">{props.description}</Typography>
+            { props.warning === 'Warning'
+              ? <Typography variant="subtitle1" color="error">
+                  <strong>{props.warning}</strong>
+                </Typography>
+              : <Typography variant="subtitle1" color="primary">
+                  <strong>{props.warning}</strong>
+                </Typography>
+            }
           </div>
         </AccordionDetails>
         <Divider />
@@ -96,5 +115,5 @@ export default function TrailList() {
         </AccordionActions>
       </Accordion>
     </div>
-  );
+  )
 }
