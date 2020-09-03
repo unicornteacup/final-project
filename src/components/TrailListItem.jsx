@@ -98,5 +98,5 @@ export default function TrailList() {
         </AccordionActions>
       </Accordion>
     </div>
-  );
+  )
 }
