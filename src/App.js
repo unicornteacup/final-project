@@ -5,7 +5,8 @@ import './App.css';
 // importing components
 import NavBar from './components/NavBar';
 import TrailList from './components/TrailList';
-import ParksList from './components/ParksList'
+import ParksList from './components/ParksList';
+import Entry from "./components/EntryForm/Index";
 import DateSelector from "./components/DateSelector";
 // import useApplicationData from "../hooks/useApplicationData";
 import ParkContext from "./hooks/ParkContext";
@@ -47,7 +48,7 @@ export default function App(props) {
   
   const [park, setPark] = React.useState({});
 
-  const [selectedDate, setSelectedDate] = React.useState({});
+  const [selectedDate, setSelectedDate] = React.useState();
   
   return (
     <main className="App">
@@ -56,16 +57,13 @@ export default function App(props) {
       </nav>
         <div className='main-body'>
         <DateContext.Provider value={{selectedDate, setSelectedDate}}>
+        <DateSelector></DateSelector>
           <ParkContext.Provider value={{park, setPark}}>
-             <DateSelector></DateSelector>
-            <ParksList
-              // park={park} 
-              // setPark={setPark}
-              >
-              {/* parks={state.parks}  */}
-              
-            </ParksList>
+            <div>
+              <ParksList/>
             { park.title && <TrailList />}
+            <Entry/>
+            </div>
           </ParkContext.Provider>
           </DateContext.Provider>
         </div>
