@@ -76,7 +76,7 @@ export default function App(props) {
                   { mode === INITIAL && (
                     <div className='main-body'>
                         <DateSelector></DateSelector>
-                        <Confirm />
+                        {/* <Confirm /> */}
                         <ParksList
                           // park={park} 
                           // setPark={setPark}
