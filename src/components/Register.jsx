@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 
 import VisitorContext from '../hooks/VisitorContext';
 
+import useVisualMode from '../hooks/UseVisualMode';
+
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -82,127 +84,175 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const INITIAL = "INITIAL";
+const ERROR = "ERROR";
+
+
 export default function Register(props) {
   const classes = useStyles();
+
+  const { mode, transition, back } = useVisualMode(INITIAL);
 
   const { selectedVisitor, setSelectedVisitor } = React.useContext(VisitorContext);
 
   const [newVisitor, setNewVisitor] = useState({});
-  console.log('.....', newVisitor)
 
-  const save = () => {
-    setSelectedVisitor(newVisitor)
-    props.onSubmit()
+  // confirmationText = (times) => {
+  //   let number = '';
+  //   let num = 1;
+  //   while (num < times) {
+  //     const randomNumber = Math.floor(Math.random() * Math.floor(100));
+  //     number += Number(randomNumber);
+  //     num++;
+  //   }
+  //   return number;
+  // }
+
+  const save = (newVisitor, visitors) => {
+    const isNotValid = visitors.filter(visitor => 
+      newVisitor.email === visitor.email
+    )
+    // if (!isNotValid[0]) {
+    //   transition(ERROR)
+    // } else {
+      newVisitor.id = visitors.length + 2;
+      visitors.push(newVisitor);
+      console.log(visitors);
+      setSelectedVisitor(newVisitor);
+      props.onSetVerify();
+    // }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    save(newVisitor, visitors);
   }
 
   return (
+    
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-      <Avatar className={classes.avatar}>
-          <LandscapeRoundedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Become a hiker
-        </Typography>
-        <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-                value={newVisitor.first_name}
-                onChange={(event) => setNewVisitor({...newVisitor, first_name: event.target.value})}
-              />
+        <CssBaseline />
+        <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+            <LandscapeRoundedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Become a hiker
+          </Typography>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="fname"
+                  name="firstName"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                  value={newVisitor.first_name}
+                  onChange={(event) => setNewVisitor({...newVisitor, first_name: event.target.value})}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="lname"
+                  value={newVisitor.last_name}
+                  onChange={(event) => setNewVisitor({...newVisitor, last_name: event.target.value})}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                { mode === INITIAL && (
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                    value={newVisitor.email}
+                    onChange={(event) => setNewVisitor({...newVisitor, email: event.target.value})}
+                  />
+                )}
+                 { mode === ERROR && (
+                  <TextField
+                    error
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="outlined-error-helper-text"
+                    helperText="Incorrect email."
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                    value={newVisitor.email}
+                    onChange={(event) => setNewVisitor({...newVisitor, email: event.target.value})}
+                  />
+                )}
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  value={newVisitor.password}
+                  onChange={(event) => setNewVisitor({...newVisitor, password: event.target.value})}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="phone"
+                  label="Phone Number"
+                  type="phone"
+                  id="phone"
+                  autoComplete="phone"
+                  value={newVisitor.phone}
+                  onChange={(event) => setNewVisitor({...newVisitor, phone: event.target.value})}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  label="I love BC"
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-                value={newVisitor.last_name}
-                onChange={(event) => setNewVisitor({...newVisitor, last_name: event.target.value})}
-              />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Let's go for a hike!
+            </Button>
+            <Grid container justify="flex-end">
+              <Grid item>
+                <Link href="#" variant="body2">
+                  Already have an account? Sign in
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                value={newVisitor.email}
-                onChange={(event) => setNewVisitor({...newVisitor, email: event.target.value})}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                value={newVisitor.password}
-                onChange={(event) => setNewVisitor({...newVisitor, password: event.target.value})}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="phone"
-                label="Phone Number"
-                type="phone"
-                id="phone"
-                autoComplete="phone"
-                value={newVisitor.phone}
-                onChange={(event) => setNewVisitor({...newVisitor, phone: event.target.value})}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I love BC"
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={() => save()}
-          >
-            Let's go for a hike!
-          </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={5}>
-      </Box>
+          </form>
+        </div>
+        <Box mt={5}>
+        </Box>
     </Container>
   );
 }

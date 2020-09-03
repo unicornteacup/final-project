@@ -38,7 +38,6 @@ export default function App(props) {
   //   // setPark,
   //   ParkContext
   // } = useApplicationData();
-  console.log('props', props)
 
   // fetchData = () => {
   //   axios.get('/api/data') // You can simply make your requests to "/api/whatever you want"
@@ -61,6 +60,7 @@ export default function App(props) {
 
   const [selectedDate, setSelectedDate] = React.useState({});
   const [selectedVisitor, setSelectedVisitor] = React.useState({});
+  
   
   return (
           <DateContext.Provider value={{selectedDate, setSelectedDate}}>
@@ -87,6 +87,7 @@ export default function App(props) {
                   )}
                   { mode === REGISTER && (
                     <Register 
+                      onSetVerify={() => transition(INITIAL)}
                     />
                   )}
 

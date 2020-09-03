@@ -38,10 +38,10 @@ export default function NavBar(props) {
   //transition hook
   const { selectedVisitor, setSelectedVisitor } = React.useContext(VisitorContext);
 
-  const { mode, transition, back } = useVisualMode(
-    selectedVisitor.email ? VERIFIED : INITIAL
-    );
-    console.log(selectedVisitor, '.............')
+  const { mode, transition, back } = useVisualMode(INITIAL);
+    if (selectedVisitor.email && mode === INITIAL) {
+      transition(VERIFIED)
+    }
 
     const logOut = () => {
       setSelectedVisitor({});
@@ -80,11 +80,6 @@ export default function NavBar(props) {
           }
         </Toolbar>
       </AppBar>
-      { mode === REGISTER && (
-        <Register 
-          onSubmit={() => transition(VERIFIED)}
-        />
-      )}
     </div>
   );
 }
