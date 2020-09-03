@@ -18,20 +18,21 @@ const useStyles = makeStyles((theme) => ({
 
   heading: {
     fontSize: theme.typography.pxToRem(15),
+    flexDirection: "row"
   },
 }));
 
 export default function Form (props) {
   const classes = useStyles();
 
-  const {selectedDate} = React.useContext(DateContext);
+  const {date: selectedDate} = React.useContext(DateContext);
 
   function date(selectedDate) {
     let date = ""
     if (!selectedDate) {
       date="Choose Date"
     } else {
-      date=selectedDate.toString()
+      date= selectedDate
     }
     return date;
   }
@@ -86,10 +87,10 @@ export default function Form (props) {
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <header className={classes.root}>
+      <header className={classes.heading}>
       <h4 className={classes.heading}>User</h4>
       {/* <h4 className={classes.heading}>Date</h4> */}
-      <h4 className={classes.heading}>{date({selectedDate})}</h4>
+      <h4 className={classes.heading}>{date(selectedDate)}</h4>
       <h4 className={classes.heading}>Trail</h4>
     </header>
       <Button variant="contained" color="primary" value="Add New Guest" onClick={addGuest}>Add Guest</Button>
