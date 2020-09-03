@@ -11,6 +11,7 @@ import TrailList from './components/TrailList';
 import ParksList from './components/ParksList'
 import DateSelector from "./components/DateSelector";
 import Register from "./components/Register";
+import Confirm from './components/Confirm';
 // import useApplicationData from "../hooks/useApplicationData";
 import ParkContext from "./hooks/ParkContext";
 import DateContext from "./hooks/DateContext";
@@ -75,6 +76,7 @@ export default function App(props) {
                   { mode === INITIAL && (
                     <div className='main-body'>
                         <DateSelector></DateSelector>
+                        <Confirm />
                         <ParksList
                           // park={park} 
                           // setPark={setPark}
