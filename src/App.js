@@ -8,7 +8,8 @@ import useVisualMode from './hooks/UseVisualMode';
 // importing components
 import NavBar from './components/NavBar';
 import TrailList from './components/TrailList';
-import ParksList from './components/ParksList'
+import ParksList from './components/ParksList';
+import Entry from "./components/EntryForm/Index";
 import DateSelector from "./components/DateSelector";
 import Register from "./components/Register";
 import Confirm from './components/Confirm';
@@ -59,6 +60,7 @@ export default function App(props) {
   
   const [park, setPark] = React.useState({});
 
+<<<<<<< HEAD
   const [selectedDate, setSelectedDate] = React.useState({});
   const [selectedVisitor, setSelectedVisitor] = React.useState({});
   
@@ -92,6 +94,27 @@ export default function App(props) {
                       onSetVerify={() => transition(INITIAL)}
                     />
                   )}
+=======
+  const [selectedDate, setSelectedDate] = React.useState();
+  
+  return (
+    <main className="App">
+      <nav>
+        <NavBar />
+      </nav>
+        <div className='main-body'>
+        <DateContext.Provider value={{selectedDate, setSelectedDate}}>
+        <DateSelector></DateSelector>
+          <ParkContext.Provider value={{park, setPark}}>
+            <div>
+              <ParksList/>
+            { park.title && <TrailList />}
+            <Entry/>
+            </div>
+          </ParkContext.Provider>
+          </DateContext.Provider>
+        </div>
+>>>>>>> c5acd69cc19a8febb94599b0b8eae495bf3b99b2
 
 
                   {/* // <h1>{ this.state.message }</h1> */}
