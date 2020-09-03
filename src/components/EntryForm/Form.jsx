@@ -31,7 +31,7 @@ export default function Form (props) {
     if (!selectedDate) {
       date="Choose Date"
     } else {
-      date=selectedDate.toString()
+      date=selectedDate
     }
     return date;
   }
@@ -89,7 +89,7 @@ export default function Form (props) {
       <header className={classes.root}>
       <h4 className={classes.heading}>User</h4>
       {/* <h4 className={classes.heading}>Date</h4> */}
-      <h4 className={classes.heading}>{date({selectedDate})}</h4>
+      <h4 className={classes.heading}>{date(selectedDate)}</h4>
       <h4 className={classes.heading}>Trail</h4>
     </header>
       <Button variant="contained" color="primary" value="Add New Guest" onClick={addGuest}>Add Guest</Button>
