@@ -6,6 +6,7 @@ import './App.css';
 import NavBar from './components/NavBar';
 import TrailList from './components/TrailList';
 import ParksList from './components/ParksList';
+import MyBookings from './components/MyBookings';
 import Entry from "./components/EntryForm/Index";
 import DateSelector from "./components/DateSelector";
 // import useApplicationData from "../hooks/useApplicationData";
@@ -63,6 +64,7 @@ export default function App(props) {
               <ParksList/>
             { park.title && <TrailList />}
             <Entry/>
+            <MyBookings/>
             </div>
           </ParkContext.Provider>
           </DateContext.Provider>
