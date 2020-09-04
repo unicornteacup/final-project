@@ -58,6 +58,11 @@ export default function NavBar(props) {
           { mode === VERIFIED && (
             <div>
               Hola   <strong>{selectedVisitor.email}</strong>
+              <Button 
+                variant="outlined" 
+                color="secondary"
+                onClick={() => props.onMyBookings()}
+                >My Bookings</Button>
               <Button color="secondary"
                 onClick={() => logOut()}>Log Out</Button>
             </div>

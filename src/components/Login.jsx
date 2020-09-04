@@ -56,14 +56,17 @@ const visitors = [
 const INITIAL = "INITIAL";
 const VERIFIED = "VERIFIED";
 const ERROR = "ERROR";
+const BOOKINGS = "BOOKINGS";
 
 export default function Login(props) {
 
+    console.log('login props:', props)
   const { mode, transition, back } = useVisualMode(
     props.verified ? VERIFIED : INITIAL
     );
 
   const { selectedVisitor, setSelectedVisitor } = React.useContext(VisitorContext);
+  console.log('visitor:', selectedVisitor)
 
   const visitorVarification = (selectedVisitor, visitors) => {
 
@@ -80,6 +83,10 @@ export default function Login(props) {
   const logOut = () => {
     setSelectedVisitor({});
     transition(INITIAL);
+  };
+
+  const onMyBookings = () => {
+    transition(BOOKINGS);
   };
 
     return (
@@ -141,6 +148,11 @@ export default function Login(props) {
           { mode === VERIFIED && (
             <div>
               Hola   <strong>{selectedVisitor.email}</strong>
+              <Button 
+                variant="outlined" 
+                color="inherit"
+                onClick={() => onMyBookings()}
+                >My Bookings</Button>
               <Button color="secondary"
                 onClick={() => logOut()}>Log Out</Button>
             </div>

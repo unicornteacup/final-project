@@ -68,9 +68,9 @@ export default function TrailList(props) {
             </Typography>
           </div>
           <div className={classes.column}>
-            <Typography className={classes.secondaryHeading}>
+            {/* <Typography className={classes.secondaryHeading}>
               {props.date.selectedDate.toDateString()}
-            </Typography>
+            </Typography> */}
           </div>
           <div>
             { props.status === 'Open'
@@ -107,7 +107,7 @@ export default function TrailList(props) {
         <LinearWithValueLabel />
         <Divider />
         <AccordionActions>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={() => props.onForm()}>
             Apply for Pass
           </Button>
         </AccordionActions>

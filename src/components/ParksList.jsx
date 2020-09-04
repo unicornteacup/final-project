@@ -126,6 +126,8 @@ export default function ParksList(props) {
     "park-list--selected": props.selected});
 
     const {park: currentPark, setPark} = React.useContext(ParkContext);
+    console.log('context parklist:', currentPark)
+    console.log('props parklist:', props)
   return (
     <div className={classes.root}>
       {props.parks.map((park) => (

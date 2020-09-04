@@ -24,6 +24,7 @@ import Confirm from './components/Confirm';
 const INITIAL = "INITIAL";
 const REGISTER = "REGISTER";
 const BOOKINGS = "BOOKINGS";
+const FORM = "FORM";
 // export default App;
 export default function App() {
 
@@ -38,6 +39,7 @@ export default function App() {
   const [selectedDate, setSelectedDate] = React.useState({});
   const [selectedVisitor, setSelectedVisitor] = React.useState({});
   
+  console.log('app:', state.parks )
   
   return (
           <DateContext.Provider value={{selectedDate, setSelectedDate}}>
@@ -62,8 +64,13 @@ export default function App() {
                           {/* parks={state.parks}  */}
                           
                         </ParksList>
-                        { park.name && <TrailList trails={state.trails}/>}
-                        {/* <Entry/> */}
+                        { park.name && <TrailList trails={state.trails} onForm={() => transition(FORM)}/>}
+                        
+                       
+                        {mode === FORM && (
+                         <Entry />
+                        )}
+
                     </div>
                   )}
                   { mode === REGISTER && (
