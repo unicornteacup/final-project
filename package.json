@@ -25,6 +25,7 @@
     "react-scripts": "3.4.3",
     "twilio": "^3.49.1"
   },
+  "proxy": "http://localhost:8080",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
