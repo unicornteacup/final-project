@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, React } from 'react';
+import { useState, useEffect, React } from 'react';
 
 import axios from "axios";
 
@@ -10,19 +10,18 @@ export default function useApplicationData(initial){
     trails: "Hollyburn Trail",
   });
 
-  const ParkContext = React.createContext("Cypress");
 
   // const setPark = park => setState({ ...state, park });
 
-  React.useEffect(() => {
+  useEffect(() => {
 
     Promise.all([
-      Promise.resolve(axios.get('/api/home')),
-      Promise.resolve(axios.get('/api/parks')),
-      Promise.resolve(axios.get('/api/trails')),
-      Promise.resolve(axios.get('/api/visitors')),
-      Promise.resolve(axios.get('/api/pass')),
-      Promise.resolve(axios.get('/api/mybookings'))
+      Promise.resolve(axios.get('http://localhost:8080/api/home')),
+      Promise.resolve(axios.get('http://localhost:8080/api/parks')),
+      Promise.resolve(axios.get('http://localhost:8080/api/trails')),
+      Promise.resolve(axios.get('http://localhost:8080/api/visitors')),
+      Promise.resolve(axios.get('http://localhost:8080/api/pass')),
+      Promise.resolve(axios.get('http://localhost:8080/api/mybookings'))
     ])
     .then((all) => {
       setState((prev) => ({
@@ -36,5 +35,5 @@ export default function useApplicationData(initial){
       }))
     });
   }, [])
-  return {state, ParkContext};
+  return {state};
 }

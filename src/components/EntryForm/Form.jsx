@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import DateContext from "../../hooks/DateContext";
 import VisitorContext from '../../hooks/VisitorContext';
 import transitions from '@material-ui/core/styles/transitions';
+import useVisualMode from '../../hooks/UseVisualMode';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,12 +24,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const INITIAL = "INITIAL";
+const ERROR = "ERROR";
+
 export default function Form (props) {
   const classes = useStyles();
 
   const {date: selectedDate} = React.useContext(DateContext);
   console.log('form date:', selectedDate)
   const { visitor: selectedVisitor } = React.useContext(VisitorContext);
+
+  const { mode, transition, back } = useVisualMode(INITIAL);
 
   function date(selectedDate) {
     let date = ""
@@ -80,10 +86,11 @@ export default function Form (props) {
         return;
       }
     }
- 
+  }
     console.log('guests:', guestState)
       props.onSave(guestState);
-  }
+  } 
+
   const [error, setError] = useState("");
 
   return (
@@ -115,6 +122,8 @@ export default function Form (props) {
                 variant="outlined"
                 size="small"
               />
+              )}
+              { mode === INITIAL && (
               <TextField
                 label="Last Name"
                 type="text"
@@ -127,6 +136,8 @@ export default function Form (props) {
                 variant="outlined"
                 size="small"
               />
+              )}
+              { mode === INITIAL && (
               <TextField
                 label="Phone"
                 type="tel"
@@ -154,6 +165,8 @@ export default function Form (props) {
               helperText="First name must be entered."
               size="small"
             />
+            )}
+            { mode === ERROR && (
             <TextField
               label="Last Name"
               type="text"
@@ -167,6 +180,8 @@ export default function Form (props) {
               helperText="Last name must be entered."
               size="small"
             />
+            )}
+            { mode === ERROR && (
             <TextField
               label="Phone"
               type="tel"

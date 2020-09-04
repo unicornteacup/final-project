@@ -1,17 +1,24 @@
 import React from "react";
 import Form from "./Form";
 
-import DateContext from "...src/hooks/DateContext";
+import DateContext from "../../hooks/DateContext";
 import VisitorContext from '../../hooks/VisitorContext';
+
+import useVisualMode from '../../hooks/UseVisualMode';
 // import TrailContext from ".../hooks/TrailContext";
+
+const SAVING = "SAVING";
+const INITIAL = "INITIAL";
 
 export default function Entry(props) {
 
-  const {selectedDate} = React.useContext(DateContext);
+  const {date: selectedDate} = React.useContext(DateContext);
   const { visitor: selectedVisitor } = React.useContext(VisitorContext);
 
+  const { mode, transition, back } = useVisualMode(INITIAL);
+
   //function to save a newly created entry
-  function save(selectedDate, selectedVisitor.id, guestState, props.trail.id) {
+  function onSave(selectedDate, selectedVisitor, guestState, props) {
     const passentry = {
       visitor: selectedVisitor.id,
       date: selectedDate,
@@ -34,12 +41,15 @@ export default function Entry(props) {
       .catch(error => {
         // transition(ERROR_SAVE, true)
       }); 
-    }   
+    }  
+    
+    return (
+      <div>
+        <Form/>
+      </div>
+    )
+
+
   }
 
-  return (
-    <div>
-      <Form/>
-    </div>
-  )
-}
+
