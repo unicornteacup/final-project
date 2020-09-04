@@ -1,7 +1,5 @@
 import { useState, useEffect, createContext, React } from 'react';
-
 import axios from "axios";
-
 
 export default function useApplicationData(){
 

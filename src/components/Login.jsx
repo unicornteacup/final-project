@@ -1,14 +1,8 @@
 import React from 'react';
 import VisitorContext from '../hooks/VisitorContext';
 import useVisualMode from '../hooks/UseVisualMode';
-
-
 import Button from '@material-ui/core/Button';
-
 import TextField from '@material-ui/core/TextField';
-
-
-
 
 const visitors = [
   {
