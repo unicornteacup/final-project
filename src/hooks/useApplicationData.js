@@ -26,6 +26,7 @@ export default function useApplicationData(initial){
       Promise.resolve(axios.get('/api/pass_entries')),
       Promise.resolve(axios.get('/api/mybookings'))
       Promise.resolve(axios.get('/api/guests'))
+      // Promise.resolve(axios.get('/api/guests?id'))
     ])
     .then((all) => {
       setState((prev) => ({
