@@ -106,7 +106,7 @@ export default function Login(props) {
             onChange={(event) => setSelectedVisitor({...selectedVisitor, password: event.target.value})}
           />
           <Button color="inherit" 
-            onClick={() => visitorVarification(selectedVisitor, visitors)}>Submit</Button>
+            onClick={() => visitorVarification(selectedVisitor, props.visitors)}>Submit</Button>
             </div>
           )}
       {mode === ERROR && (
