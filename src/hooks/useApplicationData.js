@@ -2,39 +2,40 @@ import { useState, useEffect, createContext, React } from 'react';
 
 import axios from "axios";
 
-//Function to run axios calls, book, edit or cancel an interview
+import ParkContext from "./ParkContext";
 
-export default function useApplicationData(initial){
 
-  // const [state, setState] = useState({
-  //   park: "Cypress",
-  // });
 
-  const ParkContext = React.createContext("Cypress");
+export default function useApplicationData(){
 
-  // const setPark = park => setState({ ...state, park });
+  const [state, setState] = useState({
+    parks: [],
+    trails: [],
+  });
 
-  React.useEffect(() => {
+  // getTrails = (id) => {
+  //   useEffect(() => {
+  //      axios.get('/api/parks'),
+  //      axios.get(`/api/trails/${id}`)
+  //     ])
+  //     .then((all) => {
+  //       setState({parks: all[0].data, trails: all[1].data});
+  //     })
+  //   }, [])
+  // }
+  
+
+  useEffect(() => {
 
     Promise.all([
-      Promise.resolve(axios.get('/api/home')),
-      Promise.resolve(axios.get('/api/parks')),
-      Promise.resolve(axios.get('/api/trails')),
-      Promise.resolve(axios.get('/api/visitors')),
-      Promise.resolve(axios.get('/api/pass')),
-      Promise.resolve(axios.get('/api/mybookings'))
+     axios.get('/api/parks'),
+     axios.get('/api/trails')
     ])
     .then((all) => {
-      setState((prev) => ({
-        ...prev, 
-        home: all[0].data,
-        parks: all[1].data, 
-        trails: all[2].data,
-        visitors: all[3].data,
-        pass: all[4].data,
-        mybooking: all[5].data,
-      }))
-    });
+      setState({parks: all[0].data, trails: all[1].data});
+    })
   }, [])
-  return { ParkContext};
+
+  
+  return { state }
 }

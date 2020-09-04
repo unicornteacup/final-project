@@ -15,7 +15,6 @@ import Alert from '@material-ui/lab/Alert';
 import LinearWithValueLabel from './ProgressBar';
 
 import { Map, TileLayer, Marker } from 'react-leaflet';
-import DateContext from "../hooks/DateContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TrailList(props) {
   const classes = useStyles();
-  const {selectedDate} = React.useContext(DateContext);
 
   return (
     <div className={classes.root}>
