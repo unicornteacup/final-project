@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TrailList(props) {
   const classes = useStyles();
-  const {selectedDate} = React.useContext(DateContext);
+  // const {selectedDate} = React.useContext(DateContext);
 
   return (
     <div className={classes.root}>
@@ -70,9 +70,9 @@ export default function TrailList(props) {
             </Typography>
           </div>
           <div className={classes.column}>
-            <Typography className={classes.secondaryHeading}>
+            {/* <Typography className={classes.secondaryHeading}>
               {props.date.selectedDate.toDateString()}
-            </Typography>
+            </Typography> */}
           </div>
           <div>
             { props.status === 'Open'
@@ -109,7 +109,7 @@ export default function TrailList(props) {
         <LinearWithValueLabel />
         <Divider />
         <AccordionActions>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={() => props.onForm()}>
             Apply for Pass
           </Button>
         </AccordionActions>

@@ -6,9 +6,9 @@ import axios from "axios";
 
 export default function useApplicationData(initial){
 
-  // const [state, setState] = useState({
-  //   park: "Cypress",
-  // });
+  const [state, setState] = useState({
+    trails: "Hollyburn Trail",
+  });
 
   const ParkContext = React.createContext("Cypress");
 
@@ -36,5 +36,5 @@ export default function useApplicationData(initial){
       }))
     });
   }, [])
-  return { ParkContext};
+  return {state, ParkContext};
 }

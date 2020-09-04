@@ -93,14 +93,14 @@ export default function MyBookings(props) {
   //   }
   // }
 
-  // function cancel() {
+  function cancel(booking) {
 
-  //   props.cancelBooking(props.booking)
-  //   .then(() => back())
-  //   .catch(error => {
-  //     console.log(error)
-  //   });    
-  // }
+    props.cancelBooking(booking.id)
+    .then(() => back())
+    .catch(error => {
+      console.log(error)
+    });    
+  }
 
   return (
     <div className={classes.root}>
@@ -124,7 +124,7 @@ export default function MyBookings(props) {
                     </div>
                   )
               })}
-              <Button variant="contained" color="primary">Cancel Entry</Button>
+              <Button variant="contained" color="primary" onClick={() => cancel()}>Cancel Entry</Button>
           </Paper>
         </Grid>
       </Grid>

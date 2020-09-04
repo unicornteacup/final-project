@@ -18,6 +18,7 @@ import Confirm from './components/Confirm';
 import ParkContext from "./hooks/ParkContext";
 import DateContext from "./hooks/DateContext";
 import VisitorContext from "./hooks/VisitorContext";
+import useApplicationData from './hooks/useApplicationData';
 // import EntryForm from "components/EntryForm/Index"; 
 
 
@@ -33,6 +34,7 @@ import VisitorContext from "./hooks/VisitorContext";
 const INITIAL = "INITIAL";
 const REGISTER = "REGISTER";
 const BOOKINGS = "BOOKINGS";
+const FORM = "FORM";
 // export default App;
 export default function App(props) {
 
@@ -60,6 +62,10 @@ export default function App(props) {
     // onRegister ? REGISTER : INITIAL
   );
   
+  const {
+    state
+  } = useApplicationData();
+
   const [park, setPark] = React.useState({});
 
   const [selectedDate, setSelectedDate] = React.useState({});
@@ -88,7 +94,11 @@ export default function App(props) {
                           {/* parks={state.parks}  */}
                           
                         </ParksList>
-                        { park.title && <TrailList />}
+                        { park.title && <TrailList onForm={() => transition(FORM)} />}
+                        {mode === FORM && (
+                         <Entry />
+                        )}
+
                     </div>
                   )}
                   { mode === REGISTER && (
