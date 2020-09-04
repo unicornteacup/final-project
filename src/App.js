@@ -59,7 +59,12 @@ export default function App() {
                           {/* parks={state.parks}  */}
                           
                         </ParksList>
-                        { park.name && <TrailList trails={state.trails}/>}
+                        { park.name && (
+                          <TrailList 
+                            trails={state.trails}
+                            pass_entries={state.pass_entries}
+                          />
+                        )}
                         {/* <Entry/> */}
                     </div>
                   )}

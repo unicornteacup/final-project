@@ -63,25 +63,27 @@ export default function TrailList(props) {
 
   const selectedDateObj = React.useContext(DateContext);
   const parkObj = React.useContext(ParkContext);
-  console.log('selectedPark', parkObj)
 
-  const [trails, setTrails] = useState(props.trails)
 
-  console.log('trails', trails)
+  const filteredByDateEntries = props.pass_entries
+  .filter(entry => entry.date = selectedDateObj.selectedDate)
 
   
-  const trailList = trails
+  const trailList = props.trails
   .filter(trail => trail.park_id === parkObj.park.id)
   .map((trail) => {
       return (
         <TrailListItem
           date={selectedDateObj}
+          id={trail.id}
           name={trail.name}
           latitude={trail.latitude}
           longitude={trail.longitude}
           description={trail.description}
           status={trail.status}
           warning={trail.warning}
+          max_capacity={trail.max_capacity}
+          pass_entries={filteredByDateEntries}
         />
       )
       

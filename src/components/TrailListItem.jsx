@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Alert from '@material-ui/lab/Alert';
 
-import LinearWithValueLabel from './ProgressBar';
+import ProgressBar from './ProgressBar';
 
 import { Map, TileLayer, Marker } from 'react-leaflet';
 
@@ -51,8 +51,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TrailList(props) {
+export default function TrailListItem(props) {
   const classes = useStyles();
+
+  const filteredEntries = props.pass_entries
+  .forEach((entry) => {
+    if (entry.park_id === props.id){
+      return entry
+    }
+  })
+
+  console.log('entry', filteredEntries)
+
 
   return (
     <div className={classes.root}>
@@ -93,6 +103,7 @@ export default function TrailList(props) {
           </Map>
           <div className={clsx(classes.column, classes.helper)}>
             <Typography variant="caption">{props.description}</Typography>
+            <Divider />
             { props.warning === 'Warning'
               ? <Typography variant="subtitle1" color="error">
                   <strong>{props.warning}</strong>
@@ -101,10 +112,18 @@ export default function TrailList(props) {
                   <strong>{props.warning}</strong>
                 </Typography>
             }
+            <Typography variant="caption">
+              Number of applicants: {5}
+              <Divider />
+              Max Capacity: {props.max_capacity}
+            </Typography>
           </div>
         </AccordionDetails>
         <Divider />
-        <LinearWithValueLabel />
+        <ProgressBar
+          max_capacity={props.max_capacity}
+          pass_entries={20}
+        />
         <Divider />
         <AccordionActions>
           <Button variant="contained" color="primary">

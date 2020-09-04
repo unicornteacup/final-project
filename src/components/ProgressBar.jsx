@@ -34,22 +34,18 @@ const useStyles = makeStyles({
   },
 });
 
-export default function LinearWithValueLabel() {
+export default function ProgressBar(props) {
   const classes = useStyles();
-  const [progress, setProgress] = React.useState(10);
+  
+  const maxCapacity = Number(props.max_capacity);
+  const passEntries = Number(props.pass_entries);
 
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
-    }, 800);
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
-
+  const percentage = passEntries * 100 / maxCapacity
+  const [progress, setProgress] = React.useState(percentage);
   return (
     <div className={classes.root}>
-      <LinearProgressWithLabel value={progress} />
+      { percentage < 100 && <LinearProgressWithLabel value={progress} />}
+      { percentage > 100 && <LinearProgressWithLabel color="secondary" value={100} />}
     </div>
   );
 }

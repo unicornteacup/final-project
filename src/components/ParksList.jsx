@@ -7,45 +7,6 @@ import Classnames from "classnames";
 import ParkContext from "../hooks/ParkContext";
 // import ParksListItem from "components/ParksListItem";
 
-const parks = [
-  {
-    id: 1,
-    url: 'https://i.pinimg.com/474x/c4/83/96/c483960b380e5546d5a1698799458807.jpg',
-    title: 'Cypress',
-    width: '40%',
-  },
-  {
-    id: 2,
-    url: '/static/images/grid-list/burgers.jpg',
-    title: 'Garibaldi',
-    width: '30%',
-  },
-  {
-    id: 3,
-    url: '/static/images/grid-list/camera.jpg',
-    title: 'Golden Ears',
-    width: '30%',
-  },
-  {
-    id: 4,
-    url: '/static/images/grid-list/breakfast.jpg',
-    title: 'Mount Robson',
-    width: '40%',
-  },
-  {
-    id: 5,
-    url: '/static/images/grid-list/burgers.jpg',
-    title: 'Stawamus Chief',
-    width: '30%',
-  },
-  {
-    id: 6,
-    url: '/static/images/grid-list/camera.jpg',
-    title: 'Mount Seymour',
-    width: '30%',
-  },
-];
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -127,6 +88,7 @@ export default function ParksList(props) {
 
     const {park: currentPark, setPark} = React.useContext(ParkContext);
   return (
+    
     <div className={classes.root}>
       {props.parks.map((park) => (
         <ButtonBase
