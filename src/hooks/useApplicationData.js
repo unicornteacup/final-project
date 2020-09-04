@@ -1,8 +1,8 @@
 import { useState, useEffect, createContext, React } from 'react';
 import axios from "axios";
 
-//Function to run axios calls, book, edit or cancel an interview
 
+<<<<<<< HEAD
 export default function useApplicationData(initial){
 
   // const [state, setState] = useState({
@@ -43,3 +43,32 @@ export default function useApplicationData(initial){
   }, [])
   return { ParkContext};
 }
+=======
+export default function useApplicationData(){
+
+  const [state, setState] = useState({
+    parks: [],
+    trails: [],
+    visitors: []
+  });
+
+  useEffect(() => {
+
+    Promise.all([
+     axios.get('/api/parks'),
+     axios.get('/api/trails'),
+     axios.get('/api/visitors')
+    ])
+    .then((all) => {
+      setState({
+        parks: all[0].data, 
+        trails: all[1].data.trails,
+        visitors: all[2].data.visitors
+      });
+    })
+  }, [])
+
+  
+  return { state }
+}
+>>>>>>> ad6907f019ca57ea778e5a723b1ce01ea461ec1f
