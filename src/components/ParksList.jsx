@@ -122,30 +122,28 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function ParksList(props) {
-
   const classes = useStyles("park-list", {
     "park-list--selected": props.selected});
 
     const {park: currentPark, setPark} = React.useContext(ParkContext);
-    console.log('context parklist:', currentPark)
   return (
     <div className={classes.root}>
-      {parks.map((park) => (
+      {props.parks.map((park) => (
         <ButtonBase
           focusRipple
-          key={park.title}
+          key={park.id}
           className={classes.image}
           focusVisibleClassName={classes.focusVisible}
           style={{
-            width: park.width,
-            color: currentPark.title === park.title && "red"
+            width: '33.33%',
+            color: currentPark.name === park.name && "red"
           }}
           onClick={() => setPark(park)}
         >
           <span
             className={classes.imageSrc}
             style={{
-              backgroundImage: `url(${park.url})`,
+              backgroundImage: `url(https://i.pinimg.com/474x/c4/83/96/c483960b380e5546d5a1698799458807.jpg)`,
             }}
           />
           <span className={classes.imageBackdrop} />
@@ -156,7 +154,7 @@ export default function ParksList(props) {
               color="inherit"
               className={classes.imageTitle}
             >
-              {park.title}
+              {park.name}
               <span className={classes.imageMarked} />
             </Typography>
           </span>
