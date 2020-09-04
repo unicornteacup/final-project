@@ -65,7 +65,7 @@ export default function TrailList(props) {
   const parkObj = React.useContext(ParkContext);
   console.log('selectedPark', parkObj)
 
-  const [trails, setTrails] = useState(props.trails.trails)
+  const [trails, setTrails] = useState(props.trails)
 
   console.log('trails', trails)
 

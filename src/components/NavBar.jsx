@@ -75,7 +75,7 @@ export default function NavBar(props) {
           )}
           { mode === LOGIN && 
             <Login 
-              
+              visitors={props.visitors}
             />
           }
         </Toolbar>

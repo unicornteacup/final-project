@@ -32,7 +32,6 @@ export default function App() {
   );
   
   const [park, setPark] = React.useState({});
-  console.log(park)
 
   const [selectedDate, setSelectedDate] = React.useState({});
   const [selectedVisitor, setSelectedVisitor] = React.useState({});
@@ -44,7 +43,8 @@ export default function App() {
               <VisitorContext.Provider value={{selectedVisitor, setSelectedVisitor}}>
                 <main className="App">
                   <nav>
-                    <NavBar 
+                    <NavBar
+                      visitors={state.visitors}
                       onRegister={()=> transition(REGISTER)}
                     />
                   </nav>
