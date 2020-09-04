@@ -32,6 +32,7 @@ import VisitorContext from "./hooks/VisitorContext";
 
 const INITIAL = "INITIAL";
 const REGISTER = "REGISTER";
+const BOOKINGS = "BOOKINGS";
 // export default App;
 export default function App(props) {
 
@@ -61,7 +62,6 @@ export default function App(props) {
   
   const [park, setPark] = React.useState({});
 
-<<<<<<< HEAD
   const [selectedDate, setSelectedDate] = React.useState({});
   const [selectedVisitor, setSelectedVisitor] = React.useState({});
   
@@ -74,6 +74,7 @@ export default function App(props) {
                   <nav>
                     <NavBar 
                       onRegister={()=> transition(REGISTER)}
+                      onMyBookings={()=> transition(BOOKINGS)}
                     />
                   </nav>
                   { mode === INITIAL && (
@@ -95,28 +96,11 @@ export default function App(props) {
                       onSetVerify={() => transition(INITIAL)}
                     />
                   )}
-=======
-  const [selectedDate, setSelectedDate] = React.useState();
-  
-  return (
-    <main className="App">
-      <nav>
-        <NavBar />
-      </nav>
-        <div className='main-body'>
-        <DateContext.Provider value={{selectedDate, setSelectedDate}}>
-        <DateSelector></DateSelector>
-          <ParkContext.Provider value={{park, setPark}}>
-            <div>
-              <ParksList/>
-            { park.title && <TrailList />}
-            <Entry/>
-            <MyBookings/>
-            </div>
-          </ParkContext.Provider>
-          </DateContext.Provider>
-        </div>
->>>>>>> c5acd69cc19a8febb94599b0b8eae495bf3b99b2
+                  { mode === BOOKINGS && (
+                    <MyBookings 
+                      onNewBooking={() => transition(INITIAL)}
+                    />
+                  )}
 
 
                   {/* // <h1>{ this.state.message }</h1> */}
