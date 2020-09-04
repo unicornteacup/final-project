@@ -24,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Form (props) {
   const classes = useStyles();
 
-  const {selectedDate} = React.useContext(DateContext);
+  const {date: selectedDate} = React.useContext(DateContext);
+  console.log('form date:', selectedDate)
 
   function date(selectedDate) {
     let date = ""
@@ -93,8 +94,7 @@ export default function Form (props) {
       <h4 className={classes.heading}>Trail</h4>
     </header>
       <Button variant="contained" color="primary" value="Add New Guest" onClick={addGuest}>Add Guest</Button>
-      {
-        guestState.map((val, idx) => {
+      {guestState.map((val, idx) => {
           const firstId = `firstname-${idx}`;
           const lastId = `lastname-${idx}`;
           const phoneId = `phone-${idx}`;
@@ -106,7 +106,6 @@ export default function Form (props) {
                 name={firstId}
                 data-idx={idx}
                 id={firstId}
-                
                 value={guestState[idx].firstName}
                 inputProps={{ "data-idx": idx}}
                 onChange={(event) => handleGuestChange(event, "firstName")}
