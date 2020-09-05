@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { red, orange, green } from '@material-ui/core/colors';
+import useVisualMode from './hooks/UseVisualMode';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -92,6 +93,10 @@ export default function MyBookings(props) {
   //     this.css('color', orange)
   //   }
   // }
+
+  const { mode, transition, back } = useVisualMode(INITIAL
+    // onRegister ? REGISTER : INITIAL
+  );
 
   function cancel(booking) {
 
