@@ -64,13 +64,16 @@ export default function App() {
                           {/* parks={state.parks}  */}
                           
                         </ParksList>
-                        { park.name && <TrailList trails={state.trails} onForm={() => transition(FORM)}/>}
-                        
-                       
+
+                        { park.name && (
+                          <TrailList 
+                            trails={state.trails}
+                            pass_entries={state.pass_entries} onForm={() => transition(FORM)}
+                          />
+                        )}
                         {mode === FORM && (
                          <Entry />
                         )}
-
                     </div>
                   )}
                   { mode === REGISTER && (
