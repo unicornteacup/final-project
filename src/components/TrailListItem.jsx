@@ -55,13 +55,8 @@ export default function TrailListItem(props) {
   const classes = useStyles();
 
   const filteredEntries = props.pass_entries
-  .forEach((entry) => {
-    if (entry.park_id === props.id){
-      return entry
-    }
-  })
+  .filter(({trail_id}) => trail_id === props.id)
 
-  console.log('entry', filteredEntries)
 
 
   return (
@@ -113,7 +108,7 @@ export default function TrailListItem(props) {
                 </Typography>
             }
             <Typography variant="caption">
-              Number of applicants: {5}
+              Number of applicants: {filteredEntries.length}
               <Divider />
               Max Capacity: {props.max_capacity}
             </Typography>
@@ -122,7 +117,7 @@ export default function TrailListItem(props) {
         <Divider />
         <ProgressBar
           max_capacity={props.max_capacity}
-          pass_entries={20}
+          pass_entries={filteredEntries.length}
         />
         <Divider />
         <AccordionActions>
