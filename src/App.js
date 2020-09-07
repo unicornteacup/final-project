@@ -7,7 +7,7 @@ import useApplicationData from "./hooks/useApplicationData";
 import ParkContext from "./hooks/ParkContext";
 import DateContext from "./hooks/DateContext";
 import VisitorContext from "./hooks/VisitorContext";
-
+import TrailContext from "./hooks/TrailContext";
 
 // importing components
 import NavBar from './components/NavBar';
@@ -18,6 +18,7 @@ import Entry from "./components/EntryForm/Index";
 import DateSelector from "./components/DateSelector";
 import Register from "./components/Register";
 import Confirm from './components/Confirm';
+import Login from './components/Login';
 // import EntryForm from "components/EntryForm/Index"; 
 
 
@@ -25,10 +26,12 @@ const INITIAL = "INITIAL";
 const REGISTER = "REGISTER";
 const BOOKINGS = "BOOKINGS";
 const FORM = "FORM";
+
 // export default App;
 export default function App() {
 
   const { state } = useApplicationData();
+  console.log('app state:', state)
 
   const { mode, transition, back } = useVisualMode(INITIAL
     // onRegister ? REGISTER : INITIAL
@@ -36,22 +39,29 @@ export default function App() {
   
   const [park, setPark] = React.useState({});
 
-  const [selectedDate, setSelectedDate] = React.useState({});
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
+
+  const [selectedTrail, setSelectedTrail] = React.useState({});
+
   const [selectedVisitor, setSelectedVisitor] = React.useState({});
   
   console.log('app:', state.parks )
+
+  const onMyBookings = () => {
+    transition(BOOKINGS);
+  };
   
   return (
           <DateContext.Provider value={{selectedDate, setSelectedDate}}>
             <ParkContext.Provider value={{park, setPark}}>
+            <TrailContext.Provider value={{selectedTrail, setSelectedTrail}}>
               <VisitorContext.Provider value={{selectedVisitor, setSelectedVisitor}}>
                 <main className="App">
                   <nav>
                     <NavBar
                       visitors={state.visitors}
                       onRegister={()=> transition(REGISTER)}
-                      onMyBookings={()=> transition(BOOKINGS)}
-                    />
+                      />
                   </nav>
                   { mode === INITIAL && (
                     <div className='main-body'>
@@ -71,9 +81,21 @@ export default function App() {
                             pass_entries={state.pass_entries} onForm={() => transition(FORM)}
                           />
                         )}
-                        {mode === FORM && (
+                        
+                         <Entry 
+                          trails={state.trails}
+                          date={selectedDate}
+                          vistor={selectedVisitor}
+                          />
+                        
+                        {/* {mode === FORM && (
                          <Entry />
-                        )}
+                        )} */}
+
+                    <MyBookings 
+                      vistor={selectedVisitor}
+                      // onNewBooking={() => transition(INITIAL)}
+                    />
                     </div>
                   )}
                   { mode === REGISTER && (
@@ -81,11 +103,17 @@ export default function App() {
                       onSetVerify={() => transition(INITIAL)}
                     />
                   )}
-                  { mode === BOOKINGS && (
+                  {/* { mode === BOOKINGS && (
                     <MyBookings 
                       onNewBooking={() => transition(INITIAL)}
                     />
-                  )}
+                  )} */}
+                  {/* { mode === INITIAL && (
+                    <Login 
+                      visitors={state.visitors}
+                      onMyBooking={() => transition(BOOKINGS)}
+                    />
+                  )} */}
 
 
                   {/* // <h1>{ this.state.message }</h1> */}
@@ -94,6 +122,7 @@ export default function App() {
                   {/* // </button>         */}
                 </main>
               </VisitorContext.Provider>
+              </TrailContext.Provider>
             </ParkContext.Provider>
           </DateContext.Provider>
   )

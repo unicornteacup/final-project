@@ -11,6 +11,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Alert from '@material-ui/lab/Alert';
+import TrailContext from "../hooks/TrailContext";
 
 import ProgressBar from './ProgressBar';
 
@@ -57,7 +58,9 @@ export default function TrailListItem(props) {
   const filteredEntries = props.pass_entries
   .filter(({trail_id}) => trail_id === props.id)
 
+  const {selectedTrail, setSelectedTrail} = React.useContext(TrailContext);
 
+  console.log('trail state:', selectedTrail)
 
   return (
     <div className={classes.root}>
@@ -121,7 +124,7 @@ export default function TrailListItem(props) {
         />
         <Divider />
         <AccordionActions>
-          <Button variant="contained" color="primary" onClick={() => props.onForm()}>
+          <Button variant="contained" color="primary" onClick={() => setSelectedTrail(props)}>
             Apply for Pass
           </Button>
         </AccordionActions>

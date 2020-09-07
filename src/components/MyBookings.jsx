@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { red, orange, green } from '@material-ui/core/colors';
-import useVisualMode from './hooks/UseVisualMode';
+import useVisualMode from '../hooks/UseVisualMode';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -94,7 +94,8 @@ export default function MyBookings(props) {
   //   }
   // }
 
-  const { mode, transition, back } = useVisualMode(INITIAL
+  const { mode, transition, back } = useVisualMode(
+    // INITIAL
     // onRegister ? REGISTER : INITIAL
   );
 

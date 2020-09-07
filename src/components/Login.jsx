@@ -74,6 +74,8 @@ export default function Login(props) {
     );
   };
 
+  console.log('login props:',props)
+
   const logOut = () => {
     setSelectedVisitor({});
     transition(INITIAL);
