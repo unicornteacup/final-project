@@ -20,6 +20,8 @@ import Register from "./components/Register";
 import Confirm from './components/Confirm';
 // import EntryForm from "components/EntryForm/Index"; 
 
+import "./components/NavBar.scss";
+
 
 const INITIAL = "INITIAL";
 const REGISTER = "REGISTER";
@@ -36,7 +38,8 @@ export default function App() {
   
   const [park, setPark] = React.useState({});
 
-  const [selectedDate, setSelectedDate] = React.useState({});
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
+
   const [selectedVisitor, setSelectedVisitor] = React.useState({});
   
   console.log('app:', state.parks )

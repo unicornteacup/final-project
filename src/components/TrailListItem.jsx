@@ -57,8 +57,6 @@ export default function TrailListItem(props) {
   const filteredEntries = props.pass_entries
   .filter(({trail_id}) => trail_id === props.id)
 
-
-
   return (
     <div className={classes.root}>
       <Accordion defaultColapsed>
