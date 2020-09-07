@@ -17,7 +17,7 @@ export default function useApplicationData(){
     axios.get('/api/parks'),
     axios.get('/api/trails'),
     axios.get('/api/visitors'),
-    axios.get('api/pass_entries'),
+    axios.get('/api/pass_entries'),
     axios.get('/api/mybookings')
     ])
     .then((all) => {
@@ -31,7 +31,7 @@ export default function useApplicationData(){
     })
   }, [])
 
-  function cancelBooking(id, booking) {
+  function cancelPass(id, booking) {
     const pass = {
       ...state.pass_entries[id],
       booking: null
@@ -49,24 +49,25 @@ export default function useApplicationData(){
     }
   )}
 
-  function onSave(id, booking) {
+  function newPass(passentry) {
 
-    const pass = {
-      ...state.pass_entries[id],
-      booking: null
-      };
-      const passes = {
-        ...state.pass_entries,
-        [id]: pass
-      };
+    // const pass = {
+    //   ...state.pass_entries[id]
+    //   };
+    //   const passes = {
+    //     ...state.pass_entries,
+    //     [id]: pass
+    //   };
 
-    return axios.put(`/api/pass_entries${id}`, {booking})
+    return axios.post(`/api/pass_entries`, {passentry})
     .then ((res) => {
-      console.log()
-      return setState({...state, passes: passes});
+      console.log('useappdatapostres:', res)
+      // return setState({...state, passes: passes});
+
+      //need a .then to do the put request into the guest table
 
     })
   }
   
-  return { state, cancelBooking, onSave }
+  return { state, cancelPass, newPass }
 }

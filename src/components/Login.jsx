@@ -69,12 +69,18 @@ export default function Login(props) {
       visitor.password === selectedVisitor.password
     );
     const isValid = resultVisitor[0];
-
+    setSelectedVisitor({
+      ...selectedVisitor, 
+      id: isValid.id, 
+      first_name: isValid.first_name,
+      last_name: isValid.last_name    
+    })
+    console.log(isValid)
     return (
       isValid ? transition(VERIFIED) : transition(ERROR)
     );
   };
-
+  
   console.log('login props:',props)
 
   const logOut = () => {

@@ -31,7 +31,7 @@ const FORM = "FORM";
 // export default App;
 export default function App() {
 
-  const { state } = useApplicationData();
+  const { state, cancelPass, newPass } = useApplicationData();
   console.log('app state:', state)
   console.log('app state passes:', state.pass_entries)
 
@@ -95,6 +95,7 @@ export default function App() {
                           trails={state.trails}
                           date={selectedDate}
                           vistor={selectedVisitor}
+                          newPass={newPass}
                           />
                         )}
 
@@ -117,7 +118,8 @@ export default function App() {
                       visitor={selectedVisitor}
                       visitors={state.visitors}
                       mybookings={state.mybookings}
-                      trails={state.trails} 
+                      trails={state.trails}
+                      cancelPass={cancelPass} 
                       onNewBooking={() => transition(INITIAL)}
                     />
                   )}

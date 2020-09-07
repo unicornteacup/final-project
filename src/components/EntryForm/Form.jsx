@@ -117,13 +117,13 @@ export default function Form (props) {
         }
       
         if (guest.phone.length !== 9) {
-        transition(ERROR);
-        return;
+          transition(ERROR);
+          return;
+        }
       }
     }
-  }
     console.log('guests:', guestState)
-      props.onSave(guestState);
+    props.onSave(selectedDate, selectedVisitor,selectedTrail, guestState);
   } 
 
   const [error, setError] = useState("");
