@@ -13,14 +13,17 @@ import Login from './Login';
 import Register from './Register';
 
 import "./NavBar.scss";
+import logo from '../images/logo.png'; // with import
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
   title: {
     flexGrow: 1,
-
   },
 }));
 
@@ -45,30 +48,42 @@ export default function NavBar(props) {
       transition(INITIAL);
     };
 
-  return (
+    const img = <img style={{marginTop: 10}}src={logo}/>
 
-    <div class = 'navbar' className={classes.root}>
-      <AppBar 
+  return (
+      < AppBar 
       color='transparent'
-      position = 'relative'>
-        <img src='/images/logo.png'></img>
-        <Toolbar>
+      position= 'static'>
+      
+      <Toolbar>
+      {img}
+
           { mode === VERIFIED && (
             <div>
               <strong>{selectedVisitor.email}</strong>
-              <Button color="primary"
+
+              <Button  
+                variant="outlined" 
+                color="primary"
                 onClick={() => logOut()}>Log Out</Button>
             </div>
           )}
           { mode === INITIAL && (
-             <div>
-               <Button color="inherit" onClick={() => transition(LOGIN)}>Login</Button>
+
+            <div class='log_reg'>
+             <div class= 'login_button'>
                <Button 
                 variant="outlined" 
-                color="secondary"
-                onClick={() => props.onRegister()}
-                >
-                  Register</Button>
+                color="primary" 
+                onClick={() => transition(LOGIN)}>Login</Button>
+               </div>
+
+               <div class= 'register_button'>
+               <Button
+                variant="outlined" 
+                color="primary"
+                onClick={() => props.onRegister()}>Register</Button>
+               </div>
              </div>
           )}
           { mode === LOGIN && 
@@ -78,6 +93,6 @@ export default function NavBar(props) {
           }
         </Toolbar>
       </AppBar>
-    </div>
+
   );
 }
