@@ -4,49 +4,6 @@ import useVisualMode from '../hooks/UseVisualMode';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
-const visitors = [
-  {
-    id: 1,
-    first_name: 'Daimhin',
-    last_name: 'Dalong',
-    phone: 4382165851,
-    email: 'fupke@dugah.seven',
-    password: 'password'
-  },
-  {
-    id: 2,
-    first_name: 'Andy',
-    last_name: 'Dalong',
-    phone: 4382165851,
-    email: 'andy@email.com',
-    password: 'password'
-  },
-  {
-    id: 3,
-    first_name: 'Travis',
-    last_name: 'Borsa',
-    phone: 4382165851,
-    email: 'travis@email.com',
-    password: 'password'
-  },
-  {
-    id: 4,
-    first_name: 'Hafiz',
-    last_name: 'Dalong',
-    phone: 4382165851,
-    email: 'hafiz@email.com',
-    password: 'password'
-  },
-  {
-    id: 6,
-    first_name: 'Ali',
-    last_name: 'Dalong',
-    phone: 4382165851,
-    email: 'ali@email.com',
-    password: 'password'
-  }
-]
-
 const INITIAL = "INITIAL";
 const VERIFIED = "VERIFIED";
 const ERROR = "ERROR";
@@ -66,6 +23,13 @@ export default function Login(props) {
       visitor.password === selectedVisitor.password
     );
     const isValid = resultVisitor[0];
+    setSelectedVisitor({
+      ...selectedVisitor, 
+      id: isValid.id, 
+      first_name: isValid.first_name,
+      last_name: isValid.last_name    
+    })
+    console.log(isValid)
     return (
       isValid ? transition(VERIFIED) : transition(ERROR)
     );
@@ -129,7 +93,7 @@ export default function Login(props) {
           onChange={(event) => setSelectedVisitor({...selectedVisitor, password: event.target.value})}
         />
         <Button color="inherit" 
-          onClick={() => visitorVarification(selectedVisitor, visitors)}>Submit</Button>
+          onClick={() => visitorVarification(selectedVisitor, props.visitors)}>Submit</Button>
           </div>
       )}
           { mode === VERIFIED && (
