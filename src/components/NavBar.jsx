@@ -59,15 +59,23 @@ export default function NavBar(props) {
       {img}
 
           { mode === VERIFIED && (
-            <div>
-              <strong>{selectedVisitor.email}</strong>
+            <div class='logged_in'>
 
+              Welcome! <div class='email'>
+              <strong>{selectedVisitor.email}</strong>
+                </div>
+              
+              <div class= "logout">
               <Button  
                 variant="outlined" 
                 color="primary"
                 onClick={() => logOut()}>Log Out</Button>
+              </div>
+
             </div>
           )}
+
+
           { mode === INITIAL && (
 
             <div class='log_reg'>
