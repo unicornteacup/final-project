@@ -25,7 +25,8 @@ export default function Entry(props) {
       guests: guestState,
       trail: props.trail.id
     }
-    transition(SAVING);
+    console.log('save object', passentry)
+    // transition(SAVING);
 
     // if (mode === EDIT) {
     //   props
@@ -45,7 +46,9 @@ export default function Entry(props) {
     
     return (
       <div>
-        <Form/>
+        <Form
+        onSave={onSave}
+        />
       </div>
     )
 

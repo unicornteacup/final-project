@@ -41,7 +41,7 @@ export default function Form (props) {
   console.log('form date :', selectedDate)
   const {selectedVisitor, setSelectedVisitor} = React.useContext(VisitorContext);
 
-  console.log('form visitor :', selectedVisitor.email)
+  console.log('form visitor :', selectedVisitor)
 
   const {selectedTrail, setSelectedTrail} = React.useContext(TrailContext);
 
@@ -50,25 +50,25 @@ export default function Form (props) {
 
   const { mode, transition, back } = useVisualMode(INITIAL);
 
-  function dateDisplay(selectedDate) {
-    let date 
-    if (!selectedDate) {
-      date="Choose Date"
-    } else {
-      date=selectedDate
-    }
-    console.log('form date function result:', date)
-    return date;
-  }
+  // function dateDisplay(selectedDate) {
+  //   let date 
+  //   if (!selectedDate) {
+  //     date="Choose Date"
+  //   } else {
+  //     date=selectedDate
+  //   }
+  //   console.log('form date function result:', date)
+  //   return date;
+  // }
 
   function visitor(selectedVisitor) {
     let visitor 
     if (!selectedVisitor) {
       visitor="Login to apply for pass"
     } else {
-      visitor=selectedVisitor.email
+      visitor=selectedVisitor
     }
-    return visitor;
+    return visitor.first_name;
   }
 
   function trail(selectedTrail) {

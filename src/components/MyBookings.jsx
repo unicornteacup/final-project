@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { red, orange, green } from '@material-ui/core/colors';
 import useVisualMode from '../hooks/UseVisualMode';
+import VisitorContext from "../hooks/VisitorContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,6 +84,12 @@ const bookings = [
 ]
 export default function MyBookings(props) {
   const classes = useStyles();
+
+  console.log('mybookingsprops:', props)
+
+  const {selectedVisitor, setSelectedVisitor} = React.useContext(VisitorContext);
+
+  console.log('form visitor :', selectedVisitor.email)
 
   // function status(booking) {
   //   if (booking === 'Success') {

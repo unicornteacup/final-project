@@ -19,6 +19,7 @@ import DateSelector from "./components/DateSelector";
 import Register from "./components/Register";
 import Confirm from './components/Confirm';
 import Login from './components/Login';
+import BookingsButton from "./components/Button";
 // import EntryForm from "components/EntryForm/Index"; 
 
 
@@ -32,10 +33,12 @@ export default function App() {
 
   const { state } = useApplicationData();
   console.log('app state:', state)
+  console.log('app state passes:', state.pass_entries)
 
   const { mode, transition, back } = useVisualMode(INITIAL
     // onRegister ? REGISTER : INITIAL
   );
+  console.log('app mode:', mode)
   
   const [park, setPark] = React.useState({});
 
@@ -44,6 +47,7 @@ export default function App() {
   const [selectedTrail, setSelectedTrail] = React.useState({});
 
   const [selectedVisitor, setSelectedVisitor] = React.useState({});
+  console.log('app selected visitor:', selectedVisitor)
   
   console.log('app:', state.parks )
 
@@ -55,7 +59,7 @@ export default function App() {
           <DateContext.Provider value={{selectedDate, setSelectedDate}}>
             <ParkContext.Provider value={{park, setPark}}>
             <TrailContext.Provider value={{selectedTrail, setSelectedTrail}}>
-              <VisitorContext.Provider value={{selectedVisitor, setSelectedVisitor}}>
+              <VisitorContext.Provider value={{selectedVisitor, setSelectedVisitor}}> 
                 <main className="App">
                   <nav>
                     <NavBar
@@ -72,7 +76,11 @@ export default function App() {
                           // setPark={setPark}
                           >
                           {/* parks={state.parks}  */}
-                          
+                          {/* {selectedVisitor.email &&(  */}
+                          <BookingsButton 
+                          onClick={() => onMyBookings()}
+                          ></BookingsButton>
+                          {/* )} */}
                         </ParksList>
 
                         { park.name && (
@@ -81,21 +89,22 @@ export default function App() {
                             pass_entries={state.pass_entries} onForm={() => transition(FORM)}
                           />
                         )}
-                        
+                        { selectedTrail.name && (
                          <Entry 
+                         visitors={state.visitors}
                           trails={state.trails}
                           date={selectedDate}
                           vistor={selectedVisitor}
                           />
-                        
-                        {/* {mode === FORM && (
-                         <Entry />
-                        )} */}
+                        )}
 
-                    <MyBookings 
-                      vistor={selectedVisitor}
+                    {/* <MyBookings 
+                      visitor={selectedVisitor}
+                      visitors={state.visitors}
+                      mybookings={state.mybookings}
+                      trails={state.trails}
                       // onNewBooking={() => transition(INITIAL)}
-                    />
+                    /> */}
                     </div>
                   )}
                   { mode === REGISTER && (
@@ -103,11 +112,15 @@ export default function App() {
                       onSetVerify={() => transition(INITIAL)}
                     />
                   )}
-                  {/* { mode === BOOKINGS && (
-                    <MyBookings 
+                  { mode === BOOKINGS && (
+                    <MyBookings
+                      visitor={selectedVisitor}
+                      visitors={state.visitors}
+                      mybookings={state.mybookings}
+                      trails={state.trails} 
                       onNewBooking={() => transition(INITIAL)}
                     />
-                  )} */}
+                  )}
                   {/* { mode === INITIAL && (
                     <Login 
                       visitors={state.visitors}
