@@ -35,6 +35,7 @@ const REGISTER= "REGISTER";
 
 export default function NavBar(props) {
   const classes = useStyles();
+  console.log('nav props:', props)
   
   //transition hook
   const { selectedVisitor, setSelectedVisitor } = React.useContext(VisitorContext);
@@ -98,6 +99,7 @@ export default function NavBar(props) {
           { mode === LOGIN && 
             <Login 
               visitors={props.visitors}
+              onMyBookings={props.onMyBookings()}
             />
           }
         </Toolbar>

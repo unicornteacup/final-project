@@ -100,6 +100,11 @@ export default function Login(props) {
           { mode === VERIFIED && (
             <div>
               <strong>{selectedVisitor.email}</strong>
+              <Button 
+              variant="outlined" 
+              color="secondary"
+              onClick={() => props.onMyBookings()}
+              >My Bookings</Button>
               <Button color="secondary"
                 onClick={() => logOut()}>Log Out</Button>
             </div>

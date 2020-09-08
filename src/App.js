@@ -7,9 +7,13 @@ import useApplicationData from "./hooks/useApplicationData";
 import ParkContext from "./hooks/ParkContext";
 import DateContext from "./hooks/DateContext";
 import VisitorContext from "./hooks/VisitorContext";
+<<<<<<< HEAD
+import TrailContext from "./hooks/TrailContext";
+=======
 
 import TrailContext from "./hooks/TrailContext";
 
+>>>>>>> 90a0537c1aba8693b12e07103dcc8ea7d406809a
 
 // importing components
 import NavBar from './components/NavBar';
@@ -29,7 +33,10 @@ import "./components/NavBar.scss";
 
 const INITIAL = "INITIAL";
 const REGISTER = "REGISTER";
+<<<<<<< HEAD
+=======
 const CONFIRM = "CONFIRM";
+>>>>>>> 90a0537c1aba8693b12e07103dcc8ea7d406809a
 const BOOKINGS = "BOOKINGS";
 const FORM = "FORM";
 
@@ -64,8 +71,11 @@ export default function App() {
                     <NavBar
                       visitors={state.visitors}
                       onRegister={()=> transition(REGISTER)}
+                      onMyBookings={onMyBookings}
                       />
                   </nav>
+                  { mode === INITIAL && (
+                  <div>
                   <Slider/>
                     <h2>Welcome to BC Parks and Recreation.</h2>
                     <h5> Some of our most popular parks regularly experience high visitor volumes, resulting in crowding of facilities, packed parking lots, and safety issues.To ensure the health and safety of our visitors and staff, to meet health and safety guidelines, and as part of a pilot project, free day-use passes are required to access the trails/parks below.</h5>
@@ -75,6 +85,8 @@ export default function App() {
                         Step 3: Chose a trail.
                         Step 4: To book for a pass, insert your guests' information.
                     </h4>
+                    </div>
+                  )}
                   { mode === INITIAL && (
                     <div className='main-body'>
                         <DateSelector></DateSelector>
@@ -84,9 +96,7 @@ export default function App() {
                           >
                           {/* parks={state.parks}  */}
                           {/* {selectedVisitor.email &&(  */}
-                          <BookingsButton 
-                          onClick={() => onMyBookings()}
-                          ></BookingsButton>
+
                           {/* )} */}
                         </ParksList>
 
@@ -128,7 +138,7 @@ export default function App() {
                       onSuccess={() => transition(INITIAL)}
                     />
                   )}
-                  {/* { mode === BOOKINGS && ( */}
+                  { mode === BOOKINGS && (
                     <MyBookings
                       visitor={selectedVisitor}
                       visitors={state.visitors}
@@ -136,8 +146,9 @@ export default function App() {
                       trails={state.trails}
                       cancelPass={cancelPass} 
                       onNewBooking={() => transition(INITIAL)}
+                      back={back}
                     />
-                  {/* )} */}
+                  )}
                   {/* { mode === INITIAL && (
                     <Login 
                       visitors={state.visitors}
