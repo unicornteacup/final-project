@@ -21,9 +21,13 @@ export default function Lottery() {
     return trail.max_capacity
   })
 
-  // updateEntry = (entry) => {
-  //   axios.post('/update', { status: 'success', id: entry.id })
-  // }
+  const updateWinners = (entry) => {
+    axios.post('/update', { status: 'Success', id: entry.id })
+  }
+
+  const updateLosers = (entry) => {
+    axios.post('/update', { status: 'Declined', id: entry.id })
+  }
 
   const winners = (entries, resultEntries) => {
     //lottery is true if we have more users then resultUsers
@@ -38,7 +42,7 @@ export default function Lottery() {
       const randomIndex = Math.floor(Math.random() * Math.floor(resultEntries));
       // because of mutation we can get undefined
       if (oldArray[randomIndex] !== undefined) {
-        // updateEntry(oldArray[randomIndex])
+        updateWinners(oldArray[randomIndex])
 
         newArray.push(oldArray[randomIndex]);
 
@@ -47,20 +51,12 @@ export default function Lottery() {
         count++;
       }
     }
+    oldArray.map((entry) => {
+      updateLosers(entry);
+    })
     return newArray;
   }
+   
 
-  const all = trailEntries.map((entries) => {
-    return winners(entries, maxCapacity[trailEntries.indexOf(entries)])
-  })
-
-  // updateEntry = (entries) => {
-  //   entries.forEach((entry) => {
-  //     axios.post('/update', { status: 'success', id: entry.id })
-  //   })
-  // }
-
-  return { nextDayEntries, trailEntries, maxCapacity, all }
-
-  
+  return { trailEntries, maxCapacity, winners }
 }
