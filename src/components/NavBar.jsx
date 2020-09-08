@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 
 
 import Login from './Login';
-import Register from './Register';
+import LotterySwitch from './LotterySwitch';
 
 import "./NavBar.scss";
 import logo from '../images/logo.png'; // with import
@@ -58,7 +58,7 @@ export default function NavBar(props) {
       
       <Toolbar>
       {img}
-
+      <LotterySwitch />
           { mode === VERIFIED && (
             <div class='logged_in'>
 
