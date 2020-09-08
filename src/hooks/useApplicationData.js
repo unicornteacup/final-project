@@ -7,27 +7,61 @@ export default function useApplicationData(){
     parks: [],
     trails: [],
     visitors: [],
-    pass_entries: []
+    pass_entries: [],
+    mybookings: []
   });
 
   useEffect(() => {
 
     Promise.all([
-     axios.get('/api/parks'),
-     axios.get('/api/trails'),
-     axios.get('/api/visitors'),
-     axios.get('api/pass_entries')
+    axios.get('/api/parks'),
+    axios.get('/api/trails'),
+    axios.get('/api/visitors'),
+    axios.get('/api/pass_entries'),
+    axios.get('/api/mybookings')
     ])
     .then((all) => {
       setState({
         parks: all[0].data, 
         trails: all[1].data.trails,
         visitors: all[2].data.visitors,
-        pass_entries: all[3].data.pass_entries
+        pass_entries: all[3].data.pass_entries,
+        mybookings: all[4].data.pass_entries
       });
     })
   }, [])
 
+  function cancelPass(id, booking) {
+    const pass = {
+      ...state.pass_entries[id],
+      booking: null
+      };
+      const passes = {
+        ...state.pass_entries,
+        [id]: pass
+      };
+     
+    return axios.delete(`/api/pass_entries/${id}`)
+    .then ((res) => {
   
-  return { state }
+      return setState({...state, passes: passes});
+
+    }
+  )}
+
+  function newPass(passentry) {
+
+
+
+    return axios.post(`/api/pass_entries`, {passentry})
+    .then ((res) => {
+      console.log('useappdatapostres:', res)
+      // return setState({...state, passes: passes});
+
+
+
+    })
+  }
+  
+  return { state, cancelPass, newPass }
 }
