@@ -51,20 +51,14 @@ export default function useApplicationData(){
 
   function newPass(passentry) {
 
-    // const pass = {
-    //   ...state.pass_entries[id]
-    //   };
-    //   const passes = {
-    //     ...state.pass_entries,
-    //     [id]: pass
-    //   };
+
 
     return axios.post(`/api/pass_entries`, {passentry})
     .then ((res) => {
       console.log('useappdatapostres:', res)
       // return setState({...state, passes: passes});
 
-      //need a .then to do the put request into the guest table
+
 
     })
   }

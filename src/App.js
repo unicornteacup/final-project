@@ -115,7 +115,7 @@ export default function App() {
                       onSetVerify={() => transition(INITIAL)}
                     />
                   )}
-                  { mode === BOOKINGS && (
+                  {/* { mode === BOOKINGS && ( */}
                     <MyBookings
                       visitor={selectedVisitor}
                       visitors={state.visitors}
@@ -124,7 +124,7 @@ export default function App() {
                       cancelPass={cancelPass} 
                       onNewBooking={() => transition(INITIAL)}
                     />
-                  )}
+                  {/* )} */}
                   {/* { mode === INITIAL && (
                     <Login 
                       visitors={state.visitors}
