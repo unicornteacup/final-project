@@ -106,7 +106,7 @@ export default function ParksList(props) {
            <span
             className={classes.imageSrc}
             style={{
-              backgroundImage: `url(https://i.pinimg.com/474x/c4/83/96/c483960b380e5546d5a1698799458807.jpg)`,
+              backgroundImage: `url(${park.image})`,
             }}
           />
           <span className={classes.imageBackdrop } />

@@ -14,7 +14,7 @@ const images = [
     width: '40%',
   },
   {
-    url: '/static/images/grid-list/burgers.jpg',
+    url: 'https://www.freevector.com/uploads/vector/preview/29665/Mountains-Area.jpg',
     title: 'Garibaldi',
     width: '30%',
   },
