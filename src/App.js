@@ -7,13 +7,7 @@ import useApplicationData from "./hooks/useApplicationData";
 import ParkContext from "./hooks/ParkContext";
 import DateContext from "./hooks/DateContext";
 import VisitorContext from "./hooks/VisitorContext";
-<<<<<<< HEAD
 import TrailContext from "./hooks/TrailContext";
-=======
-
-import TrailContext from "./hooks/TrailContext";
-
->>>>>>> 90a0537c1aba8693b12e07103dcc8ea7d406809a
 
 // importing components
 import NavBar from './components/NavBar';
@@ -33,16 +27,13 @@ import "./components/NavBar.scss";
 
 const INITIAL = "INITIAL";
 const REGISTER = "REGISTER";
-<<<<<<< HEAD
-=======
 const CONFIRM = "CONFIRM";
->>>>>>> 90a0537c1aba8693b12e07103dcc8ea7d406809a
 const BOOKINGS = "BOOKINGS";
 const FORM = "FORM";
 
 export default function App() {
 
-  const { state, sendConfirmCode, codeValidation, cancelPass, newPass } = useApplicationData();
+  const { state, sendConfirmCode, codeValidation, cancelPass, newPass, newVisitor } = useApplicationData();
 
   const { mode, transition, back } = useVisualMode(INITIAL
     // onRegister ? REGISTER : INITIAL
@@ -61,6 +52,10 @@ export default function App() {
     transition(BOOKINGS);
   };
   
+  const newVisitorValidation = () => {
+    newVisitor(selectedVisitor);
+    transition(INITIAL);
+  }
   return (
           <DateContext.Provider value={{selectedDate, setSelectedDate}}>
             <ParkContext.Provider value={{park, setPark}}>
@@ -135,7 +130,7 @@ export default function App() {
                     <Confirm 
                       sendConfirmCode={sendConfirmCode(selectedVisitor.phone)}
                       codeValidation={codeValidation}
-                      onSuccess={() => transition(INITIAL)}
+                      onSuccess={() => newVisitorValidation()}
                     />
                   )}
                   { mode === BOOKINGS && (
