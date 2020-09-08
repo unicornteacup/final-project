@@ -8,7 +8,6 @@ function ImgComp({src}) {
     }
 
 return <img src={src} alt="slide-img" style={imgStyles}></img>
-
 }
 
 export default ImgComp; 

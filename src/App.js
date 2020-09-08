@@ -54,7 +54,9 @@ export default function App() {
             </nav>
 
             <Slider/>
-
+            <h2>Welcome to BC Parks and Recreation.</h2>
+            <h3> Some of our most popular parks regularly experience high visitor volumes, resulting in crowding of facilities, packed parking lots, and safety issues.</h3>
+            
             { mode === INITIAL && (
               <div className='main-body'>
                   <DateSelector></DateSelector>
