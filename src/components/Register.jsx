@@ -19,6 +19,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { timePickerDefaultProps } from '@material-ui/pickers/constants/prop-types';
+import Confirm from './Confirm';
 
 const visitors = [
   {
@@ -85,6 +86,7 @@ const useStyles = makeStyles((theme) => ({
 
 const INITIAL = "INITIAL";
 const ERROR = "ERROR";
+const CONFIRM = "CONFIRM";
 
 
 export default function Register(props) {
@@ -94,32 +96,24 @@ export default function Register(props) {
 
   const { selectedVisitor, setSelectedVisitor } = React.useContext(VisitorContext);
 
-  const [newVisitor, setNewVisitor] = useState({});
+  const [ newVisitor, setNewVisitor ] = useState({});
 
-  // confirmationText = (times) => {
-  //   let number = '';
-  //   let num = 1;
-  //   while (num < times) {
-  //     const randomNumber = Math.floor(Math.random() * Math.floor(100));
-  //     number += Number(randomNumber);
-  //     num++;
-  //   }
-  //   return number;
-  // }
+
+
 
   const save = (newVisitor, visitors) => {
     const isNotValid = visitors.filter(visitor => 
       newVisitor.email === visitor.email
     )
-    // if (!isNotValid[0]) {
-    //   transition(ERROR)
-    // } else {
+    if (isNotValid[0]) {
+      transition(ERROR)
+    } else {
       newVisitor.id = visitors.length + 2;
       visitors.push(newVisitor);
       console.log(visitors);
       setSelectedVisitor(newVisitor);
       props.onSetVerify();
-    // }
+    }
   };
 
   const handleSubmit = (event) => {
@@ -188,7 +182,7 @@ export default function Register(props) {
                     required
                     fullWidth
                     id="outlined-error-helper-text"
-                    helperText="Incorrect email."
+                    helperText="Email is already in use."
                     label="Email Address"
                     name="email"
                     autoComplete="email"
@@ -222,7 +216,10 @@ export default function Register(props) {
                   id="phone"
                   autoComplete="phone"
                   value={newVisitor.phone}
-                  onChange={(event) => setNewVisitor({...newVisitor, phone: event.target.value})}
+                  onChange={(event) => {
+                    setNewVisitor({...newVisitor, phone: event.target.value})
+                    setSelectedVisitor({...selectedVisitor, phone: event.target.value})
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
