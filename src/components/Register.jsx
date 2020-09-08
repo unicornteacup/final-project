@@ -108,9 +108,6 @@ export default function Register(props) {
     if (isNotValid[0]) {
       transition(ERROR)
     } else {
-      newVisitor.id = visitors.length + 2;
-      visitors.push(newVisitor);
-      console.log(visitors);
       setSelectedVisitor(newVisitor);
       props.onSetVerify();
     }
@@ -118,7 +115,7 @@ export default function Register(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    save(newVisitor, visitors);
+    save(newVisitor, props.visitors);
   }
 
   return (
@@ -159,6 +156,23 @@ export default function Register(props) {
                   autoComplete="lname"
                   value={newVisitor.last_name}
                   onChange={(event) => setNewVisitor({...newVisitor, last_name: event.target.value})}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="phone"
+                  label="Phone Number"
+                  type="phone"
+                  id="phone"
+                  autoComplete="phone"
+                  value={newVisitor.phone}
+                  onChange={(event) => {
+                    setNewVisitor({...newVisitor, phone: Number(event.target.value)})
+                    setSelectedVisitor({...selectedVisitor, phone: Number(event.target.value)})
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -203,23 +217,6 @@ export default function Register(props) {
                   autoComplete="current-password"
                   value={newVisitor.password}
                   onChange={(event) => setNewVisitor({...newVisitor, password: event.target.value})}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="phone"
-                  label="Phone Number"
-                  type="phone"
-                  id="phone"
-                  autoComplete="phone"
-                  value={newVisitor.phone}
-                  onChange={(event) => {
-                    setNewVisitor({...newVisitor, phone: event.target.value})
-                    setSelectedVisitor({...selectedVisitor, phone: event.target.value})
-                  }}
                 />
               </Grid>
               <Grid item xs={12}>

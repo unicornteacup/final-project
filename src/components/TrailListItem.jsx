@@ -60,7 +60,6 @@ export default function TrailListItem(props) {
 
   const {selectedTrail, setSelectedTrail} = React.useContext(TrailContext);
 
-  console.log('trail state:', selectedTrail)
 
   return (
     <div className={classes.root}>

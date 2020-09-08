@@ -44,15 +44,15 @@ const ERROR = "ERROR";
 export default function Confirmation(props) {
   const classes = useStyles();
 
-  const { mode, transition, back } = useVisualMode(INITIAL);
+  const { mode, transition } = useVisualMode(INITIAL);
   
   const [ code, setCode ] = useState('')
   
   function validation(code) {
     props.codeValidation(code)
       .then((event) => {
-        event ? props.onSuccess() : transition(ERROR)
-      })
+        event ? props.onSuccess() : transition(ERROR);
+      });
   }
   
 

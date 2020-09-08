@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 
 
 import Login from './Login';
-import Register from './Register';
+import LotterySwitch from './LotterySwitch';
 
 import "./NavBar.scss";
 import logo from '../images/logo.png'; // with import
@@ -35,6 +35,7 @@ const REGISTER= "REGISTER";
 
 export default function NavBar(props) {
   const classes = useStyles();
+  console.log('nav props:', props)
   
   //transition hook
   const { selectedVisitor, setSelectedVisitor } = React.useContext(VisitorContext);
@@ -58,7 +59,7 @@ export default function NavBar(props) {
       
       <Toolbar>
       {img}
-
+      <LotterySwitch />
           { mode === VERIFIED && (
             <div class='logged_in'>
 
@@ -98,6 +99,7 @@ export default function NavBar(props) {
           { mode === LOGIN && 
             <Login 
               visitors={props.visitors}
+              onMyBookings={props.onMyBookings()}
             />
           }
         </Toolbar>

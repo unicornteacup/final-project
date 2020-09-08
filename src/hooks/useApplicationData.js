@@ -12,7 +12,7 @@ export default function useApplicationData(){
   });
 
   function sendConfirmCode(phone) {
-    axios.post('/confirmation', { to: phone })
+    return axios.post('/confirmation', { to: phone })
   }
 
   function codeValidation(code) {
@@ -24,6 +24,10 @@ export default function useApplicationData(){
         return true
       }
     })
+  }
+
+  function newVisitor(visitor) {
+    return axios.post('api/visitors', ( visitor ))
   }
 
   useEffect(() => {
@@ -76,5 +80,5 @@ export default function useApplicationData(){
     })
   }
   
-  return { state, cancelPass, newPass, sendConfirmCode, codeValidation }
+  return { state, cancelPass, newPass, sendConfirmCode, codeValidation, newVisitor }
 }
