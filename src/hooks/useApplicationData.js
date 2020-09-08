@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, React } from 'react';
+import { useState, useEffect } from 'react';
 import axios from "axios";
 
 export default function useApplicationData(){
@@ -8,17 +8,32 @@ export default function useApplicationData(){
     trails: [],
     visitors: [],
     pass_entries: [],
-    mybookings: []
+    my_bookings: []
   });
+
+  function sendConfirmCode(phone) {
+    axios.post('/confirmation', { to: phone })
+  }
+
+  function codeValidation(code) {
+    return axios.post('/verification', { code: code })
+    .then((res) => {
+      if (res.data.success === false) {
+        return false
+      } else {
+        return true
+      }
+    })
+  }
 
   useEffect(() => {
 
     Promise.all([
-    axios.get('/api/parks'),
-    axios.get('/api/trails'),
-    axios.get('/api/visitors'),
-    axios.get('/api/pass_entries'),
-    axios.get('/api/mybookings')
+     axios.get('/api/parks'),
+     axios.get('/api/trails'),
+     axios.get('/api/visitors'),
+     axios.get('api/pass_entries'),
+     axios.get('/api/mybookings')
     ])
     .then((all) => {
       setState({
@@ -43,9 +58,7 @@ export default function useApplicationData(){
      
     return axios.delete(`/api/pass_entries/${id}`)
     .then ((res) => {
-  
-      return setState({...state, passes: passes});
-
+        return setState({...state, passes: passes});
     }
   )}
 
@@ -63,5 +76,5 @@ export default function useApplicationData(){
     })
   }
   
-  return { state, cancelPass, newPass }
+  return { state, cancelPass, newPass, sendConfirmCode, codeValidation }
 }

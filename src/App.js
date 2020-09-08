@@ -7,7 +7,10 @@ import useApplicationData from "./hooks/useApplicationData";
 import ParkContext from "./hooks/ParkContext";
 import DateContext from "./hooks/DateContext";
 import VisitorContext from "./hooks/VisitorContext";
+
+// import Lottery from "./hooks/Lottery";
 import TrailContext from "./hooks/TrailContext";
+
 
 // importing components
 import NavBar from './components/NavBar';
@@ -18,29 +21,26 @@ import Entry from "./components/EntryForm/Index";
 import DateSelector from "./components/DateSelector";
 import Register from "./components/Register";
 import Confirm from './components/Confirm';
-import Slider from './components/Slider';
 import Login from './components/Login';
 import BookingsButton from "./components/Button";
+import Slider from './components/Slider';
 // import EntryForm from "components/EntryForm/Index"; 
 
 import "./components/NavBar.scss";
 
 const INITIAL = "INITIAL";
 const REGISTER = "REGISTER";
+const CONFIRM = "CONFIRM";
 const BOOKINGS = "BOOKINGS";
 const FORM = "FORM";
 
-// export default App;
 export default function App() {
 
-  const { state, cancelPass, newPass } = useApplicationData();
-  console.log('app state:', state)
-  console.log('app state passes:', state.pass_entries)
+  const { state, sendConfirmCode, codeValidation, cancelPass, newPass } = useApplicationData();
 
   const { mode, transition, back } = useVisualMode(INITIAL
     // onRegister ? REGISTER : INITIAL
   );
-  console.log('app mode:', mode)
   
   const [park, setPark] = React.useState({});
 
@@ -49,9 +49,10 @@ export default function App() {
   const [selectedTrail, setSelectedTrail] = React.useState({});
 
   const [selectedVisitor, setSelectedVisitor] = React.useState({});
-  console.log('app selected visitor:', selectedVisitor)
+
+  // const lottery = Lottery()
+  // lottery()
   
-  console.log('app:', state.parks )
 
   const onMyBookings = () => {
     transition(BOOKINGS);
@@ -81,7 +82,6 @@ export default function App() {
                   { mode === INITIAL && (
                     <div className='main-body'>
                         <DateSelector></DateSelector>
-                        {/* <Confirm /> */}
                         <ParksList
                           parks={state.parks} 
                           // setPark={setPark}
@@ -121,7 +121,15 @@ export default function App() {
                   )}
                   { mode === REGISTER && (
                     <Register 
-                      onSetVerify={() => transition(INITIAL)}
+                      visitors={state.visitors}
+                      onSetVerify={() => transition(CONFIRM)}
+                    />
+                  )}
+                  { mode === CONFIRM && (
+                    <Confirm 
+                      sendConfirmCode={sendConfirmCode(selectedVisitor.phone)}
+                      codeValidation={codeValidation}
+                      onSuccess={() => transition(INITIAL)}
                     />
                   )}
                   {/* { mode === BOOKINGS && ( */}
