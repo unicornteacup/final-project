@@ -7,10 +7,7 @@ import useApplicationData from "./hooks/useApplicationData";
 import ParkContext from "./hooks/ParkContext";
 import DateContext from "./hooks/DateContext";
 import VisitorContext from "./hooks/VisitorContext";
-<<<<<<< HEAD
 import TrailContext from "./hooks/TrailContext";
-=======
->>>>>>> 4f21580b420f8bec808c6a29c3ad2557c0f5b6f6
 
 // importing components
 import NavBar from './components/NavBar';
@@ -21,23 +18,17 @@ import Entry from "./components/EntryForm/Index";
 import DateSelector from "./components/DateSelector";
 import Register from "./components/Register";
 import Confirm from './components/Confirm';
-<<<<<<< HEAD
+import Slider from './components/Slider';
 import Login from './components/Login';
 import BookingsButton from "./components/Button";
-=======
-import Slider from './components/Slider';
->>>>>>> 4f21580b420f8bec808c6a29c3ad2557c0f5b6f6
 // import EntryForm from "components/EntryForm/Index"; 
 
 import "./components/NavBar.scss";
 
 const INITIAL = "INITIAL";
 const REGISTER = "REGISTER";
-<<<<<<< HEAD
 const BOOKINGS = "BOOKINGS";
 const FORM = "FORM";
-=======
->>>>>>> 4f21580b420f8bec808c6a29c3ad2557c0f5b6f6
 
 // export default App;
 export default function App() {
@@ -119,35 +110,10 @@ export default function App() {
                           />
                         )}
 
-<<<<<<< HEAD
-            <Slider/>
-            <h2>Welcome to Hiking Day-Pass Program for BC Parks</h2>
-            <h5> Some of our most popular parks regularly experience high visitor volumes, resulting in crowding of facilities, packed parking lots, and safety issues.To ensure the health and safety of our visitors and staff, to meet health and safety guidelines, and as part of a pilot project, free day-use passes are required to access the trails/parks below.</h5>
-            
-            <h4>Step 1: Choose a date for your hike. </h4>
-            <h4> Step 2: Choose a mountain.</h4>
-            <h4>Step 3: Chose a trail.</h4>
-            <h4>Step 4: To book for a pass, insert your guests' information.</h4>
-           
-            { mode === INITIAL && (
-              <div className='main-body'>
-                  <DateSelector></DateSelector>
-                  {/* <Confirm /> */}
-                  <ParksList
-                    parks={state.parks} 
-                    // setPark={setPark}
-                    >
-                    {/* parks={state.parks}  */}
-                    
-                  </ParksList>
-                  { park.name && (
-                    <TrailList 
-=======
                     {/* <MyBookings 
                       visitor={selectedVisitor}
                       visitors={state.visitors}
                       mybookings={state.mybookings}
->>>>>>> b25453c63274a1c0c0ed3e64a3451a336171ce79
                       trails={state.trails}
                       // onNewBooking={() => transition(INITIAL)}
                     /> */}
@@ -175,17 +141,6 @@ export default function App() {
                     />
                   )} */}
 
-<<<<<<< HEAD
-            {/* // <h1>{ this.state.message }</h1> */}
-            {/* // <button onClick={this.fetchData} > */}
-            {/* //   Fetch Data */}
-            {/* // </button>         */}
-          </main>
-        </VisitorContext.Provider>
-      </ParkContext.Provider>
-    </DateContext.Provider>
-  )
-=======
 
                   {/* // <h1>{ this.state.message }</h1> */}
                   {/* // <button onClick={this.fetchData} > */}
@@ -197,5 +152,4 @@ export default function App() {
             </ParkContext.Provider>
           </DateContext.Provider>
   )       
->>>>>>> b25453c63274a1c0c0ed3e64a3451a336171ce79
 };
