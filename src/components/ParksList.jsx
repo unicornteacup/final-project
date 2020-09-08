@@ -90,6 +90,7 @@ export default function ParksList(props) {
   return (
     
     <div className={classes.root}>
+      
       {props.parks.map((park) => (
         <ButtonBase
           focusRipple
@@ -102,18 +103,20 @@ export default function ParksList(props) {
           }}
           onClick={() => setPark(park)}
         >
-          <span
+           <span
             className={classes.imageSrc}
             style={{
               backgroundImage: `url(https://i.pinimg.com/474x/c4/83/96/c483960b380e5546d5a1698799458807.jpg)`,
             }}
           />
-          <span className={classes.imageBackdrop} />
+          <span className={classes.imageBackdrop } />
+          
           <span className={classes.imageButton}>
             <Typography
               component="span"
               variant="subtitle1"
               color="inherit"
+              variant='h4'
               className={classes.imageTitle}
             >
               {park.name}
