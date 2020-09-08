@@ -1,7 +1,7 @@
 .slider{
     position:relative;
     width: 100%;
-    height: 30vh;
+    height: 400px;
     box-sizing:border-box;
     margin:0;
     padding:0;
@@ -13,7 +13,7 @@
 
 .slide{
     min-width: 100%;
-    height:20vh;
+    height:300px;
     transition: 0.5s;
     overflow:hidden;
 }
@@ -27,7 +27,7 @@
     background:none;
     border:none;
     outline:none;
-    font:white
+    font:white;
 
 }
 
