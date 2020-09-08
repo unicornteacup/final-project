@@ -2,24 +2,25 @@ import React from 'react';
 import useVisualMode from '../hooks/UseVisualMode';
 import VisitorContext from '../hooks/VisitorContext';
 
-
-
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+
 import Button from '@material-ui/core/Button';
+
 
 import Login from './Login';
 import Register from './Register';
 
+import "./NavBar.scss";
+import logo from '../images/logo.png'; // with import
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   menuButton: {
-
     marginRight: theme.spacing(2),
   },
   title: {
@@ -48,29 +49,50 @@ export default function NavBar(props) {
       transition(INITIAL);
     };
 
+    const img = <img style={{marginTop: 10}}src={logo}/>
+
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            BC Park
-          </Typography>
+      < AppBar 
+      color='transparent'
+      position= 'static'>
+      
+      <Toolbar>
+      {img}
+
           { mode === VERIFIED && (
-            <div>
-              Hola   <strong>{selectedVisitor.email}</strong>
-              <Button color="secondary"
+            <div class='logged_in'>
+
+              Welcome! <div class='email'>
+              <strong>{selectedVisitor.email}</strong>
+                </div>
+              
+              <div class= "logout">
+              <Button  
+                variant="outlined" 
+                color="primary"
                 onClick={() => logOut()}>Log Out</Button>
+              </div>
+
             </div>
           )}
+
+
           { mode === INITIAL && (
-             <div>
-               <Button color="inherit" onClick={() => transition(LOGIN)}>Login</Button>
+
+            <div class='log_reg'>
+             <div class= 'login_button'>
                <Button 
                 variant="outlined" 
-                color="secondary"
-                onClick={() => props.onRegister()}
-                >
-                  Register</Button>
+                color="primary" 
+                onClick={() => transition(LOGIN)}>Login</Button>
+               </div>
+
+               <div class= 'register_button'>
+               <Button
+                variant="outlined" 
+                color="primary"
+                onClick={() => props.onRegister()}>Register</Button>
+               </div>
              </div>
           )}
           { mode === LOGIN && 
@@ -80,6 +102,6 @@ export default function NavBar(props) {
           }
         </Toolbar>
       </AppBar>
-    </div>
+
   );
 }

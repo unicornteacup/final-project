@@ -1,0 +1,47 @@
+
+
+.MuiToolbar-root{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+img {
+    height:80px;
+    width: 130px;
+    object-fit: contain;
+}
+
+.log_reg{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.login_button{
+    padding-right:30px;
+}
+
+.MuiButton-label{
+   font-weight:900;
+   color: #05386B;
+}
+
+.logged_in{
+    font-weight:900;
+    color: #05386B;
+ }
+
+ 
+ .email{
+     padding-right:500px;
+ }
+
+ .MuiPaper-root{
+    font-weight:900;
+    color: #05386B;
+ }
+
+ .logout{
+     padding-left:100px;
+ }

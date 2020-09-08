@@ -5,7 +5,6 @@ import VisitorContext from '../hooks/VisitorContext';
 
 import useVisualMode from '../hooks/UseVisualMode';
 
-
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -131,7 +130,7 @@ export default function Register(props) {
             <LandscapeRoundedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Become a hiker
+            Become a hiker!
           </Typography>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <Grid container spacing={2}>
@@ -234,14 +233,13 @@ export default function Register(props) {
               type="submit"
               fullWidth
               variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
+              color="white"
+              className={classes.submit}>
               Let's go for a hike!
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

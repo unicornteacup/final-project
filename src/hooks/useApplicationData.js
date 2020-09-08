@@ -16,11 +16,9 @@ export default function useApplicationData(){
   }
 
   function codeValidation(code) {
-    axios.post('/verification', { code: code })
+    return axios.post('/verification', { code: code })
     .then((res) => {
-      console.log(res.data.success)
-      console.log(code)
-      if (res.data.success === 'false') {
+      if (res.data.success === false) {
         return false
       } else {
         return true
@@ -43,11 +41,40 @@ export default function useApplicationData(){
         trails: all[1].data.trails,
         visitors: all[2].data.visitors,
         pass_entries: all[3].data.pass_entries,
-        my_bookings: all[4].data
+        mybookings: all[4].data.pass_entries
       });
     })
   }, [])
 
+  function cancelPass(id, booking) {
+    const pass = {
+      ...state.pass_entries[id],
+      booking: null
+      };
+      const passes = {
+        ...state.pass_entries,
+        [id]: pass
+      };
+     
+    return axios.delete(`/api/pass_entries/${id}`)
+    .then ((res) => {
+        return setState({...state, passes: passes});
+    }
+  )}
+
+  function newPass(passentry) {
+
+
+
+    return axios.post(`/api/pass_entries`, {passentry})
+    .then ((res) => {
+      console.log('useappdatapostres:', res)
+      // return setState({...state, passes: passes});
+
+
+
+    })
+  }
   
-  return { state,  sendConfirmCode, codeValidation }
+  return { state, cancelPass, newPass, sendConfirmCode, codeValidation }
 }

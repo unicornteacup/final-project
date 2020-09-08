@@ -28,7 +28,7 @@ export default function MaterialUIPickers() {
           format="MM/dd/yyyy"
           margin="normal"
           id="date-picker-inline"
-          label="Select a date:"
+          placeholder="Select a date:"
           value={selectedDate}
           // onChange={() => setSelectedDate(selectedDate)}
           onChange={handleDateChange}
