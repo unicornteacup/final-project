@@ -64,7 +64,6 @@ export default function TrailList(props) {
   const selectedDateObj = React.useContext(DateContext);
   const parkObj = React.useContext(ParkContext);
 
-
   const filteredByDateEntries = props.pass_entries
   .filter(entry => entry.date = selectedDateObj.selectedDate)
 

@@ -51,8 +51,8 @@ export default function Confirmation(props) {
   function validation(code) {
     props.codeValidation(code)
       .then((event) => {
-        event ? props.onSuccess() : transition(ERROR)
-      })
+        event ? props.onSuccess() : transition(ERROR);
+      });
   }
   
 

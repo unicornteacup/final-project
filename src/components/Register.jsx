@@ -110,7 +110,6 @@ export default function Register(props) {
     } else {
       newVisitor.id = visitors.length + 2;
       visitors.push(newVisitor);
-      console.log(visitors);
       setSelectedVisitor(newVisitor);
       props.onSetVerify();
     }

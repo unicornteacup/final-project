@@ -11,13 +11,11 @@ const BOOKINGS = "BOOKINGS";
 
 export default function Login(props) {
 
-    console.log('login props:', props)
   const { mode, transition, back } = useVisualMode(
     props.verified ? VERIFIED : INITIAL
     );
 
   const { selectedVisitor, setSelectedVisitor } = React.useContext(VisitorContext);
-  console.log('login visitor:', selectedVisitor)
 
   const visitorVarification = (selectedVisitor, visitors) => {
 
@@ -37,7 +35,6 @@ export default function Login(props) {
     );
   };
   
-  console.log('login props:',props)
 
   const logOut = () => {
     setSelectedVisitor({});
