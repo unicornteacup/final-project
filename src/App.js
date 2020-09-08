@@ -54,14 +54,14 @@ export default function App() {
             </nav>
 
             <Slider/>
-            <h2>Welcome to BC Parks and Recreation.</h2>
+            <h2>Welcome to Hiking Day-Pass Program for BC Parks</h2>
             <h5> Some of our most popular parks regularly experience high visitor volumes, resulting in crowding of facilities, packed parking lots, and safety issues.To ensure the health and safety of our visitors and staff, to meet health and safety guidelines, and as part of a pilot project, free day-use passes are required to access the trails/parks below.</h5>
             
-            <h4>Step 1: Choose a date for your hike.
-                Step 2: Choose a mountain.
-                Step 3: Chose a trail.
-                Step 4: To book for a pass, insert your guests' information.
-            </h4>
+            <h4>Step 1: Choose a date for your hike. </h4>
+            <h4> Step 2: Choose a mountain.</h4>
+            <h4>Step 3: Chose a trail.</h4>
+            <h4>Step 4: To book for a pass, insert your guests' information.</h4>
+           
             { mode === INITIAL && (
               <div className='main-body'>
                   <DateSelector></DateSelector>
@@ -87,7 +87,6 @@ export default function App() {
                 onSetVerify={() => transition(INITIAL)}
               />
             )}
-
 
             {/* // <h1>{ this.state.message }</h1> */}
             {/* // <button onClick={this.fetchData} > */}
