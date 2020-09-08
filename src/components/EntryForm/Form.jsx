@@ -4,8 +4,10 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import DateContext from "../../hooks/DateContext";
 import VisitorContext from '../../hooks/VisitorContext';
+import TrailContext from '../../hooks/TrailContext';
 import transitions from '@material-ui/core/styles/transitions';
 import useVisualMode from '../../hooks/UseVisualMode';
+import useApplicationData from "../../hooks/useApplicationData";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,21 +31,54 @@ const ERROR = "ERROR";
 
 export default function Form (props) {
   const classes = useStyles();
+  const { state } = useApplicationData();
 
-  const {date: selectedDate} = React.useContext(DateContext);
-  console.log('form date:', selectedDate)
-  const { visitor: selectedVisitor } = React.useContext(VisitorContext);
+  console.log('form props:', props)
+  console.log('form state:', state)
+
+  const {selectedDate, setSelectedDate} = React.useContext(DateContext);
+
+  console.log('form date :', selectedDate)
+  const {selectedVisitor, setSelectedVisitor} = React.useContext(VisitorContext);
+
+  console.log('form visitor :', selectedVisitor)
+
+  const {selectedTrail, setSelectedTrail} = React.useContext(TrailContext);
+
+  
+  console.log('form trail:', selectedTrail)
 
   const { mode, transition, back } = useVisualMode(INITIAL);
 
-  function date(selectedDate) {
-    let date = ""
-    if (!selectedDate) {
-      date="Choose Date"
+  // function dateDisplay(selectedDate) {
+  //   let date 
+  //   if (!selectedDate) {
+  //     date="Choose Date"
+  //   } else {
+  //     date=selectedDate
+  //   }
+  //   console.log('form date function result:', date)
+  //   return date;
+  // }
+
+  function visitor(selectedVisitor) {
+    let visitor 
+    if (!selectedVisitor) {
+      visitor="Login to apply for pass"
     } else {
-      date=selectedDate
+      visitor=selectedVisitor
     }
-    return date;
+    return visitor.first_name;
+  }
+
+  function trail(selectedTrail) {
+    let setTrail 
+    if (!selectedTrail) {
+      setTrail="Login to apply for pass"
+    } else {
+      setTrail=selectedTrail.name
+    }
+    return setTrail;
   }
 
 
@@ -82,13 +117,13 @@ export default function Form (props) {
         }
       
         if (guest.phone.length !== 9) {
-        transition(ERROR);
-        return;
+          transition(ERROR);
+          return;
+        }
       }
     }
-  }
     console.log('guests:', guestState)
-      props.onSave(guestState);
+    props.onSave(selectedDate, selectedVisitor,selectedTrail, guestState);
   } 
 
   const [error, setError] = useState("");
@@ -96,11 +131,11 @@ export default function Form (props) {
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <header className={classes.root}>
-      <h4 className={classes.heading}>{selectedVisitor.first_name}</h4>
-      <h4 className={classes.heading}>{selectedVisitor.last_name}</h4>
+      <h4 className={classes.heading}>{visitor(selectedVisitor)}</h4>
+      {/* <h4 className={classes.heading}>{selectedVisitor}</h4> */}
       {/* <h4 className={classes.heading}>Date</h4> */}
-      <h4 className={classes.heading}>{date(selectedDate)}</h4>
-      <h4 className={classes.heading}>Trail</h4>
+      <h4 className={classes.heading}>{""+selectedDate}</h4>
+      <h4 className={classes.heading}>{trail(selectedTrail)}</h4>
     </header>
       <Button variant="contained" color="primary" value="Add New Guest" onClick={addGuest}>Add Guest</Button>
       {guestState.map((val, idx) => {

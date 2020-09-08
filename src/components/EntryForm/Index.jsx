@@ -18,14 +18,15 @@ export default function Entry(props) {
   const { mode, transition, back } = useVisualMode(INITIAL);
 
   //function to save a newly created entry
-  function onSave(selectedDate, selectedVisitor, guestState, props) {
+  function onSave(selectedDate, selectedVisitor,selectedTrail, guestState) {
     const passentry = {
-      visitor: selectedVisitor.id,
+      visitorId: selectedVisitor.id,
       date: selectedDate,
       guests: guestState,
-      trail: props.trail.id
+      trailId: selectedTrail.id
     }
-    transition(SAVING);
+    console.log('save object', passentry)
+    // transition(SAVING);
 
     // if (mode === EDIT) {
     //   props
@@ -45,7 +46,9 @@ export default function Entry(props) {
     
     return (
       <div>
-        <Form/>
+        <Form
+        onSave={onSave}
+        />
       </div>
     )
 

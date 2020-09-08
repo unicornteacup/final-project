@@ -17,7 +17,7 @@ export default function Login(props) {
     );
 
   const { selectedVisitor, setSelectedVisitor } = React.useContext(VisitorContext);
-  console.log('visitor:', selectedVisitor)
+  console.log('login visitor:', selectedVisitor)
 
   const visitorVarification = (selectedVisitor, visitors) => {
 
@@ -37,14 +37,12 @@ export default function Login(props) {
       isValid ? transition(VERIFIED) : transition(ERROR)
     );
   };
+  
+  console.log('login props:',props)
 
   const logOut = () => {
     setSelectedVisitor({});
     transition(INITIAL);
-  };
-
-  const onMyBookings = () => {
-    transition(BOOKINGS);
   };
 
     return (
@@ -106,11 +104,6 @@ export default function Login(props) {
           { mode === VERIFIED && (
             <div>
               Hola   <strong>{selectedVisitor.email}</strong>
-              <Button 
-                variant="outlined" 
-                color="inherit"
-                onClick={() => onMyBookings()}
-                >My Bookings</Button>
               <Button color="secondary"
                 onClick={() => logOut()}>Log Out</Button>
             </div>
