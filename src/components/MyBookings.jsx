@@ -85,11 +85,9 @@ const bookings = [
 export default function MyBookings(props) {
   const classes = useStyles();
 
-  console.log('mybookingsprops:', props)
 
   const {selectedVisitor, setSelectedVisitor} = React.useContext(VisitorContext);
 
-  console.log('form visitor :', selectedVisitor.email)
 
   // function status(booking) {
   //   if (booking === 'Success') {

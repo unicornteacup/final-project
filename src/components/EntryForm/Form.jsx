@@ -33,20 +33,16 @@ export default function Form (props) {
   const classes = useStyles();
   const { state } = useApplicationData();
 
-  console.log('form props:', props)
-  console.log('form state:', state)
+
 
   const {selectedDate, setSelectedDate} = React.useContext(DateContext);
 
-  console.log('form date :', selectedDate)
   const {selectedVisitor, setSelectedVisitor} = React.useContext(VisitorContext);
 
-  console.log('form visitor :', selectedVisitor)
 
   const {selectedTrail, setSelectedTrail} = React.useContext(TrailContext);
 
   
-  console.log('form trail:', selectedTrail)
 
   const { mode, transition, back } = useVisualMode(INITIAL);
 
