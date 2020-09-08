@@ -8,6 +8,8 @@ import ParkContext from "./hooks/ParkContext";
 import DateContext from "./hooks/DateContext";
 import VisitorContext from "./hooks/VisitorContext";
 
+// import Lottery from "./hooks/Lottery";
+
 
 // importing components
 import NavBar from './components/NavBar';
@@ -22,10 +24,11 @@ import Confirm from './components/Confirm';
 
 const INITIAL = "INITIAL";
 const REGISTER = "REGISTER";
+const CONFIRM = "CONFIRM";
 // export default App;
 export default function App() {
 
-  const { state } = useApplicationData();
+  const { state, sendConfirmCode, codeValidation } = useApplicationData();
 
   const { mode, transition, back } = useVisualMode(INITIAL
     // onRegister ? REGISTER : INITIAL
@@ -35,6 +38,9 @@ export default function App() {
 
   const [selectedDate, setSelectedDate] = React.useState({});
   const [selectedVisitor, setSelectedVisitor] = React.useState({});
+
+  // const lottery = Lottery()
+  // lottery()
   
   
   return (
@@ -51,7 +57,6 @@ export default function App() {
                   { mode === INITIAL && (
                     <div className='main-body'>
                         <DateSelector></DateSelector>
-                        {/* <Confirm /> */}
                         <ParksList
                           parks={state.parks} 
                           // setPark={setPark}
@@ -70,7 +75,15 @@ export default function App() {
                   )}
                   { mode === REGISTER && (
                     <Register 
-                      onSetVerify={() => transition(INITIAL)}
+                      visitors={state.visitors}
+                      onSetVerify={() => transition(CONFIRM)}
+                    />
+                  )}
+                  { mode === CONFIRM && (
+                    <Confirm 
+                      sendConfirmCode={sendConfirmCode(selectedVisitor.phone)}
+                      codeValidation={codeValidation}
+                      onSuccess={() => transition(INITIAL)}
                     />
                   )}
 

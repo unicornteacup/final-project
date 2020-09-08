@@ -29,7 +29,6 @@ export default function Login(props) {
       first_name: isValid.first_name,
       last_name: isValid.last_name    
     })
-    console.log(isValid)
     return (
       isValid ? transition(VERIFIED) : transition(ERROR)
     );
