@@ -8,7 +8,7 @@ import ParkContext from "./hooks/ParkContext";
 import DateContext from "./hooks/DateContext";
 import VisitorContext from "./hooks/VisitorContext";
 
-// import Lottery from "./hooks/Lottery";
+import Lottery from "./hooks/Lottery";
 import TrailContext from "./hooks/TrailContext";
 
 
@@ -50,8 +50,8 @@ export default function App() {
 
   const [selectedVisitor, setSelectedVisitor] = React.useState({});
 
-  // const lottery = Lottery()
-  // lottery()
+  const { nextDayEntries, trailEntries, maxCapacity, all } = Lottery()
+  console.log('nextDayent', all)
   
 
   const onMyBookings = () => {
