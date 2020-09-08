@@ -103,7 +103,7 @@ export default function Login(props) {
       )}
           { mode === VERIFIED && (
             <div>
-              Hola   <strong>{selectedVisitor.email}</strong>
+              <strong>{selectedVisitor.email}</strong>
               <Button color="secondary"
                 onClick={() => logOut()}>Log Out</Button>
             </div>

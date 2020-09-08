@@ -1,6 +1,4 @@
-nav {
 
-}
 
 .MuiToolbar-root{
     display:flex;
@@ -9,19 +7,19 @@ nav {
 }
 
 img {
-    height:70px;
-    width: 120px;
+    height:80px;
+    width: 130px;
     object-fit: contain;
 }
 
 .log_reg{
     display:flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .login_button{
-    padding-right:20px;
+    padding-right:30px;
 }
 
 .MuiButton-label{
