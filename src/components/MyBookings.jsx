@@ -8,6 +8,11 @@ import { red, orange, green } from '@material-ui/core/colors';
 import useVisualMode from '../hooks/UseVisualMode';
 import VisitorContext from "../hooks/VisitorContext";
 
+const INITIAL = "INITIAL";
+const VERIFIED = "VERIFIED";
+const ERROR = "ERROR";
+const BOOKINGS = "BOOKINGS";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,

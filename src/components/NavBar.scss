@@ -25,18 +25,17 @@ img {
 .MuiButton-label{
    font-weight:900;
    font-family:helvetica;
-   color: #05386B;
 }
 
 .logged_in{
+    align-items: baseline;
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-end;
     font-weight:900;
     color: #05386B;
  }
 
- 
- .email{
-     padding-right:500px;
- }
 
  .MuiPaper-root{
     font-weight:900;
@@ -44,5 +43,5 @@ img {
  }
 
  .logout{
-     padding-left:100px;
+     padding:10px;
  }

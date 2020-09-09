@@ -58,11 +58,11 @@ export default function NavBar(props) {
       
       <Toolbar>
       {img}
-      <LotterySwitch />
+     
           { mode === VERIFIED && (
             <div class='logged_in'>
 
-              Welcome! <div class='email'>
+              <div class='email'>
               <strong>{selectedVisitor.email}</strong>
                 </div>
               
@@ -72,7 +72,7 @@ export default function NavBar(props) {
                 color="primary"
                 onClick={() => logOut()}>Log Out</Button>
               </div>
-
+              <LotterySwitch />
             </div>
           )}
 
