@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import logo from './images/logo.png'; // with import
 import './App.css';
 //importing hooks
 import useVisualMode from './hooks/UseVisualMode';
@@ -27,13 +28,14 @@ import BookingsButton from "./components/Button";
 import Slider from './components/Slider';
 // import EntryForm from "components/EntryForm/Index"; 
 import rules from './images/rules.png'; // with import
-import "./components/NavBar.scss";
 
 const INITIAL = "INITIAL";
 const REGISTER = "REGISTER";
 const CONFIRM = "CONFIRM";
 const BOOKINGS = "BOOKINGS";
 const FORM = "FORM";
+
+
 
 export default function App() {
 
@@ -60,7 +62,7 @@ export default function App() {
     newVisitor(selectedVisitor);
     transition(INITIAL);
   }
-  const img = <img style={{marginTop: 10}}src={rules}/>
+  const img = <img style={{marginTop: 10}}src={logo}/>
 
   return (
 
@@ -136,7 +138,7 @@ export default function App() {
                     visitors={state.visitors}
                     trails={state.trails}
                     date={selectedDate}
-                    vistor={selectedVisitor}
+                    visitor={selectedVisitor}
                     newPass={newPass}
                     back={back}
                     />
@@ -188,6 +190,11 @@ export default function App() {
             {/* // <button onClick={this.fetchData} > */}
             {/* //   Fetch Data */}
             {/* // </button>         */}
+
+            <div class="closing">
+            {img}
+            </div>
+            
           </main>
         </VisitorContext.Provider>
         </TrailContext.Provider>

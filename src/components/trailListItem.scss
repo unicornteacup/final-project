@@ -1,7 +1,10 @@
+
+
 .apply_pass_button{
 display:flex;
 
 }
+
 
 .writing{
     padding:10px;
@@ -13,5 +16,31 @@ display:flex;
 }
 
 .trail_block{
-    padding:50px;
+    display:flex;
+    align-items: flex-end;
+    padding-top:50px;
+    padding-left:250px;
+    padding-right:250px;
+
+    .MuiAccordionSummary-root.Mui-expanded{
+        display:flex;
+        align-items: center;
+    }
+
+    strong{
+        color:#05386B;
+        font-size:30px;
+    }
+
+    .MuiAlert-message{
+        color:#379683;
+        font-size:20px;
+        font-weight: 1000px;
+    }
+    .MuiAlert-standardSuccess{
+        background-color:transparent;
+    }
+    .MuiAccordionSummary-root{
+       background-color:#EDF5E1;
+    }
 }
