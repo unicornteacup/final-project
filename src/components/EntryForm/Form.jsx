@@ -177,7 +177,10 @@ export default function Form (props) {
                 id={phoneId}
                 value={guestState[idx].phone}
                 inputProps={{ "data-idx": idx}}
-                onChange={(event) => handleGuestChange(event, "phone")}
+                onChange={(event) => {
+                  setSelectedVisitor({...selectedVisitor, phone: Number(event.target.value)})
+                  handleGuestChange(event, "phone")}
+                }
                 variant="outlined"
                 size="small"
               />

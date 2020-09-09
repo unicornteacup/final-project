@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import VisitorContext from '../hooks/VisitorContext';
-
 import useVisualMode from '../hooks/UseVisualMode';
 
 

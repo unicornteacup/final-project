@@ -62,6 +62,11 @@ export default function TrailListItem(props) {
 
   const {selectedTrail, setSelectedTrail} = React.useContext(TrailContext);
 
+  const newPassEntry = () => {
+    setSelectedTrail(props)
+    props.onSelect()
+  }
+
 
   return (
 
@@ -79,9 +84,9 @@ export default function TrailListItem(props) {
             </Typography>
           </div>
           <div className={classes.column}>
-            {/* <Typography className={classes.secondaryHeading}>
+            <Typography className={classes.secondaryHeading}>
               {props.date.selectedDate.toDateString()}
-            </Typography> */}
+            </Typography>
           </div>
           <div>
             { props.status === 'Open'
@@ -129,7 +134,9 @@ export default function TrailListItem(props) {
       
         <AccordionActions>
           <div class="apply_pass_button">
-          <Button variant="contained" color="primary" onClick={() => setSelectedTrail(props)}>
+          <Button variant="contained" color="primary" 
+            onClick={() => newPassEntry()}
+          >
             Apply for Pass
           </Button>
           </div>
