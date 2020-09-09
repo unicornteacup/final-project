@@ -75,9 +75,9 @@ export default function TrailListItem(props) {
             </Typography>
           </div>
           <div className={classes.column}>
-            {/* <Typography className={classes.secondaryHeading}>
+            <Typography className={classes.secondaryHeading}>
               {props.date.selectedDate.toDateString()}
-            </Typography> */}
+            </Typography>
           </div>
           <div>
             { props.status === 'Open'
