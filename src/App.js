@@ -147,6 +147,7 @@ export default function App() {
                     vistor={selectedVisitor}
                     newPass={newPass}
                     back={back}
+                    onMyBookings={onMyBookings}
                     />
                   )}
 
