@@ -139,8 +139,8 @@ export default function MyBookings(props) {
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <header>
-              <h4 className={classes.column}>{booking.first_name}</h4>
-              <h4 className={classes.column}>{booking.last_name}</h4>
+              <h4 className={classes.column}>{selectedVisitor.first_name}</h4>
+              <h4 className={classes.column}>{selectedVisitor.last_name}</h4>
               <h4 className={classes.column}>{booking.date}</h4>
               <h4 className={classes.column}>{booking.trail_id}</h4>
               <h4 className={classes.column}>{booking.status}</h4>
@@ -149,9 +149,9 @@ export default function MyBookings(props) {
               {booking.guests.map((guest) => {
                 return(
                   <div className={classes.column}>
-                    <Typography className={classes.secondaryHeading}>{guest.first_name}</Typography>
-                    <Typography className={classes.secondaryHeading}>{guest.last_name}</Typography>
-                    <Typography className={classes.secondaryHeading}>{guest.phone}</Typography>
+                    <Typography className={classes.secondaryHeading}>{guest.guests_first_name}</Typography>
+                    <Typography className={classes.secondaryHeading}>{guest.guests_last_name}</Typography>
+                    <Typography className={classes.secondaryHeading}>{guest.guests_phone}</Typography>
                     </div>
                   )
               })}
