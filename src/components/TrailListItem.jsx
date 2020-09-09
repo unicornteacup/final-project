@@ -62,9 +62,12 @@ export default function TrailListItem(props) {
 
   const {selectedTrail, setSelectedTrail} = React.useContext(TrailContext);
 
+  const onSelect = props.onForm;
+  console.log('trailprops:', props)
+
   const newPassEntry = () => {
-    setSelectedTrail(props)
-    props.onSelect()
+    setSelectedTrail(props);
+    onSelect()
   }
 
 
