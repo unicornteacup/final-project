@@ -27,7 +27,7 @@ export default function useApplicationData(){
   }
 
   function newVisitor(visitor) {
-    return axios.post('api/visitors', ( visitor ))
+    return axios.post('api/visitors', ( visitor ));
   }
 
   useEffect(() => {
@@ -70,9 +70,6 @@ export default function useApplicationData(){
   )}
 
   function newPass(passentry) {
-
-
-
     return axios.post(`/api/pass_entries`, {passentry})
     .then ((res) => {
       console.log('useappdatapostres:', res)
