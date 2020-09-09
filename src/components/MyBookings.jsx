@@ -96,7 +96,7 @@ export default function MyBookings(props) {
   console.log('form visitor :', selectedVisitor.email)
   console.log('mybookings props:', props)
 
-  const bookings = props.mybookings
+  const bookings = props.mybookings.slice().sort((a, b) => b.date - a.date)
   // function status(booking) {
   //   if (booking === 'Success') {
   //     this.css('color', green)
@@ -107,15 +107,6 @@ export default function MyBookings(props) {
   //   }
   // }
 
-  // const onMyBookings = (allBookings) => {
-  //   let visitorBookings = []
-  //   for (let booking of allBookings) {
-  //     if (booking.visitor_id === selectedVisitor.id) {
-  //       visitorBookings.push(booking)
-  //     }
-  //   };
-  //   return visitorBookings
-  // };
 
   const { mode, transition, back } = useVisualMode(
     // INITIAL
@@ -125,9 +116,13 @@ export default function MyBookings(props) {
   function onCancel(booking) {
     
     console.log('booking to delete', booking)
+      
+    const passId = booking.id
+    console.log()
+    const guestsId = booking.guests[0].entry_id
   
       props
-      .cancelPass(booking.id)
+      .cancelPass(passId, guestsId)
       .then(() => props.onMyBookings())
       .catch(error => {
         // transition(ERROR_SAVE, true)
@@ -163,7 +158,7 @@ export default function MyBookings(props) {
                     </div>
                   )
               })}
-              <Button variant="contained" color="primary" onClick={() => onCancel()}>Cancel Entry</Button>
+              <Button variant="contained" color="primary" onClick={() => onCancel(booking)}>Cancel Entry</Button>
           </Paper>
         </Grid>
       </Grid>

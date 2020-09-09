@@ -50,33 +50,44 @@ export default function useApplicationData(){
     })
   }, [])
 
-  function cancelPass(id) {
+  function cancelPass(passId, guestsId) {
     // const pass = {
     //   ...state.pass_entries[id],
     //   booking: null
     //   };
+
     //   const passes = {
     //     ...state.pass_entries,
     //     [id]: pass
     //   };
      
     return Promise.all([
-      axios.delete(`/api/guests/${id}`),
-      axios.delete(`/api/pass_entries/${id}`)
+      axios.delete(`/api/guests/${guestsId}`),
+      axios.delete(`/api/pass_entries/${passId}`)
     ])
-    .then ((res) => {
-        // return setState({...state, passes: passes});
-    }
-  )}
+    .then((all) => {
+      // setState({
+      //   parks: all[0].data, 
+      //   trails: all[1].data.trails,
+      //   visitors: all[2].data.visitors,
+      //   pass_entries: all[3].data.pass_entries,
+      //   mybookings: all[4].data
+      // });
+    })
+  }
 
   function newPass(passentry) {
     return axios.post(`/api/pass_entries`, {passentry})
     .then ((res) => {
       console.log('useappdatapostres:', res)
+      let id = res.data.id
+      let newBooking = {...state.bookings, [id]: passentry}
       // return setState({...state, passes: passes});
-
-
-
+      setState(prev => {
+        let mybookings = {...prev.mybookings, [id]: newBooking};
+        let passentries = {...prev.passentries, [id]: newBooking};
+        return {...prev, mybookings, ...prev, passentries}
+      });
     })
   }
   
