@@ -18,51 +18,7 @@ import LandscapeRoundedIcon from '@material-ui/icons/LandscapeRounded';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { timePickerDefaultProps } from '@material-ui/pickers/constants/prop-types';
-import Confirm from './Confirm';
 
-const visitors = [
-  {
-    id: 1,
-    first_name: 'Daimhin',
-    last_name: 'Dalong',
-    phone: 4382165851,
-    email: 'fupke@dugah.seven',
-    password: 'password'
-  },
-  {
-    id: 2,
-    first_name: 'Andy',
-    last_name: 'Dalong',
-    phone: 4382165851,
-    email: 'andy@email.com',
-    password: 'password'
-  },
-  {
-    id: 3,
-    first_name: 'Travis',
-    last_name: 'Borsa',
-    phone: 4382165851,
-    email: 'travis@email.com',
-    password: 'password'
-  },
-  {
-    id: 4,
-    first_name: 'Hafiz',
-    last_name: 'Dalong',
-    phone: 4382165851,
-    email: 'hafiz@email.com',
-    password: 'password'
-  },
-  {
-    id: 6,
-    first_name: 'Ali',
-    last_name: 'Dalong',
-    phone: 4382165851,
-    email: 'ali@email.com',
-    password: 'password'
-  }
-]
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -92,7 +48,7 @@ const CONFIRM = "CONFIRM";
 export default function Register(props) {
   const classes = useStyles();
 
-  const { mode, transition, back } = useVisualMode(INITIAL);
+  const { mode, transition } = useVisualMode(INITIAL);
 
   const { selectedVisitor, setSelectedVisitor } = React.useContext(VisitorContext);
 
