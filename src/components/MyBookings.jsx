@@ -31,64 +31,66 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const bookings = [
+// const bookings = [
 
-  {
-    date: '29-Aug-2020',
-    status: 'Success',
-    trail_id: '1',
-    visitor_id: '1',
-    guests:[
-      {
-        first_name: 'Shayaan',
-        last_name: 'Shea', 
-        phone: '8671264338'
-      },
-      {
-        first_name: 'Barney',
-        last_name: 'Bartosz', 
-        phone: '2501348862'
-      }
-    ]
-  },
-  {
-    date: '02-Sep-2020',
-    status: 'Declined',
-    trail_id: '2',
-    visitor_id: '1',
-    guests:[]
-  },
-  {
-    date: '13-Sep-2020',
-    status: 'Pending',
-    trail_id: '3',
-    visitor_id: '1',
-    guests:[
-      {
-        first_name: 'Dougal',
-        last_name: 'Dregan', 
-        phone: '5811455717'
-      },
-      {
-        first_name: 'Jordy',
-        last_name: 'Josan', 
-        phone: '4386618541'
-      },
-      {
-        first_name: 'Jude',
-        last_name: 'Junior', 
-        phone: '7053846873'
-      }
-    ]
-  }
-]
+//   {
+//     date: '29-Aug-2020',
+//     status: 'Success',
+//     trail_id: '1',
+//     visitor_id: '1',
+//     guests:[
+//       {
+//         first_name: 'Shayaan',
+//         last_name: 'Shea', 
+//         phone: '8671264338'
+//       },
+//       {
+//         first_name: 'Barney',
+//         last_name: 'Bartosz', 
+//         phone: '2501348862'
+//       }
+//     ]
+//   },
+//   {
+//     date: '02-Sep-2020',
+//     status: 'Declined',
+//     trail_id: '2',
+//     visitor_id: '1',
+//     guests:[]
+//   },
+//   {
+//     date: '13-Sep-2020',
+//     status: 'Pending',
+//     trail_id: '3',
+//     visitor_id: '1',
+//     guests:[
+//       {
+//         first_name: 'Dougal',
+//         last_name: 'Dregan', 
+//         phone: '5811455717'
+//       },
+//       {
+//         first_name: 'Jordy',
+//         last_name: 'Josan', 
+//         phone: '4386618541'
+//       },
+//       {
+//         first_name: 'Jude',
+//         last_name: 'Junior', 
+//         phone: '7053846873'
+//       }
+//     ]
+//   }
+// ]
 export default function MyBookings(props) {
   const classes = useStyles();
 
-
   const {selectedVisitor, setSelectedVisitor} = React.useContext(VisitorContext);
 
+  console.log('form visitor :', selectedVisitor.email)
+  console.log('mybookings props:', props)
 
+  const bookings = props.mybookings
   // function status(booking) {
   //   if (booking === 'Success') {
   //     this.css('color', green)
@@ -99,22 +101,38 @@ export default function MyBookings(props) {
   //   }
   // }
 
+  const onMyBookings = (allBookings) => {
+    let visitorBookings = []
+    for (let booking of allBookings) {
+      if (booking.visitor_id === selectedVisitor.id) {
+        visitorBookings.push(booking)
+      }
+    };
+    return visitorBookings
+    transition(BOOKINGS);
+  };
+
   const { mode, transition, back } = useVisualMode(
     // INITIAL
     // onRegister ? REGISTER : INITIAL
   );
 
-  function cancel(booking) {
-
-    props.cancelBooking(booking.id)
-    .then(() => back())
-    .catch(error => {
-      console.log(error)
-    });    
-  }
+  function onCancel(booking) {
+    
+    console.log('booking to delete', booking)
+  
+      props
+      .cancelPass(booking.id)
+      .then(() => props.onMyBookings())
+      .catch(error => {
+        // transition(ERROR_SAVE, true)
+      }); 
+    } 
 
   return (
     <div className={classes.root}>
+    <Button variant="contained" color="primary" onClick={() => props.back()}>Home    
+    </Button>
       {bookings.map((booking) => (
       <Grid container spacing={3}>
         <Grid item xs={12}>
@@ -135,7 +153,7 @@ export default function MyBookings(props) {
                     </div>
                   )
               })}
-              <Button variant="contained" color="primary" onClick={() => cancel()}>Cancel Entry</Button>
+              <Button variant="contained" color="primary" onClick={() => onCancel()}>Cancel Entry</Button>
           </Paper>
         </Grid>
       </Grid>
