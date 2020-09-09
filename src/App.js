@@ -11,6 +11,7 @@ import TrailContext from "./hooks/TrailContext";
 
 // import Lottery from "./hooks/Lottery";
 // import TrailContext from "./hooks/TrailContext";
+import LotterySwitch from "./components/LotterySwitch";
 
 
 // importing components
