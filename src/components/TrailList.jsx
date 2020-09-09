@@ -35,6 +35,7 @@ export default function TrailList(props) {
           max_capacity={trail.max_capacity}
           pass_entries={filteredByDateEntries}
           onSelect={props.onSelect}
+          onForm={props.onForm}
         />
       )
       
