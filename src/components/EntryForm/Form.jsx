@@ -94,9 +94,8 @@ export default function Form (props) {
   };
 
   const handleGuestChange = (event, fieldName) => {
-    console.log('e:',event)
+
     const updatedGuests = [...guestState];
-    console.log('updatedGuests:',updatedGuests)
     updatedGuests[event.target.dataset.idx][fieldName] = event.target.value;
 
     setGuestState(updatedGuests);
@@ -118,7 +117,6 @@ export default function Form (props) {
         }
       }
     }
-    console.log('guests:', guestState)
     props.onSave(selectedDate, selectedVisitor,selectedTrail, guestState);
   } 
 

@@ -21,6 +21,7 @@ export default function Entry(props) {
   const { trail: selectedTrail } = React.useContext(TrailContext);
 
   const { mode, transition, back } = useVisualMode(INITIAL);
+  console.log("index props:", props)
 
 
   // open popup to confirm saved
@@ -63,6 +64,8 @@ export default function Entry(props) {
         />
         <AlertDialog
         onMyBookings={props.onMyBookings}
+        open={open}
+        park={props.park}
         setOpen={setOpen}
         />
       </div>

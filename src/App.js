@@ -44,6 +44,7 @@ export default function App() {
   );
   
   const [park, setPark] = React.useState({});
+  console.log('app park:', park)
 
   const [selectedDate, setSelectedDate] = React.useState(new Date());
 
@@ -145,6 +146,7 @@ export default function App() {
                     trails={state.trails}
                     date={selectedDate}
                     vistor={selectedVisitor}
+                    park={setPark}
                     newPass={newPass}
                     back={back}
                     onMyBookings={onMyBookings}

@@ -8,6 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TrailList from '../TrailList';
 import { datePickerDefaultProps } from '@material-ui/pickers/constants/prop-types';
 import TrailContext from '../../hooks/TrailContext';
+import ParkContext from '../../hooks/ParkContext';
 
 export default function AlertDialog(props) {
   // const [open, setOpen] = React.useState(false);
@@ -16,17 +17,25 @@ export default function AlertDialog(props) {
   //   setOpen(true);
   // };
 
+  const { selectedPark, setSelectedPark } = React.useContext(ParkContext);
+  console.log('popup park:', selectedPark)
   const { selectedTrail, setSelectedTrail } = React.useContext(TrailContext);
 
+  const onMyBookings = props.onMyBookings;
+  const setPark = props.park;
+
   const myBookings = (props) => {
-    props.onMyBookings()
-    props.setOpen(false);
+    onMyBookings();
+    props.open=false;
   };
   
   const newForm = (props) => {
-    setSelectedTrail()
-    props.setOpen(false);
+    props.open=false;
+    setSelectedTrail({});
+    setPark({});
   };
+
+  console.log('popup props:', props)
 
   return (
     <div>
