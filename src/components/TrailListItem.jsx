@@ -73,9 +73,12 @@ export default function TrailListItem(props) {
   // filteredEntries()
   const {selectedTrail, setSelectedTrail} = React.useContext(TrailContext);
 
+  const onSelect = props.onForm;
+  console.log('trailprops:', props)
+
   const newPassEntry = () => {
-    setSelectedTrail(props)
-    props.onSelect()
+    setSelectedTrail(props);
+    onSelect()
   }
 
   const filteredEntries = props.pass_entries.filter(entry => entry.trail_id === props.id)
@@ -83,14 +86,14 @@ export default function TrailListItem(props) {
 
   return (
 
-    <div class="trail_block">
-    <div className={classes.root}>
-      <Accordion defaultCollapsed>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1c-content"
-          id="panel1c-header"
-        >
+      <div class="trail_block">
+        <div className={classes.root}>
+          <Accordion defaultCollapsed>
+            <AccordionSummary
+             expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1c-content"
+             id="panel1c-header"
+             >
           <div className={classes.column}>
             <Typography className={classes.heading}>
               <strong>{props.name}</strong>
@@ -144,8 +147,16 @@ export default function TrailListItem(props) {
           pass_entries={filteredEntries.length}
         />
         <Divider />
-      
+
         <AccordionActions>
+
+        <div class="writing">
+          <h2>Notice</h2>
+          <h5>Passes cannot be transferred to another date, time, or location, and your day-pass cannot be shared beyond the group reserved.
+  
+          Under the Park Act, the potential penalties are $115; however, this pilot's focus will be on education and helping users adjust to the new requirements.</h5>
+        </div>
+
           <div class="apply_pass_button">
           <Button variant="contained" color="primary" 
             onClick={() => newPassEntry()}
@@ -153,22 +164,11 @@ export default function TrailListItem(props) {
             Apply for Pass
           </Button>
           </div>
+
         </AccordionActions>
-
-         
-        <div class="writing">
-          <h2>The fine print</h2>
-
-          <h7>Passes cannot be transferred to another date, time, or location, and your Day pass ass cannot be shared beyond the group reserved.
-          Mobile network connectivity at the park may be limited; make sure to print out or download the pass on your mobile device in advance of your visit. A copy of the Day pass must be carried at all times while within the park.
-          Day passes do not guarantee a parking spot – visitors should plan accordingly.
-          Under the Park Act, the potential penalties are $115; however, this pilot's focus will be on education and helping users adjust to the new requirements.</h7>
-        </div>
-
         </Accordion>
-
+      </div>
 
       </div>
-    </div>
   )
 }

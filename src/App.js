@@ -1,5 +1,6 @@
 import React from 'react';
 
+import logo from './images/logo.png'; // with import
 import './App.css';
 //importing hooks
 import useVisualMode from './hooks/UseVisualMode';
@@ -25,8 +26,7 @@ import Register from "./components/Register";
 import Confirm from './components/Confirm';
 import Slider from './components/Slider';
 // import EntryForm from "components/EntryForm/Index"; 
-import rules from './images/rules.png'; // with import
-import "./components/NavBar.scss";
+
 
 const INITIAL = "INITIAL";
 const REGISTER = "REGISTER";
@@ -34,6 +34,8 @@ const CONFIRM = "CONFIRM";
 const ENTRY_CONFIRM = "ENTRY_CONFIRM";
 const BOOKINGS = "BOOKINGS";
 const FORM = "FORM";
+
+
 
 export default function App() {
 
@@ -44,6 +46,7 @@ export default function App() {
   );
   
   const [park, setPark] = React.useState({});
+  console.log('app park:', park)
 
   const [selectedDate, setSelectedDate] = React.useState(new Date());
 
@@ -71,7 +74,7 @@ export default function App() {
     transition(INITIAL);
   }
 
-  const img = <img style={{marginTop: 10}}src={rules}/>
+  const img = <img style={{marginTop: 10}}src={logo}/>
 
   return (
 
@@ -111,12 +114,12 @@ export default function App() {
 
               <div class='block'>
               <div class='how_to'>
-              <h2>How too apply for a Hiking Day-Pass</h2>
+              <h2>How to apply for a Hiking Day-Pass</h2>
 
               <h5> Step 1: Choose a date for your hike. </h5>
               <h5> Step 2: Choose a mountain. </h5>
               <h5> Step 3: Chose a trail. </h5>
-              <h5> Step 4: To book for a pass, insert the information of your gests.  </h5>
+              <h5> Step 4: To book for a pass, insert the information of your guests.  </h5>
               <h5> Step 5: Check My bookings to see the status of the pass. </h5>
               </div>
               </div>
@@ -140,8 +143,19 @@ export default function App() {
                   { park.name && (
                     <TrailList 
                       trails={state.trails}
-                      pass_entries={state.pass_entries} 
-                      onSelect={() => transition(FORM)}
+                      pass_entries={state.pass_entries} onForm={() => transition(FORM)}
+                    />
+                  )}
+                  { selectedTrail.name && (
+                    <Entry 
+                    visitors={state.visitors}
+                    trails={state.trails}
+                    date={selectedDate}
+                    vistor={selectedVisitor}
+                    park={setPark}
+                    newPass={newPass}
+                    back={back}
+                    onMyBookings={onMyBookings}
                     />
                   )}
 
@@ -209,6 +223,11 @@ export default function App() {
             {/* // <button onClick={this.fetchData} > */}
             {/* //   Fetch Data */}
             {/* // </button>         */}
+
+            <div class="closing">
+            {img}
+            </div>
+            
           </main>
         </VisitorContext.Provider>
         </TrailContext.Provider>
