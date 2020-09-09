@@ -1,7 +1,7 @@
 import React from 'react';
-
 import logo from './images/logo.png'; // with import
 import './App.css';
+
 //importing hooks
 import useVisualMode from './hooks/UseVisualMode';
 import useApplicationData from "./hooks/useApplicationData";
@@ -12,7 +12,6 @@ import TrailContext from "./hooks/TrailContext";
 
 // import Lottery from "./hooks/Lottery";
 // import TrailContext from "./hooks/TrailContext";
-
 
 // importing components
 import NavBar from './components/NavBar';
@@ -25,7 +24,6 @@ import Register from "./components/Register";
 import Confirm from './components/Confirm';
 import Slider from './components/Slider';
 // import EntryForm from "components/EntryForm/Index"; 
-import rules from './images/rules.png'; // with import
 
 const INITIAL = "INITIAL";
 const REGISTER = "REGISTER";
@@ -33,8 +31,6 @@ const CONFIRM = "CONFIRM";
 const ENTRY_CONFIRM = "ENTRY_CONFIRM";
 const BOOKINGS = "BOOKINGS";
 const FORM = "FORM";
-
-
 
 export default function App() {
 
@@ -60,7 +56,6 @@ export default function App() {
   };   
 
   const onMyBookings = () => {
-    
     transition(BOOKINGS);
   };
 
@@ -72,10 +67,9 @@ export default function App() {
     transition(INITIAL);
   }
 
-  const img = <img style={{marginTop: 10}}src={rules}/>
+  const img = <img style={{marginTop: 10}}src={logo}/>
 
   return (
-
     <DateContext.Provider value={{selectedDate, setSelectedDate}}>
       <ParkContext.Provider value={{park, setPark}}>
       <TrailContext.Provider value={{selectedTrail, setSelectedTrail}}>
