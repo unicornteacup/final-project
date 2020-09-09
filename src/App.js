@@ -7,14 +7,11 @@ import useApplicationData from "./hooks/useApplicationData";
 import ParkContext from "./hooks/ParkContext";
 import DateContext from "./hooks/DateContext";
 import VisitorContext from "./hooks/VisitorContext";
-<<<<<<< HEAD
 import TrailContext from "./hooks/TrailContext";
-=======
 
 // import Lottery from "./hooks/Lottery";
-import TrailContext from "./hooks/TrailContext";
+// import TrailContext from "./hooks/TrailContext";
 
->>>>>>> 90a0537c1aba8693b12e07103dcc8ea7d406809a
 
 // importing components
 import NavBar from './components/NavBar';
@@ -34,10 +31,7 @@ import "./components/NavBar.scss";
 
 const INITIAL = "INITIAL";
 const REGISTER = "REGISTER";
-<<<<<<< HEAD
-=======
 const CONFIRM = "CONFIRM";
->>>>>>> 90a0537c1aba8693b12e07103dcc8ea7d406809a
 const BOOKINGS = "BOOKINGS";
 const FORM = "FORM";
 
@@ -48,6 +42,7 @@ export default function App() {
   const { mode, transition, back } = useVisualMode(INITIAL
     // onRegister ? REGISTER : INITIAL
   );
+  console.log('app state:', state)
   
   const [park, setPark] = React.useState({});
 
@@ -59,11 +54,15 @@ export default function App() {
 
   // const lottery = Lottery()
   // lottery()
-  
+
+   
 
   const onMyBookings = () => {
+    
     transition(BOOKINGS);
   };
+
+ 
   
   return (
           <DateContext.Provider value={{selectedDate, setSelectedDate}}>
@@ -117,6 +116,7 @@ export default function App() {
                           date={selectedDate}
                           vistor={selectedVisitor}
                           newPass={newPass}
+                          back={back}
                           />
                         )}
 
@@ -151,6 +151,7 @@ export default function App() {
                       cancelPass={cancelPass} 
                       onNewBooking={() => transition(INITIAL)}
                       back={back}
+                      onMyBookings={onMyBookings}
                     />
                   )}
                   {/* { mode === INITIAL && (

@@ -236,6 +236,9 @@ export default function Form (props) {
         })
       }
       <div>
+      {/* <Button variant="contained" color="primary" onClick={() => props.back()} confirm>
+            Back
+        </Button> */}
         <Button variant="contained" color="primary" onClick={validate} confirm>
             Submit Entry
         </Button>

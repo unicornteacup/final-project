@@ -47,6 +47,7 @@ export default function Entry(props) {
     return (
       <div>
         <Form
+        back={props.back}
         onSave={onSave}
         />
       </div>
