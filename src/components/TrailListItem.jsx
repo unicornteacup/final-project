@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -57,9 +58,19 @@ const useStyles = makeStyles((theme) => ({
 export default function TrailListItem(props) {
   const classes = useStyles();
 
-  const filteredEntries = props.pass_entries
-  .filter(({trail_id}) => trail_id === props.id)
+  
+  
+  // const [ entries, setEnties ] = useState([])
+  
+//   useEffect(() => {
 
+//     axios.get('/api/date_entry', { trail: selectedTrail.id, date: `${props.date}`})
+//     .then 
+
+// }, [])
+
+
+  // filteredEntries()
   const {selectedTrail, setSelectedTrail} = React.useContext(TrailContext);
 
   const newPassEntry = () => {
@@ -67,6 +78,8 @@ export default function TrailListItem(props) {
     props.onSelect()
   }
 
+  const filteredEntries = props.pass_entries.filter(entry => entry.trail_id === props.id)
+  console.log('filteredEntriesByTrail', props.id)
 
   return (
 
@@ -85,7 +98,7 @@ export default function TrailListItem(props) {
           </div>
           <div className={classes.column}>
             <Typography className={classes.secondaryHeading}>
-              {props.date.selectedDate.toDateString()}
+              {props.date}
             </Typography>
           </div>
           <div>
