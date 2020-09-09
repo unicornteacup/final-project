@@ -144,10 +144,6 @@ export default function App() {
                   { park.name && (
                     <TrailList 
                       trails={state.trails}
-<<<<<<< HEAD
-                      pass_entries={state.pass_entries} 
-                      onSelect={() => transition(FORM)}
-=======
                       pass_entries={state.pass_entries} onForm={() => transition(FORM)}
                     />
                   )}
@@ -161,7 +157,6 @@ export default function App() {
                     newPass={newPass}
                     back={back}
                     onMyBookings={onMyBookings}
->>>>>>> feature/validations
                     />
                   )}
 
