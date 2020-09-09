@@ -60,12 +60,16 @@ import TrailListItem from './TrailListItem';
 
 export default function TrailList(props) {
 
+  console.log('initialRecord', props.pass_entries)
 
   const selectedDateObj = React.useContext(DateContext);
   const parkObj = React.useContext(ParkContext);
 
+
   const filteredByDateEntries = props.pass_entries
-  .filter(entry => entry.date = selectedDateObj.selectedDate)
+  .filter(entry => entry.date = selectedDateObj.selectedDate.toDateString())
+
+  console.log('filter', filteredByDateEntries)
 
   
   const trailList = props.trails
