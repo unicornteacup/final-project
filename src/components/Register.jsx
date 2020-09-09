@@ -98,9 +98,6 @@ export default function Register(props) {
 
   const [ newVisitor, setNewVisitor ] = useState({});
 
-
-
-
   const save = (newVisitor, visitors) => {
     const isNotValid = visitors.filter(visitor => 
       newVisitor.email === visitor.email

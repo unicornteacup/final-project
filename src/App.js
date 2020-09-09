@@ -26,7 +26,7 @@ import Login from './components/Login';
 import BookingsButton from "./components/Button";
 import Slider from './components/Slider';
 // import EntryForm from "components/EntryForm/Index"; 
-
+import rules from './images/rules.png'; // with import
 import "./components/NavBar.scss";
 
 const INITIAL = "INITIAL";
@@ -42,7 +42,6 @@ export default function App() {
   const { mode, transition, back } = useVisualMode(INITIAL
     // onRegister ? REGISTER : INITIAL
   );
-  console.log('app state:', state)
   
   const [park, setPark] = React.useState({});
 
@@ -64,119 +63,143 @@ export default function App() {
     transition(BOOKINGS);
   };
 
- 
-  
   const newVisitorValidation = () => {
     newVisitor(selectedVisitor);
     transition(INITIAL);
   }
+  const img = <img style={{marginTop: 10}}src={rules}/>
+
   return (
-          <DateContext.Provider value={{selectedDate, setSelectedDate}}>
-            <ParkContext.Provider value={{park, setPark}}>
-            <TrailContext.Provider value={{selectedTrail, setSelectedTrail}}>
-              <VisitorContext.Provider value={{selectedVisitor, setSelectedVisitor}}> 
-                <main className="App">
-                  <nav>
-                    <NavBar
-                      visitors={state.visitors}
-                      onRegister={()=> transition(REGISTER)}
-                      onMyBookings={onMyBookings}
-                      home={home}
-                      />
-                  </nav>
-                  { mode === INITIAL && (
-                  <div>
-                  <Slider/>
-                    <h2>Welcome to BC Parks and Recreation.</h2>
-                    <h5> Some of our most popular parks regularly experience high visitor volumes, resulting in crowding of facilities, packed parking lots, and safety issues.To ensure the health and safety of our visitors and staff, to meet health and safety guidelines, and as part of a pilot project, free day-use passes are required to access the trails/parks below.</h5>
-                    
-                    <h4>Step 1: Choose a date for your hike.
-                        Step 2: Choose a mountain.
-                        Step 3: Chose a trail.
-                        Step 4: To book for a pass, insert your guests' information.
-                    </h4>
-                    </div>
-                  )}
-                  { mode === INITIAL && (
-                    <div className='main-body'>
-                        <DateSelector></DateSelector>
-                        <ParksList
-                          parks={state.parks} 
-                          // setPark={setPark}
-                          >
-                          {/* parks={state.parks}  */}
-                          {/* {selectedVisitor.email &&(  */}
 
-                          {/* )} */}
-                        </ParksList>
+    <DateContext.Provider value={{selectedDate, setSelectedDate}}>
+      <ParkContext.Provider value={{park, setPark}}>
+      <TrailContext.Provider value={{selectedTrail, setSelectedTrail}}>
+        <VisitorContext.Provider value={{selectedVisitor, setSelectedVisitor}}> 
+          <main className="App">
+            <nav>
+              <NavBar
+                visitors={state.visitors}
+                onRegister={()=> transition(REGISTER)}
+                onMyBookings={onMyBookings}
+                home={home}
+                />
+            </nav>
+            { mode === INITIAL && (
+              
+            <div class="text">
 
-                        { park.name && (
-                          <TrailList 
-                            trails={state.trails}
-                            pass_entries={state.pass_entries} onForm={() => transition(FORM)}
-                          />
-                        )}
-                        { selectedTrail.name && (
-                         <Entry 
-                         visitors={state.visitors}
-                          trails={state.trails}
-                          date={selectedDate}
-                          vistor={selectedVisitor}
-                          newPass={newPass}
-                          back={back}
-                          />
-                        )}
+            <Slider/>
 
-                    {/* <MyBookings 
-                      visitor={selectedVisitor}
-                      visitors={state.visitors}
-                      mybookings={state.mybookings}
+            <div class='block'>
+
+              <h2>Welcome to BC Parks and Recreation</h2>
+
+              <h5> Some of our most popular parks regularly experience high visitor volumes, resulting in crowding of facilities, packed parking lots, and safety issues. To ensure the health and safety of our visitors and staff, to meet health and safety guidelines, and as part of a pilot project, free day-use passes are required to access the trails/parks below.</h5>
+              </div>
+
+              <div class='block'>
+              <h2>Rules of the Lottery</h2>
+
+              <h5>The Day Pass will be assigned on a lottery-based system whereby visitors can apply.The deadline for each pass will be 2 days before the date for the hike at 12pm.(eg. The deadline is Thursday 12 pm for Saturday hike) 
+              The visitor can sign-up for up to 7 guests with their names and phone numbers.
+              Each pass will be entered into a random lottery system. An SMS text will notify the winners at 6:00 am 24 hours before the day of the hike with a link to QR codes to be shown to Park Rangers.</h5>
+              </div>
+
+              <div class='block'>
+              <div class='how_to'>
+              <h2>How too apply for a Hiking Day-Pass</h2>
+
+              <h5> Step 1: Choose a date for your hike. </h5>
+              <h5> Step 2: Choose a mountain. </h5>
+              <h5> Step 3: Chose a trail. </h5>
+              <h5> Step 4: To book for a pass, insert the information of your gests.  </h5>
+              <h5> Step 5: Check My bookings to see the status of the pass. </h5>
+              </div>
+              </div>
+
+              </div>
+            )}
+            { mode === INITIAL && (
+              <div className='main-body'>
+                <h2>Date Selector</h2>
+                  <DateSelector></DateSelector>
+                  <h2>Parks</h2>
+                  <ParksList
+                    parks={state.parks} 
+                    // setPark={setPark}
+                    >
+                    {/* parks={state.parks}  */}
+                    {/* {selectedVisitor.email &&(  */}
+
+                    {/* )} */}
+                  </ParksList>
+                  { park.name && (
+                    <TrailList 
                       trails={state.trails}
-                      // onNewBooking={() => transition(INITIAL)}
-                    /> */}
-                    </div>
-                  )}
-                  { mode === REGISTER && (
-                    <Register 
-                      visitors={state.visitors}
-                      onSetVerify={() => transition(CONFIRM)}
+                      pass_entries={state.pass_entries} onForm={() => transition(FORM)}
                     />
                   )}
-                  { mode === CONFIRM && (
-                    <Confirm 
-                      sendConfirmCode={sendConfirmCode(selectedVisitor.phone)}
-                      codeValidation={codeValidation}
-                      onSuccess={() => newVisitorValidation()}
+                  { selectedTrail.name && (
+                    <Entry 
+                    visitors={state.visitors}
+                    trails={state.trails}
+                    date={selectedDate}
+                    vistor={selectedVisitor}
+                    newPass={newPass}
+                    back={back}
                     />
                   )}
-                  { mode === BOOKINGS && (
-                    <MyBookings
-                      visitor={selectedVisitor}
-                      visitors={state.visitors}
-                      mybookings={state.mybookings}
-                      trails={state.trails}
-                      cancelPass={cancelPass} 
-                      onNewBooking={() => transition(INITIAL)}
-                      back={back}
-                      onMyBookings={onMyBookings}
-                    />
-                  )}
-                  {/* { mode === INITIAL && (
-                    <Login 
-                      visitors={state.visitors}
-                      onMyBooking={() => transition(BOOKINGS)}
-                    />
-                  )} */}
+
+              {/* <MyBookings 
+                visitor={selectedVisitor}
+                visitors={state.visitors}
+                mybookings={state.mybookings}
+                trails={state.trails}
+                // onNewBooking={() => transition(INITIAL)}
+              /> */}
+              </div>
+            )}
+            { mode === REGISTER && (
+              <Register 
+                visitors={state.visitors}
+                onSetVerify={() => transition(CONFIRM)}
+              />
+            )}
+            { mode === CONFIRM && (
+              <Confirm 
+                sendConfirmCode={sendConfirmCode(selectedVisitor.phone)}
+                codeValidation={codeValidation}
+                onSuccess={() => newVisitorValidation()}
+              />
+            )}
+            { mode === BOOKINGS && (
+              <MyBookings
+                visitor={selectedVisitor}
+                visitors={state.visitors}
+                mybookings={state.mybookings}
+                trails={state.trails}
+                cancelPass={cancelPass} 
+                onNewBooking={() => transition(INITIAL)}
+                back={back}
+                onMyBookings={onMyBookings}
+              />
+            )}
+            {/* { mode === INITIAL && (
+              <Login 
+                visitors={state.visitors}
+                onMyBooking={() => transition(BOOKINGS)}
+              />
+            )} */}
 
 
-                  {/* // <h1>{ this.state.message }</h1> */}
-                  {/* // <button onClick={this.fetchData} > */}
-                  {/* //   Fetch Data */}
-                  {/* // </button>         */}
-                </main>
-              </VisitorContext.Provider>
-              </TrailContext.Provider>
-            </ParkContext.Provider>
-          </DateContext.Provider>
+            {/* // <h1>{ this.state.message }</h1> */}
+            {/* // <button onClick={this.fetchData} > */}
+            {/* //   Fetch Data */}
+            {/* // </button>         */}
+          </main>
+        </VisitorContext.Provider>
+        </TrailContext.Provider>
+      </ParkContext.Provider>
+    </DateContext.Provider>
   )       
 };

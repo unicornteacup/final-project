@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
 import './slider.scss'
 import ImgComp from './ImgComp'
-import i1 from "../images/1.png"
-import i2 from "../images/2.png"
+import i1 from "../images/2.png"
+import i2 from "../images/1.png"
 import i3 from "../images/3.png"
 import i4 from "../images/4.png"
 
