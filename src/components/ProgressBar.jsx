@@ -41,10 +41,9 @@ export default function ProgressBar(props) {
   const passEntries = Number(props.pass_entries);
 
   const percentage = passEntries * 100 / maxCapacity
-  const [progress, setProgress] = React.useState(percentage);
   return (
     <div className={classes.root}>
-      { percentage < 100 && <LinearProgressWithLabel value={progress} />}
+      { percentage < 100 && <LinearProgressWithLabel value={percentage} />}
       { percentage > 100 && <LinearProgressWithLabel color="secondary" value={100} />}
     </div>
   );

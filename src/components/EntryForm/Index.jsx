@@ -12,7 +12,7 @@ const INITIAL = "INITIAL";
 
 export default function Entry(props) {
 
-  const {date: selectedDate} = React.useContext(DateContext);
+  const { date: selectedDate } = React.useContext(DateContext);
   const { visitor: selectedVisitor } = React.useContext(VisitorContext);
 
   const { mode, transition, back } = useVisualMode(INITIAL);
@@ -36,12 +36,8 @@ export default function Entry(props) {
     //     transition(ERROR_SAVE, true)
     //   }); 
     // } else {    
-      props
-      .newPass(passentry)
-      .then(() => transition(INITIAL))
-      .catch(error => {
-        // transition(ERROR_SAVE, true)
-      }); 
+      props.newPass(passentry)
+      props.onSetVerify()
     }  
     
     return (

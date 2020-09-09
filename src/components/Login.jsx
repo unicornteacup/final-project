@@ -7,11 +7,10 @@ import TextField from '@material-ui/core/TextField';
 const INITIAL = "INITIAL";
 const VERIFIED = "VERIFIED";
 const ERROR = "ERROR";
-const BOOKINGS = "BOOKINGS";
 
 export default function Login(props) {
 
-  const { mode, transition, back } = useVisualMode(
+  const { mode, transition } = useVisualMode(
     props.verified ? VERIFIED : INITIAL
     );
 

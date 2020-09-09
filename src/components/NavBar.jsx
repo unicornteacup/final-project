@@ -5,7 +5,6 @@ import VisitorContext from '../hooks/VisitorContext';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 
 import Button from '@material-ui/core/Button';
 
@@ -31,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 const INITIAL = "INITIAL";
 const LOGIN = "LOGIN";
 const VERIFIED = "VERIFIED";
-const REGISTER= "REGISTER";
 
 export default function NavBar(props) {
   const classes = useStyles();
@@ -39,7 +37,7 @@ export default function NavBar(props) {
   //transition hook
   const { selectedVisitor, setSelectedVisitor } = React.useContext(VisitorContext);
 
-  const { mode, transition, back } = useVisualMode(INITIAL);
+  const { mode, transition } = useVisualMode(INITIAL);
     if (selectedVisitor.email && mode === INITIAL) {
       transition(VERIFIED)
     }
@@ -49,7 +47,7 @@ export default function NavBar(props) {
       transition(INITIAL);
     };
 
-    const img = <img style={{marginTop: 10}}src={logo}/>
+    const img = <img style={{marginTop: 10}}src={logo} alt="BC Parks" onClick={() => props.home()}/>
 
   return (
       < AppBar 

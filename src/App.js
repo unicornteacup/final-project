@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import logo from './images/logo.png'; // with import
 import './App.css';
@@ -23,8 +23,6 @@ import Entry from "./components/EntryForm/Index";
 import DateSelector from "./components/DateSelector";
 import Register from "./components/Register";
 import Confirm from './components/Confirm';
-import Login from './components/Login';
-import BookingsButton from "./components/Button";
 import Slider from './components/Slider';
 // import EntryForm from "components/EntryForm/Index"; 
 import rules from './images/rules.png'; // with import
@@ -32,6 +30,7 @@ import rules from './images/rules.png'; // with import
 const INITIAL = "INITIAL";
 const REGISTER = "REGISTER";
 const CONFIRM = "CONFIRM";
+const ENTRY_CONFIRM = "ENTRY_CONFIRM";
 const BOOKINGS = "BOOKINGS";
 const FORM = "FORM";
 
@@ -53,6 +52,13 @@ export default function App() {
 
   const [selectedVisitor, setSelectedVisitor] = React.useState({});
 
+  // const lottery = Lottery()
+  // lottery()
+
+  const home = () => {
+    transition(INITIAL);
+  };   
+
   const onMyBookings = () => {
     
     transition(BOOKINGS);
@@ -62,7 +68,11 @@ export default function App() {
     newVisitor(selectedVisitor);
     transition(INITIAL);
   }
-  const img = <img style={{marginTop: 10}}src={logo}/>
+  const newFormValidation = () => {
+    transition(INITIAL);
+  }
+
+  const img = <img style={{marginTop: 10}}src={rules}/>
 
   return (
 
@@ -76,6 +86,7 @@ export default function App() {
                 visitors={state.visitors}
                 onRegister={()=> transition(REGISTER)}
                 onMyBookings={onMyBookings}
+                home={home}
                 />
             </nav>
             { mode === INITIAL && (
@@ -130,17 +141,8 @@ export default function App() {
                   { park.name && (
                     <TrailList 
                       trails={state.trails}
-                      pass_entries={state.pass_entries} onForm={() => transition(FORM)}
-                    />
-                  )}
-                  { selectedTrail.name && (
-                    <Entry 
-                    visitors={state.visitors}
-                    trails={state.trails}
-                    date={selectedDate}
-                    visitor={selectedVisitor}
-                    newPass={newPass}
-                    back={back}
+                      pass_entries={state.pass_entries} 
+                      onSelect={() => transition(FORM)}
                     />
                   )}
 
@@ -159,11 +161,29 @@ export default function App() {
                 onSetVerify={() => transition(CONFIRM)}
               />
             )}
+            { mode === FORM && (
+              <Entry 
+              visitors={state.visitors}
+              trails={state.trails}
+              date={selectedDate}
+              visitor={selectedVisitor}
+              newPass={newPass}
+              onSetVerify={() => transition(ENTRY_CONFIRM)}
+              back={back}
+              />
+            )}
             { mode === CONFIRM && (
               <Confirm 
                 sendConfirmCode={sendConfirmCode(selectedVisitor.phone)}
                 codeValidation={codeValidation}
                 onSuccess={() => newVisitorValidation()}
+              />
+            )}
+            { mode === ENTRY_CONFIRM && (
+              <Confirm 
+                sendConfirmCode={sendConfirmCode(selectedVisitor.phone)}
+                codeValidation={codeValidation}
+                onSuccess={() => newFormValidation()}
               />
             )}
             { mode === BOOKINGS && (
