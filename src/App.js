@@ -8,6 +8,13 @@ import ParkContext from "./hooks/ParkContext";
 import DateContext from "./hooks/DateContext";
 import VisitorContext from "./hooks/VisitorContext";
 import TrailContext from "./hooks/TrailContext";
+<<<<<<< HEAD
+=======
+
+// import Lottery from "./hooks/Lottery";
+// import TrailContext from "./hooks/TrailContext";
+
+>>>>>>> feature/mybookingsupdate
 
 // importing components
 import NavBar from './components/NavBar';
@@ -38,6 +45,7 @@ export default function App() {
   const { mode, transition, back } = useVisualMode(INITIAL
     // onRegister ? REGISTER : INITIAL
   );
+  console.log('app state:', state)
   
   const [park, setPark] = React.useState({});
 
@@ -47,10 +55,17 @@ export default function App() {
 
   const [selectedVisitor, setSelectedVisitor] = React.useState({});
 
+  // const lottery = Lottery()
+  // lottery()
+
+   
 
   const onMyBookings = () => {
+    
     transition(BOOKINGS);
   };
+
+ 
   
   const newVisitorValidation = () => {
     newVisitor(selectedVisitor);
@@ -108,6 +123,7 @@ export default function App() {
                           date={selectedDate}
                           vistor={selectedVisitor}
                           newPass={newPass}
+                          back={back}
                           />
                         )}
 
@@ -142,6 +158,7 @@ export default function App() {
                       cancelPass={cancelPass} 
                       onNewBooking={() => transition(INITIAL)}
                       back={back}
+                      onMyBookings={onMyBookings}
                     />
                   )}
                   {/* { mode === INITIAL && (
