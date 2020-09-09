@@ -106,12 +106,12 @@ export default function App() {
 
               <div class='block'>
               <div class='how_to'>
-              <h2>How too apply for a Hiking Day-Pass</h2>
+              <h2>How to apply for a Hiking Day-Pass</h2>
 
               <h5> Step 1: Choose a date for your hike. </h5>
               <h5> Step 2: Choose a mountain. </h5>
               <h5> Step 3: Chose a trail. </h5>
-              <h5> Step 4: To book for a pass, insert the information of your gests.  </h5>
+              <h5> Step 4: To book for a pass, insert the information of your guests.  </h5>
               <h5> Step 5: Check My bookings to see the status of the pass. </h5>
               </div>
               </div>
