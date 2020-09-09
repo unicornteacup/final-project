@@ -49,7 +49,7 @@ export default function NavBar(props) {
       transition(INITIAL);
     };
 
-    const img = <img style={{marginTop: 10}}src={logo}/>
+    const img = <img style={{marginTop: 10}}src={logo} alt="BC Parks" onClick={() => props.home()}/>
 
   return (
       < AppBar 

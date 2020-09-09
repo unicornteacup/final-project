@@ -51,14 +51,14 @@ export default function useApplicationData(){
   }, [])
 
   function cancelPass(id) {
-    const pass = {
-      ...state.pass_entries[id],
-      booking: null
-      };
-      const passes = {
-        ...state.pass_entries,
-        [id]: pass
-      };
+    // const pass = {
+    //   ...state.pass_entries[id],
+    //   booking: null
+    //   };
+    //   const passes = {
+    //     ...state.pass_entries,
+    //     [id]: pass
+    //   };
      
     return Promise.all([
       axios.delete(`/api/guests/${id}`),

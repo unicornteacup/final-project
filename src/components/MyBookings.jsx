@@ -101,16 +101,15 @@ export default function MyBookings(props) {
   //   }
   // }
 
-  const onMyBookings = (allBookings) => {
-    let visitorBookings = []
-    for (let booking of allBookings) {
-      if (booking.visitor_id === selectedVisitor.id) {
-        visitorBookings.push(booking)
-      }
-    };
-    return visitorBookings
-    transition(BOOKINGS);
-  };
+  // const onMyBookings = (allBookings) => {
+  //   let visitorBookings = []
+  //   for (let booking of allBookings) {
+  //     if (booking.visitor_id === selectedVisitor.id) {
+  //       visitorBookings.push(booking)
+  //     }
+  //   };
+  //   return visitorBookings
+  // };
 
   const { mode, transition, back } = useVisualMode(
     // INITIAL
@@ -133,12 +132,15 @@ export default function MyBookings(props) {
     <div className={classes.root}>
     <Button variant="contained" color="primary" onClick={() => props.back()}>Home    
     </Button>
-      {bookings.map((booking) => (
+      {bookings.filter((booking) => {
+        return booking.visitor_id === selectedVisitor.id;
+      }).map((booking) => (
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <header>
-              <h4 className={classes.column}>{booking.visitor_id}</h4>
+              <h4 className={classes.column}>{booking.first_name}</h4>
+              <h4 className={classes.column}>{booking.last_name}</h4>
               <h4 className={classes.column}>{booking.date}</h4>
               <h4 className={classes.column}>{booking.trail_id}</h4>
               <h4 className={classes.column}>{booking.status}</h4>

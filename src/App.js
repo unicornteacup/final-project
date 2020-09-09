@@ -8,13 +8,10 @@ import ParkContext from "./hooks/ParkContext";
 import DateContext from "./hooks/DateContext";
 import VisitorContext from "./hooks/VisitorContext";
 import TrailContext from "./hooks/TrailContext";
-<<<<<<< HEAD
-=======
 
 // import Lottery from "./hooks/Lottery";
 // import TrailContext from "./hooks/TrailContext";
 
->>>>>>> feature/mybookingsupdate
 
 // importing components
 import NavBar from './components/NavBar';
@@ -58,7 +55,9 @@ export default function App() {
   // const lottery = Lottery()
   // lottery()
 
-   
+  const home = () => {
+    transition(INITIAL);
+  };   
 
   const onMyBookings = () => {
     
@@ -82,6 +81,7 @@ export default function App() {
                       visitors={state.visitors}
                       onRegister={()=> transition(REGISTER)}
                       onMyBookings={onMyBookings}
+                      home={home}
                       />
                   </nav>
                   { mode === INITIAL && (
