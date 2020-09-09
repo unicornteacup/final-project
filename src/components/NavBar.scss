@@ -7,12 +7,15 @@
 }
 
 img {
-    height:80px;
-    width: 150px;
+    padding-left:100px;
+    padding-right:100px;
+    height:100px;
+    width: 350px;
     object-fit: contain;
 }
 
 .log_reg{
+  
     display:flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -20,10 +23,12 @@ img {
 
 .login_button{
     padding-right:30px;
+    font-weight:900;
 }
 
 .MuiButton-label{
    font-weight:900;
+   font:bold;
    font-family:helvetica;
 }
 

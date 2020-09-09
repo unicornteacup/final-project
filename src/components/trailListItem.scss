@@ -1,40 +1,45 @@
 
-
 .apply_pass_button{
 display:flex;
-
+padding-right:30px;
 }
 
-
 .writing{
-    padding:10px;
-    color:grey;
+   padding-bottom: 30px;
     h2{
-        color:#5CDB95;
+        color:#05386B;
         padding:10px;
+    }
+
+    h5{
+        text-align: left;
+        color:grey;
     }
 }
 
 .trail_block{
     display:flex;
-    align-items: flex-end;
+    align-items: center;
     padding-top:50px;
     padding-left:250px;
     padding-right:250px;
 
     .MuiAccordionSummary-root.Mui-expanded{
+        text-align: left;
         display:flex;
         align-items: center;
     }
-
+    .makeStyles-column-17{
+        padding-top: 30px;
+    }
     strong{
         color:#05386B;
         font-size:30px;
     }
 
     .MuiAlert-message{
-        color:#379683;
-        font-size:20px;
+        color:#05386B;
+        font-size:26px;
         font-weight: 1000px;
     }
     .MuiAlert-standardSuccess{
@@ -42,5 +47,15 @@ display:flex;
     }
     .MuiAccordionSummary-root{
        background-color:#EDF5E1;
+    }
+
+    .MuiTypography-caption{
+        text-align: left;
+        color:#05386B;
+        font-size:15px;
+    }
+    .makeStyles-helper-18{
+        text-align: left;
+        font-size:11px;
     }
 }
