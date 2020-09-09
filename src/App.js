@@ -45,6 +45,7 @@ export default function App() {
   );
   
   const [park, setPark] = React.useState({});
+  console.log('app park:', park)
 
   const [selectedDate, setSelectedDate] = React.useState(new Date());
 
@@ -143,8 +144,24 @@ export default function App() {
                   { park.name && (
                     <TrailList 
                       trails={state.trails}
+<<<<<<< HEAD
                       pass_entries={state.pass_entries} 
                       onSelect={() => transition(FORM)}
+=======
+                      pass_entries={state.pass_entries} onForm={() => transition(FORM)}
+                    />
+                  )}
+                  { selectedTrail.name && (
+                    <Entry 
+                    visitors={state.visitors}
+                    trails={state.trails}
+                    date={selectedDate}
+                    vistor={selectedVisitor}
+                    park={setPark}
+                    newPass={newPass}
+                    back={back}
+                    onMyBookings={onMyBookings}
+>>>>>>> feature/validations
                     />
                   )}
 
