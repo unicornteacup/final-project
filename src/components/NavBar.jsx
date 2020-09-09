@@ -35,7 +35,6 @@ const REGISTER= "REGISTER";
 
 export default function NavBar(props) {
   const classes = useStyles();
-  console.log('nav props:', props)
   
   //transition hook
   const { selectedVisitor, setSelectedVisitor } = React.useContext(VisitorContext);
@@ -50,7 +49,7 @@ export default function NavBar(props) {
       transition(INITIAL);
     };
 
-    const img = <img style={{marginTop: 10}}src={logo}/>
+    const img = <img style={{marginTop: 10}}src={logo} alt="BC Parks" onClick={() => props.home()}/>
 
   return (
       < AppBar 
@@ -59,11 +58,11 @@ export default function NavBar(props) {
       
       <Toolbar>
       {img}
-      <LotterySwitch />
+     
           { mode === VERIFIED && (
             <div class='logged_in'>
 
-              Welcome! <div class='email'>
+              <div class='email'>
               <strong>{selectedVisitor.email}</strong>
                 </div>
               
@@ -73,7 +72,7 @@ export default function NavBar(props) {
                 color="primary"
                 onClick={() => logOut()}>Log Out</Button>
               </div>
-
+              <LotterySwitch />
             </div>
           )}
 
@@ -99,7 +98,7 @@ export default function NavBar(props) {
           { mode === LOGIN && 
             <Login 
               visitors={props.visitors}
-              onMyBookings={props.onMyBookings()}
+              onMyBookings={props.onMyBookings}
             />
           }
         </Toolbar>

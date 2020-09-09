@@ -11,15 +11,20 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignContent: 'center',
     minWidth: 300,
     width: '100%',
   },
   image: {
-    position: 'relative',
+    display:'flex',
+    padding:100,
+    alignItems:'center',
     height: 200,
+    margin:20,
     [theme.breakpoints.down('xs')]: {
       width: '100% !important', // Overrides inline-style
-      height: 100,
+      height: 200,
     },
     '&:hover, &$focusVisible': {
       zIndex: 1,
@@ -80,16 +85,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 export default function ParksList(props) {
   const classes = useStyles("park-list", {
     "park-list--selected": props.selected});
 
     const {park: currentPark, setPark} = React.useContext(ParkContext);
+
+    console.log('props.parks', props.parks)
   return (
     
     <div className={classes.root}>
+      
       {props.parks.map((park) => (
         <ButtonBase
           focusRipple
@@ -102,18 +108,20 @@ export default function ParksList(props) {
           }}
           onClick={() => setPark(park)}
         >
-          <span
+           <span
             className={classes.imageSrc}
             style={{
-              backgroundImage: `url(https://i.pinimg.com/474x/c4/83/96/c483960b380e5546d5a1698799458807.jpg)`,
+              backgroundImage: `url(${park.image})`,
             }}
           />
-          <span className={classes.imageBackdrop} />
+          <span className={classes.imageBackdrop } />
+          
           <span className={classes.imageButton}>
             <Typography
               component="span"
               variant="subtitle1"
               color="inherit"
+              variant='h4'
               className={classes.imageTitle}
             >
               {park.name}

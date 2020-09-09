@@ -36,7 +36,7 @@ export default function useApplicationData(){
      axios.get('/api/parks'),
      axios.get('/api/trails'),
      axios.get('/api/visitors'),
-     axios.get('api/pass_entries'),
+     axios.get('/api/pass_entries'),
      axios.get('/api/mybookings')
     ])
     .then((all) => {
@@ -45,24 +45,27 @@ export default function useApplicationData(){
         trails: all[1].data.trails,
         visitors: all[2].data.visitors,
         pass_entries: all[3].data.pass_entries,
-        mybookings: all[4].data.pass_entries
+        mybookings: all[4].data
       });
     })
   }, [])
 
-  function cancelPass(id, booking) {
-    const pass = {
-      ...state.pass_entries[id],
-      booking: null
-      };
-      const passes = {
-        ...state.pass_entries,
-        [id]: pass
-      };
+  function cancelPass(id) {
+    // const pass = {
+    //   ...state.pass_entries[id],
+    //   booking: null
+    //   };
+    //   const passes = {
+    //     ...state.pass_entries,
+    //     [id]: pass
+    //   };
      
-    return axios.delete(`/api/pass_entries/${id}`)
+    return Promise.all([
+      axios.delete(`/api/guests/${id}`),
+      axios.delete(`/api/pass_entries/${id}`)
+    ])
     .then ((res) => {
-        return setState({...state, passes: passes});
+        // return setState({...state, passes: passes});
     }
   )}
 
