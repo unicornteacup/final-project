@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   heading: {
-    fontSize: theme.typography.pxToRem(22),
+    fontSize: theme.typography.pxToRem(33),
   },
 }));
 

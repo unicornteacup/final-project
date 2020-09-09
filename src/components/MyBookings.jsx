@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { red, orange, green } from '@material-ui/core/colors';
 import useVisualMode from '../hooks/UseVisualMode';
 import VisitorContext from "../hooks/VisitorContext";
+import './mybookings.scss';
 
 const INITIAL = "INITIAL";
 const VERIFIED = "VERIFIED";
