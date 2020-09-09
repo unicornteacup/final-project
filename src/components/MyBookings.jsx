@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { red, orange, green } from '@material-ui/core/colors';
 import useVisualMode from '../hooks/UseVisualMode';
 import VisitorContext from "../hooks/VisitorContext";
+import './mybookings.scss';
 
 const INITIAL = "INITIAL";
 const VERIFIED = "VERIFIED";
@@ -134,7 +135,7 @@ export default function MyBookings(props) {
     } 
 
   return (
-    <div className={classes.root}>
+    <div class= "mybookings_name" className={classes.root}>
     <Button variant="contained" color="primary" onClick={() => props.back()}>Home    
     </Button>
       {bookings.filter((booking) => {
@@ -144,19 +145,21 @@ export default function MyBookings(props) {
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <header>
-              <h4 className={classes.column}>{selectedVisitor.first_name}</h4>
-              <h4 className={classes.column}>{selectedVisitor.last_name}</h4>
-              <h4 className={classes.column}>{booking.date}</h4>
-              <h4 className={classes.column}>{booking.trail_id}</h4>
-              <h4 className={classes.column}>{booking.status}</h4>
+              <h2>Pass Entry</h2>
+              <h4 className={classes.column}>Date: {booking.date}</h4>
+              <h4 className={classes.column}>Trail ID:{booking.trail_id}</h4>
+              <h5 className={classes.column}>First Name:{selectedVisitor.first_name}</h5>
+              <h5 className={classes.column}>Last Name:{selectedVisitor.last_name}</h5>
+              <h3 className={classes.column}>Booking Status:{booking.status}</h3>
             </header>
 
               {booking.guests.map((guest) => {
                 return(
-                  <div className={classes.column}>
-                    <Typography className={classes.secondaryHeading}>{guest.guests_first_name}</Typography>
-                    <Typography className={classes.secondaryHeading}>{guest.guests_last_name}</Typography>
-                    <Typography className={classes.secondaryHeading}>{guest.guests_phone}</Typography>
+                  <div class="guests" className={classes.column}>
+                    <h2> Guests </h2>
+                    <Typography className={classes.secondaryHeading}>First Name:{guest.guests_first_name}</Typography>
+                    <Typography className={classes.secondaryHeading}>Last Name:{guest.guests_last_name}</Typography>
+                    <Typography className={classes.secondaryHeading}>Phone:{guest.guests_phone}</Typography>
                     </div>
                   )
               })}
