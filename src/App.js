@@ -1,7 +1,7 @@
 import React from 'react';
-
-import logo from './images/logo.png'; // with import
+import logo from './images/logo.png';
 import './App.css';
+
 //importing hooks
 import useVisualMode from './hooks/UseVisualMode';
 import useApplicationData from "./hooks/useApplicationData";
@@ -9,11 +9,6 @@ import ParkContext from "./hooks/ParkContext";
 import DateContext from "./hooks/DateContext";
 import VisitorContext from "./hooks/VisitorContext";
 import TrailContext from "./hooks/TrailContext";
-
-// import Lottery from "./hooks/Lottery";
-// import TrailContext from "./hooks/TrailContext";
-import LotterySwitch from "./components/LotterySwitch";
-
 
 // importing components
 import NavBar from './components/NavBar';
@@ -27,15 +22,12 @@ import Confirm from './components/Confirm';
 import Slider from './components/Slider';
 // import EntryForm from "components/EntryForm/Index"; 
 
-
 const INITIAL = "INITIAL";
 const REGISTER = "REGISTER";
 const CONFIRM = "CONFIRM";
 const ENTRY_CONFIRM = "ENTRY_CONFIRM";
 const BOOKINGS = "BOOKINGS";
 const FORM = "FORM";
-
-
 
 export default function App() {
 
@@ -53,9 +45,6 @@ export default function App() {
   const [selectedTrail, setSelectedTrail] = React.useState({});
 
   const [selectedVisitor, setSelectedVisitor] = React.useState({});
-
-  // const lottery = Lottery()
-  // lottery()
 
   const home = () => {
     transition(INITIAL);
