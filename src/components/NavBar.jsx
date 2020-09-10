@@ -13,7 +13,7 @@ import Login from './Login';
 import LotterySwitch from './LotterySwitch';
 
 import "./NavBar.scss";
-import logo from '../images/logo.png'; // with import
+import logo from '../images/logo.png'; 
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,20 +53,19 @@ export default function NavBar(props) {
       < AppBar 
       color='transparent'
       position= 'static'>
-      
-      <Toolbar>
 
+      <Toolbar>
+        <div class="nav_left">
       {img}
       <LotterySwitch />
+      </div>
 
-     
           { mode === VERIFIED && (
             <div class='logged_in'>
 
               <div class='email'>
               <strong>{selectedVisitor.email}</strong>
                 </div>
-            
               <div class= "logout">
               <Button 
               variant="outlined" 
@@ -80,11 +79,10 @@ export default function NavBar(props) {
               </div>
               <LotterySwitch />
             </div>
+           
           )}
-
-
+  
           { mode === INITIAL && (
-
             <div class='log_reg'>
              <div class= 'login_button'>
                <Button 
