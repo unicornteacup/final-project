@@ -50,10 +50,10 @@ export default function Entry(props) {
     // } else {    
       props.newPass(passentry)
       props.onSetVerify()
-      .then(() => handleClickOpen())
-      .catch(error => {
-        // transition(ERROR_SAVE, true)
-      }); 
+      // .then(() => handleClickOpen())
+      // .catch(error => {
+      //   // transition(ERROR_SAVE, true)
+      // }); 
     }  
     
     return (
