@@ -3,6 +3,7 @@ import VisitorContext from '../hooks/VisitorContext';
 import useVisualMode from '../hooks/UseVisualMode';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import LotterySwitch from './LotterySwitch';
 
 const INITIAL = "INITIAL";
 const VERIFIED = "VERIFIED";
@@ -109,6 +110,8 @@ export default function Login(props) {
                 onClick={() => logOut()}>Log Out</Button>
             </div>
           )}
+        <LotterySwitch />
+
       </div>
     )
 }
