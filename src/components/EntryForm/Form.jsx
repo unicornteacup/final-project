@@ -101,9 +101,9 @@ export default function Form (props) {
     setGuestState(updatedGuests);
   };
 
-  function validate() {
+  function validate(event) {
   //loop through guestState and validate if all 3 values are input
-
+    event.preventDefault();
     for (let guest of guestState){ 
       if (guest.firstName === "") {
         if (guest.lastName !== "" || guest.phone !== ""){ 
@@ -117,8 +117,14 @@ export default function Form (props) {
         }
       }
     }
-    props.onSave(selectedDate, selectedVisitor,selectedTrail, guestState);
+    props.onSave(selectedDate, selectedVisitor, selectedTrail, guestState);
   } 
+
+  let date = selectedDate.setHours(0, 0, 0, 0);
+  date = new Date(date)
+  date.setHours(0, 0, 0, 0);
+  date = date.toDateString().slice(4);
+
 
   const [error, setError] = useState("");
 
@@ -236,7 +242,7 @@ export default function Form (props) {
       {/* <Button variant="contained" color="primary" onClick={() => props.back()} confirm>
             Back
         </Button> */}
-        <Button variant="contained" color="primary" onClick={validate} confirm>
+        <Button variant="contained" color="primary" onClick={validate}>
             Submit Entry
         </Button>
       </div>
