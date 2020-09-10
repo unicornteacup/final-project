@@ -57,7 +57,6 @@ export default function NavBar(props) {
       <Toolbar>
         <div class="nav_left">
       {img}
-      <LotterySwitch />
       </div>
 
           { mode === VERIFIED && (

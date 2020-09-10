@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -18,7 +17,7 @@ import ProgressBar from './ProgressBar';
 
 import { Map, TileLayer, Marker } from 'react-leaflet';
 
-import './trailListItem.scss'
+// import './trailListItem.scss'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,19 +57,6 @@ const useStyles = makeStyles((theme) => ({
 export default function TrailListItem(props) {
   const classes = useStyles();
 
-  
-  
-  // const [ entries, setEnties ] = useState([])
-  
-//   useEffect(() => {
-
-//     axios.get('/api/date_entry', { trail: selectedTrail.id, date: `${props.date}`})
-//     .then 
-
-// }, [])
-
-
-  // filteredEntries()
   const {selectedTrail, setSelectedTrail} = React.useContext(TrailContext);
 
   const onSelect = props.onForm;
@@ -116,9 +102,9 @@ export default function TrailListItem(props) {
         </AccordionSummary>
         <Divider />
         <AccordionDetails className={classes.details}>
-          <Map center={[props.latitude, props.longitude]} zoom={13}> 
+          <Map center={[props.latitude, props.longitude]} zoom={20}> 
             <TileLayer
-              url="https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png"
+              url="https://c.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <Marker position={[props.latitude, props.longitude]} />
           </Map>

@@ -10,6 +10,13 @@ import DateContext from "./hooks/DateContext";
 import VisitorContext from "./hooks/VisitorContext";
 import TrailContext from "./hooks/TrailContext";
 
+<<<<<<< HEAD
+=======
+// import Lottery from "./hooks/Lottery";
+import TrailContext from "./hooks/TrailContext";
+
+
+>>>>>>> 2e185b3d1fe3e6692b31190b16760ca080f77bdf
 // importing components
 import NavBar from './components/NavBar';
 import TrailList from './components/TrailList';
@@ -138,6 +145,7 @@ export default function App() {
                     />
                   )}
                   { selectedTrail.name && (
+                    
                     <Entry 
                     visitors={state.visitors}
                     trails={state.trails}
@@ -149,14 +157,6 @@ export default function App() {
                     onMyBookings={onMyBookings}
                     />
                   )}
-
-              {/* <MyBookings 
-                visitor={selectedVisitor}
-                visitors={state.visitors}
-                mybookings={state.mybookings}
-                trails={state.trails}
-                // onNewBooking={() => transition(INITIAL)}
-              /> */}
               </div>
             )}
             { mode === REGISTER && (
@@ -202,19 +202,6 @@ export default function App() {
                 onMyBookings={onMyBookings}
               />
             )}
-            {/* { mode === INITIAL && (
-              <Login 
-                visitors={state.visitors}
-                onMyBooking={() => transition(BOOKINGS)}
-              />
-            )} */}
-
-
-            {/* // <h1>{ this.state.message }</h1> */}
-            {/* // <button onClick={this.fetchData} > */}
-            {/* //   Fetch Data */}
-            {/* // </button>         */}
-
             <div class="closing">
             {img}
             </div>
