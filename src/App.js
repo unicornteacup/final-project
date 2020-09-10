@@ -104,9 +104,11 @@ export default function App() {
               <div class='block'>
               <h2>Rules of the Lottery</h2>
 
-              <h5>The Day Pass will be assigned on a lottery-based system whereby visitors can apply.The deadline for each pass will be 2 days before the date for the hike at 12pm.(eg. The deadline is Thursday 12 pm for Saturday hike) 
-              The visitor can sign-up for up to 7 guests with their names and phone numbers.
-              Each pass will be entered into a random lottery system. An SMS text will notify the winners at 6:00 am 24 hours before the day of the hike with a link to QR codes to be shown to Park Rangers.</h5>
+              <h5>The Day-Pass will be assigned on a lottery-based system whereby visitors can apply.</h5>
+              <h5>The deadline for each pass will be 2 days before the date for the hike at 12pm.</h5>
+              <h5>(eg. For Saturday hike, the deadline is Thursday 12 pm) </h5>
+              <h5> The visitor can sign-up for up to 7 guests with their names and phone numbers.</h5>
+              <h5> Each pass will be entered into a random lottery system. An SMS text will notify the winners at 6:00 am 24 hours before the day of the hike with a link to QR codes to be shown to Park Rangers.</h5>
               </div>
 
               <div class='block'>

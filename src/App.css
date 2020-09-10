@@ -43,6 +43,7 @@
 }
 
 .text{
+  color:#05386B;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
@@ -59,6 +60,7 @@ h2{
 .how_to{
   padding-bottom:10px;
   padding-top:10px;
+  color:#05386B;
 }
 
 h5{
