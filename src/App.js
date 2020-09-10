@@ -1,6 +1,7 @@
 import React from 'react';
 
 import logo from './images/logo.png'; // with import
+
 import './App.css';
 //importing hooks
 import useVisualMode from './hooks/UseVisualMode';
@@ -11,8 +12,6 @@ import VisitorContext from "./hooks/VisitorContext";
 import TrailContext from "./hooks/TrailContext";
 
 // import Lottery from "./hooks/Lottery";
-import TrailContext from "./hooks/TrailContext";
-
 
 // importing components
 import NavBar from './components/NavBar';
