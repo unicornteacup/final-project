@@ -16,11 +16,7 @@ export default function TrailList(props) {
 
   let date = selectedDateObj.selectedDate.setHours(0, 0, 0, 0);
   date = new Date(date)
-  // date = date.setDate(date.getDate() + 1);
-  // date = new Date(date);
-  // date = date.toDateString()
-  console.log('date', date)
-  console.log('initital', props.pass_entries)
+
   const filteredByDateEntries = props.pass_entries
   .filter((entry) => {
     const newDate = new Date(entry.date)
