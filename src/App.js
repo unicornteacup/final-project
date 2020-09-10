@@ -54,9 +54,6 @@ export default function App() {
 
   const [selectedVisitor, setSelectedVisitor] = React.useState({});
 
-  // const lottery = Lottery()
-  // lottery()
-
   const home = () => {
     transition(INITIAL);
   };   
@@ -158,14 +155,6 @@ export default function App() {
                     onMyBookings={onMyBookings}
                     />
                   )}
-
-              {/* <MyBookings 
-                visitor={selectedVisitor}
-                visitors={state.visitors}
-                mybookings={state.mybookings}
-                trails={state.trails}
-                // onNewBooking={() => transition(INITIAL)}
-              /> */}
               </div>
             )}
             { mode === REGISTER && (
