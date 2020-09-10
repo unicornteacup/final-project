@@ -39,7 +39,7 @@ const BOOKINGS = "BOOKINGS";
 
 export default function MyBookings(props) {
 
-  const [ bookings, setBookings ] = useState([])
+  const [ bookings, setBookings ] = useState(props.mybookings)
 
   useEffect(() => {
     axios.get('/api/mybookings')
