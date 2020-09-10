@@ -146,6 +146,7 @@ export default function App() {
                     />
                   )}
                   { selectedTrail.name && (
+                    
                     <Entry 
                     visitors={state.visitors}
                     trails={state.trails}
