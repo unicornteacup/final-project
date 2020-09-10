@@ -10,13 +10,9 @@ import DateContext from "./hooks/DateContext";
 import VisitorContext from "./hooks/VisitorContext";
 import TrailContext from "./hooks/TrailContext";
 
-<<<<<<< HEAD
-=======
-// import Lottery from "./hooks/Lottery";
-import TrailContext from "./hooks/TrailContext";
+// // import Lottery from "./hooks/Lottery";
+// import TrailContext from "./hooks/TrailContext";
 
-
->>>>>>> 2e185b3d1fe3e6692b31190b16760ca080f77bdf
 // importing components
 import NavBar from './components/NavBar';
 import TrailList from './components/TrailList';
@@ -48,9 +44,7 @@ export default function App() {
   console.log('app park:', park)
 
   const [selectedDate, setSelectedDate] = React.useState(new Date());
-
   const [selectedTrail, setSelectedTrail] = React.useState({});
-
   const [selectedVisitor, setSelectedVisitor] = React.useState({});
 
   const home = () => {
@@ -58,7 +52,6 @@ export default function App() {
   };   
 
   const onMyBookings = () => {
-    
     transition(BOOKINGS);
   };
 
