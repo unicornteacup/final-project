@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,7 +9,6 @@ import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import CheckIcon from '@material-ui/icons/Check';
 import CasinoIcon from '@material-ui/icons/Casino';
-import Lottery from '../hooks/Lottery';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,28 +52,24 @@ export default function LotterySwitch() {
     [classes.buttonSuccess]: success,
   });
 
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(timer.current);
-    };
-  }, []);
-
-  const { trailEntries, maxCapacity, winners } = Lottery()
 
 
 
   const handleButtonClick = () => {
-    trailEntries.map((entries) => {
-      return winners(entries, maxCapacity[trailEntries.indexOf(entries)])
+    setSuccess(false);
+    setLoading(true);
+
+    axios.get("/lottery")
+    .then(() => {
+      console.log('.then')
+      setSuccess(true);
+      setLoading(false)
     })
-    if (!loading) {
-      setSuccess(false);
-      setLoading(true);
-      timer.current = setTimeout(() => {
-        setSuccess(true);
-        setLoading(false);
-      }, 4000);
-    }
+    .catch(() => {
+      console.log('catch')
+      setSuccess(true);
+      setLoading(false);
+    })
   };
 
   return (

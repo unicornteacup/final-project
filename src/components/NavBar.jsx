@@ -55,7 +55,10 @@ export default function NavBar(props) {
       position= 'static'>
       
       <Toolbar>
+
       {img}
+      <LotterySwitch />
+
      
           { mode === VERIFIED && (
             <div class='logged_in'>
