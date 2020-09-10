@@ -58,6 +58,7 @@ export default function Login(props) {
             size="small"
             id="outlined-password-input"
             label="Password"
+            type="password"
             autoComplete="current-password"
             variant="outlined"
             value={selectedVisitor.password}
