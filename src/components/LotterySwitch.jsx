@@ -55,22 +55,44 @@ export default function LotterySwitch() {
 
 
 
-  const handleButtonClick = () => {
-    setSuccess(false);
-    setLoading(true);
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
 
-    axios.get("/lottery")
+  const handleButtonClick = () => {
+    if (!loading) {
+      setSuccess(false);
+      setLoading(true);
+      timer.current = setTimeout(() => {
+        setSuccess(true);
+        setLoading(false);
+      }, 2000);
+      axios.get("/lottery")
     .then(() => {
-      console.log('.then')
-      setSuccess(true);
-      setLoading(false)
-    })
+      console.log('.then')    })
     .catch(() => {
       console.log('catch')
-      setSuccess(true);
-      setLoading(false);
     })
+    }
   };
+  // const handleButtonClick = () => {
+  //   setSuccess(false);
+  //   setLoading(true);
+
+  //   axios.get("/lottery")
+  //   .then(() => {
+  //     console.log('.then')
+  //     setSuccess(true);
+  //     setLoading(false)
+  //   })
+  //   .catch(() => {
+  //     console.log('catch')
+  //     setSuccess(true);
+  //     setLoading(false);
+  //   })
+  // };
 
   return (
     <div className={classes.root}>
