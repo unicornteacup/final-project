@@ -66,8 +66,13 @@ export default function NavBar(props) {
               <div class='email'>
               <strong>{selectedVisitor.email}</strong>
                 </div>
-              
+            
               <div class= "logout">
+              <Button 
+              variant="outlined" 
+              color="secondary"
+              onClick={() => props.onMyBookings()}
+              >My Bookings</Button>
               <Button  
                 variant="outlined" 
                 color="primary"
