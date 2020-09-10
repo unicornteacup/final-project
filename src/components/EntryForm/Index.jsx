@@ -5,6 +5,8 @@ import DateContext from "../../hooks/DateContext";
 import VisitorContext from '../../hooks/VisitorContext';
 import TrailContext from '../../hooks/TrailContext';
 import useVisualMode from '../../hooks/UseVisualMode';
+import Grid from '@material-ui/core/Grid';
+
 
 const SAVING = "SAVING";
 const INITIAL = "INITIAL";
@@ -50,20 +52,19 @@ export default function Entry(props) {
     }  
     
     return (
-      <div>
-        <Form
-        back={props.back}
-        onSave={onSave}
-        />
-        <AlertDialog
-        onMyBookings={props.onMyBookings}
-        open={open}
-        park={props.park}
-        setOpen={setOpen}
-        />
-      </div>
+        <Grid container justify = "center">
+          <Form
+          back={props.back}
+          onSave={onSave}
+          />
+          <AlertDialog
+          onMyBookings={props.onMyBookings}
+          open={open}
+          park={props.park}
+          setOpen={setOpen}
+          />
+        </Grid>
     )
-
 
   }
 
