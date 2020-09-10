@@ -11,8 +11,7 @@ import VisitorContext from "./hooks/VisitorContext";
 import TrailContext from "./hooks/TrailContext";
 
 // import Lottery from "./hooks/Lottery";
-// import TrailContext from "./hooks/TrailContext";
-import LotterySwitch from "./components/LotterySwitch";
+import TrailContext from "./hooks/TrailContext";
 
 
 // importing components
@@ -203,19 +202,6 @@ export default function App() {
                 onMyBookings={onMyBookings}
               />
             )}
-            {/* { mode === INITIAL && (
-              <Login 
-                visitors={state.visitors}
-                onMyBooking={() => transition(BOOKINGS)}
-              />
-            )} */}
-
-
-            {/* // <h1>{ this.state.message }</h1> */}
-            {/* // <button onClick={this.fetchData} > */}
-            {/* //   Fetch Data */}
-            {/* // </button>         */}
-
             <div class="closing">
             {img}
             </div>
