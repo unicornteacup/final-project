@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -36,11 +38,20 @@ const ERROR = "ERROR";
 const BOOKINGS = "BOOKINGS";
 
 export default function MyBookings(props) {
+
+  const [ bookings, setBookings ] = useState(props.mybookings)
+
+  useEffect(() => {
+    axios.get('/api/mybookings')
+    .then((res) => {
+      setBookings(res.data)
+    })
+  }, [])
   const { mode, transition, back } = useVisualMode();
 
   const {selectedVisitor, setSelectedVisitor} = React.useContext(VisitorContext);
 
-  const bookings = props.mybookings.slice().sort((a, b) => b.date - a.date)
+  const sortedBookings = bookings.slice().sort((a, b) => b.date - a.date)
 
     return (
       <TableContainer component={Paper}>
@@ -58,7 +69,7 @@ export default function MyBookings(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {bookings.filter((booking) => {
+            {sortedBookings.filter((booking) => {
         return booking.visitor_id === selectedVisitor.id;
       }).map((booking) => (
               <Guests 

@@ -1,5 +1,11 @@
 import React from 'react';
+<<<<<<< HEAD
 import logo from './images/logo.png';
+=======
+
+import logo from './images/logo.png'; // with import
+
+>>>>>>> 4240964c58bf6596dfbf6bbca1bf5b6499fa7b6c
 import './App.css';
 
 //importing hooks
@@ -10,8 +16,12 @@ import DateContext from "./hooks/DateContext";
 import VisitorContext from "./hooks/VisitorContext";
 import TrailContext from "./hooks/TrailContext";
 
+<<<<<<< HEAD
 // // import Lottery from "./hooks/Lottery";
 // import TrailContext from "./hooks/TrailContext";
+=======
+// import Lottery from "./hooks/Lottery";
+>>>>>>> 4240964c58bf6596dfbf6bbca1bf5b6499fa7b6c
 
 // importing components
 import NavBar from './components/NavBar';

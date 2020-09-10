@@ -38,6 +38,7 @@ export default function Entry(props) {
       trailId: selectedTrail.id
     }
     // transition(SAVING);
+    console.log('passentry...........', passentry)
 
     // if (mode === EDIT) {
     //   props
@@ -52,7 +53,7 @@ export default function Entry(props) {
     }  
     
     return (
-        <Grid container justify = "center">
+        <Grid container justify = "center" alignItems="center" height="100%">
           <Form
           back={props.back}
           onSave={onSave}
