@@ -1,14 +1,10 @@
 import React from "react";
 import Form from "./Form";
 import AlertDialog from "./FormFeedback";
-import DialogActions from '@material-ui/core/DialogActions';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
 import DateContext from "../../hooks/DateContext";
 import VisitorContext from '../../hooks/VisitorContext';
 import TrailContext from '../../hooks/TrailContext';
 import useVisualMode from '../../hooks/UseVisualMode';
-// import TrailContext from ".../hooks/TrailContext";
 
 const SAVING = "SAVING";
 const INITIAL = "INITIAL";
@@ -29,6 +25,8 @@ export default function Entry(props) {
     setOpen(true);
   };
 
+  
+
   //function to save a newly created entry
   function onSave(selectedDate, selectedVisitor,selectedTrail, guestState) {
     const passentry = {
@@ -37,7 +35,6 @@ export default function Entry(props) {
       guests: guestState,
       trailId: selectedTrail.id
     }
-    console.log('save object', passentry)
     // transition(SAVING);
 
     // if (mode === EDIT) {
@@ -50,10 +47,6 @@ export default function Entry(props) {
     // } else {    
       props.newPass(passentry)
       props.onSetVerify()
-      // .then(() => handleClickOpen())
-      // .catch(error => {
-      //   // transition(ERROR_SAVE, true)
-      // }); 
     }  
     
     return (

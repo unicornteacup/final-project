@@ -77,7 +77,9 @@ export default function useApplicationData(){
   }
 
   function newPass(passentry) {
-    return axios.post(`/api/pass_entries`, {passentry})
+    console.log('passentry in hook', passentry)
+    const { visitorId, trailId, date, guests } = passentry
+    return axios.post(`/api/pass_entries`, { visitorId, trailId, date, guests })
     .then ((res) => {
       console.log('useappdatapostres:', res)
       let id = res.data.id
