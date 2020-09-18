@@ -1,0 +1,40 @@
+.slider{
+    position:relative;
+    width: 100%;
+    height:400px;
+    margin:0;
+    padding:0;
+    display:flex;
+    align-items: center;
+    overflow:hidden;
+}
+
+.slide{
+    min-width: 95%;
+    height:auto;
+    transition: 0.5s;
+    overflow:hidden;
+}
+
+%btn-styles{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:5%;
+    height:50%;
+    background:none;
+    border:none;
+    outline:none;
+    font:white;
+
+}
+
+#goLeft{
+    @extend %btn-styles;
+    left:0;
+}
+
+#goRight{
+    @extend %btn-styles;
+    right:0;
+}

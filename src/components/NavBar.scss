@@ -1,0 +1,63 @@
+
+
+.MuiToolbar-root{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right:100px;
+}
+
+img {
+    padding-left:100px;
+    padding-right:100px;
+    height:100px;
+    width: 350px;
+    object-fit: contain;
+}
+
+.nav_left{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.log_reg{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.login_button{
+    padding-right:30px;
+    font-weight:900;
+}
+
+.register_button{
+    padding-right:100px;
+    font-weight:900px;
+}
+
+.MuiButton-label{
+   font-weight:900;
+   font:bold;
+   font-family:helvetica;
+}
+
+.logged_in{
+    align-items: baseline;
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-end;
+    font-weight:900;
+    color: #05386B;
+ }
+
+
+ .MuiPaper-root{
+    font-weight:900;
+    color: #05386B;
+ }
+
+ .logout{
+     padding:15px;
+ }
