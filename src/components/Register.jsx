@@ -62,11 +62,13 @@ export default function Register(props) {
       transition(ERROR)
     } else {
       setSelectedVisitor(newVisitor);
+      setSelectedVisitor({...newVisitor, id: visitors.length + 1})
       props.onSetVerify();
     }
   };
 
   const handleSubmit = (event) => {
+    console.log('in subbmit', props.visitors.length)
     event.preventDefault();
     save(newVisitor, props.visitors);
   }

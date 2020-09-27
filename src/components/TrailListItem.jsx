@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -16,9 +15,9 @@ import TrailContext from "../hooks/TrailContext";
 
 import ProgressBar from './ProgressBar';
 
-import { Map, TileLayer, Marker } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
-import './trailListItem.scss'
+// import './trailListItem.scss'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,23 +57,9 @@ const useStyles = makeStyles((theme) => ({
 export default function TrailListItem(props) {
   const classes = useStyles();
 
-  
-  
-  // const [ entries, setEnties ] = useState([])
-  
-//   useEffect(() => {
-
-//     axios.get('/api/date_entry', { trail: selectedTrail.id, date: `${props.date}`})
-//     .then 
-
-// }, [])
-
-
-  // filteredEntries()
   const {selectedTrail, setSelectedTrail} = React.useContext(TrailContext);
 
   const onSelect = props.onForm;
-  console.log('trailprops:', props)
 
   const newPassEntry = () => {
     setSelectedTrail(props);
@@ -117,11 +102,17 @@ export default function TrailListItem(props) {
         </AccordionSummary>
         <Divider />
         <AccordionDetails className={classes.details}>
-          <Map center={[props.latitude, props.longitude]} zoom={13}> 
-            <TileLayer
-              url="https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png"
-            />
-            <Marker position={[props.latitude, props.longitude]} />
+          <Map center={[props.latitude, props.longitude]} zoom={12}> 
+          <TileLayer
+          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png"
+        />
+            <Marker position={[props.latitude, props.longitude]}>
+              <Popup>
+                Trailhead <br/> be aware of bears
+            </Popup>
+
+            </Marker>
           </Map>
           <div className={clsx(classes.column, classes.helper)}>
             <Typography variant="caption">{props.description}</Typography>
@@ -147,15 +138,14 @@ export default function TrailListItem(props) {
           pass_entries={filteredEntries.length}
         />
         <Divider />
-
-        <AccordionActions>
-
         <div class="writing">
           <h2>Notice</h2>
           <h5>Passes cannot be transferred to another date, time, or location, and your day-pass cannot be shared beyond the group reserved.
   
           Under the Park Act, the potential penalties are $115; however, this pilot's focus will be on education and helping users adjust to the new requirements.</h5>
         </div>
+
+        <AccordionActions>
 
           <div class="apply_pass_button">
           <Button variant="contained" color="primary" 

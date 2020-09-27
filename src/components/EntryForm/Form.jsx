@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import DateContext from "../../hooks/DateContext";
 import VisitorContext from '../../hooks/VisitorContext';
@@ -8,11 +8,15 @@ import TrailContext from '../../hooks/TrailContext';
 import transitions from '@material-ui/core/styles/transitions';
 import useVisualMode from '../../hooks/UseVisualMode';
 import useApplicationData from "../../hooks/useApplicationData";
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+
+
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiTextField-root': {
+    '& .MuiInput-root': {
       margin: theme.spacing(1),
       width: 200,
     },
@@ -23,6 +27,14 @@ const useStyles = makeStyles((theme) => ({
 
   heading: {
     fontSize: theme.typography.pxToRem(33),
+  },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  button: {
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(1),
   },
 }));
 
@@ -101,9 +113,9 @@ export default function Form (props) {
     setGuestState(updatedGuests);
   };
 
-  function validate() {
+  function validate(event) {
   //loop through guestState and validate if all 3 values are input
-
+    event.preventDefault();
     for (let guest of guestState){ 
       if (guest.firstName === "") {
         if (guest.lastName !== "" || guest.phone !== ""){ 
@@ -117,21 +129,25 @@ export default function Form (props) {
         }
       }
     }
-    props.onSave(selectedDate, selectedVisitor,selectedTrail, guestState);
+    props.onSave(selectedDate, selectedVisitor, selectedTrail, guestState);
   } 
+
+  let date = selectedDate
+  date = new Date(date)
+  date = date.toDateString().slice(4);
+
 
   const [error, setError] = useState("");
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <header className={classes.root}>
-      <h4 className={classes.heading}>{visitor(selectedVisitor)}</h4>
-      {/* <h4 className={classes.heading}>{selectedVisitor}</h4> */}
-      {/* <h4 className={classes.heading}>Date</h4> */}
-      <h4 className={classes.heading}>{""+selectedDate}</h4>
-      <h4 className={classes.heading}>{trail(selectedTrail)}</h4>
+      <Typography variant="subtitle1" gutterBottom>
+    Day Pass Booking for <strong>{trail(selectedTrail)}</strong> on <strong>{date}</strong>
+         {/* Day Pass Booking for ${selectedTrail} on ${date} */}
+      </Typography>
     </header>
-      <Button variant="contained" color="primary" value="Add New Guest" onClick={addGuest}>Add Guest</Button>
+    <Divider />
       {guestState.map((val, idx) => {
           const firstId = `firstname-${idx}`;
           const lastId = `lastname-${idx}`;
@@ -139,8 +155,8 @@ export default function Form (props) {
           return (
             <div key={`guest-${idx}`} className={classes.column}>
               { mode === INITIAL && (
-              <TextField
-                label={`Guest #${idx + 1} First Name`}
+              <Input
+                placeholder="First Name"
                 type="text"
                 name={firstId}
                 data-idx={idx}
@@ -153,8 +169,8 @@ export default function Form (props) {
               />
               )}
               { mode === INITIAL && (
-              <TextField
-                label="Last Name"
+              <Input
+                placeholder="Last Name"
                 type="text"
                 name={lastId}
                 data-idx={idx}
@@ -167,8 +183,8 @@ export default function Form (props) {
               />
               )}
               { mode === INITIAL && (
-              <TextField
-                label="Phone"
+              <Input
+                placeholder="Phone"
                 type="tel"
                 name={phoneId}
                 data-idx={idx}
@@ -184,8 +200,8 @@ export default function Form (props) {
               />
               )}
               { mode === ERROR && (
-              <TextField
-              label={`Guest #${idx + 1} First Name`}
+              <Input
+              placeholder={`Guest #${idx + 1} First Name`}
               type="text"
               name={firstId}
               data-idx={idx}
@@ -199,8 +215,8 @@ export default function Form (props) {
             />
             )}
             { mode === ERROR && (
-            <TextField
-              label="Last Name"
+            <Input
+              placeholder="Last Name"
               type="text"
               name={lastId}
               data-idx={idx}
@@ -214,8 +230,8 @@ export default function Form (props) {
             />
             )}
             { mode === ERROR && (
-            <TextField
-              label="Phone"
+            <Input
+              placeholder="Phone"
               type="tel"
               name={phoneId}
               data-idx={idx}
@@ -232,12 +248,17 @@ export default function Form (props) {
           );      
         })
       }
-      <div>
-      {/* <Button variant="contained" color="primary" onClick={() => props.back()} confirm>
-            Back
-        </Button> */}
-        <Button variant="contained" color="primary" onClick={validate} confirm>
-            Submit Entry
+      <Button color="primary" value="Add New Guest" onClick={addGuest}>Add Guest</Button>
+      <div className={classes.buttons}>
+        <Button onClick={() => props.back()} className={classes.button}>
+          Back
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={validate}
+          className={classes.button}
+        >Next
         </Button>
       </div>
     </form>

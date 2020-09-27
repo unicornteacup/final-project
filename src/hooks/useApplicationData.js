@@ -77,9 +77,10 @@ export default function useApplicationData(){
   }
 
   function newPass(passentry) {
-    return axios.post(`/api/pass_entries`, {passentry})
+    const { visitorId, trailId, date, guests } = passentry
+    console.log('.......', visitorId)
+    return axios.post(`/api/pass_entries`, { visitorId, trailId, date, guests })
     .then ((res) => {
-      console.log('useappdatapostres:', res)
       let id = res.data.id
       let newBooking = {...state.bookings, [id]: passentry}
       // return setState({...state, passes: passes});
